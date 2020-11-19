@@ -13,11 +13,10 @@ class CreateClientAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('clientaddresses', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('address');
-            $table->integer('postcode');
-            $table->string('city'); 
+            $table->string('name');
+            $table->string('email');
             $table->timestamps();
         });
     }
@@ -29,6 +28,8 @@ class CreateClientAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_addresses');
+        Schema::dropIfExists('clients');
     }
 }
+
+

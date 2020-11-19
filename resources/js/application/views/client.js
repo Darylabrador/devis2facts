@@ -1,36 +1,35 @@
-import Axios from "axios";
+//import Axios from "axios";
 
 export default {
+    components: {
 
+    },
     data() {
         return {
-            clients: [],
+            nom: 'toto',
         }
     },
 
     created() {
-        this.initialize();
-        this.displayHoraire(this.attributions);
+        this.getClients();
     },
 
     methods: {
-        initialize() {
-
-            
-
+        getClients() {
+            Axios.get('api/client').then(({ data }) => {
+                data.data.forEach(ordinateur => {
+                    this.ordinateurs.push(ordinateur)
+                })
+            })
         },
 
-        displayHoraire(attributions) {
-            attributions.forEach(attribution => {
-                for (let i = 0; i < this.horaires.length; i++) {
-                    if (this.horaires[i].horaire == attribution.horaire) {
-                        this.horaires[i] = attribution;
+        add(ordi) {
+            const index = _.findIndex(this.ordinateurs, { id: ordi.id });
+            this.ordinateurs.push(ordi);
+        },
 
-                    }
-                }
-            })
-
-
+        getDate(date) {
+            this.date = date;
         }
     }
 }
