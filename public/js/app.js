@@ -1948,13 +1948,38 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       drawerRight: null,
       email: '',
-      name: ''
+      emailRules: [function (v) {
+        return !!v || "E-mail requis";
+      }, function (v) {
+        return /.+@.+\..+/.test(v) || "Ce champ doit être un email";
+      }],
+      name: '',
+      nameRules: [function (v) {
+        return !!v || "Le nom est requis";
+      }],
+      valid: true,
+      lazy: false
     };
+  },
+  methods: {
+    addClient: function addClient() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/clients/add', {
+        name: this.name,
+        email: this.email
+      }).then(function (data) {
+        _this.$emit('addClient', data.data);
+      });
+    }
   }
 });
 
@@ -2069,6 +2094,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AddOrdi: _components_AddOrdi_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      clients: []
+    };
+  },
+  methods: {
+    add: function add(client) {
+      this.clients.push(client.data);
+    }
   }
 });
 
@@ -20428,7 +20463,12 @@ var render = function() {
                             "v-btn",
                             {
                               staticClass: "success--text",
-                              attrs: { text: "" }
+                              attrs: { disabled: !_vm.valid, text: "" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.addClient()
+                                }
+                              }
                             },
                             [
                               _vm._v("\n            Valider\n            "),
@@ -20503,7 +20543,7 @@ var render = function() {
                   _c(
                     "v-list-item-title",
                     { staticClass: "title mt-3 text-center" },
-                    [_vm._v("Ajouter l'utilisateur")]
+                    [_vm._v("Ajouter un client")]
                   )
                 ],
                 1
@@ -20515,37 +20555,64 @@ var render = function() {
           _c("v-divider"),
           _vm._v(" "),
           _c(
-            "v-row",
-            { staticClass: "mr-5 ml-5" },
+            "v-form",
+            {
+              ref: "form",
+              attrs: { "lazy-validation": _vm.lazy },
+              model: {
+                value: _vm.valid,
+                callback: function($$v) {
+                  _vm.valid = $$v
+                },
+                expression: "valid"
+              }
+            },
             [
-              _c("v-text-field", {
-                attrs: { label: "Nom de l'utilisateur ", required: "" },
-                model: {
-                  value: _vm.name,
-                  callback: function($$v) {
-                    _vm.name = $$v
-                  },
-                  expression: "name"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-row",
-            { staticClass: "mr-5 ml-5" },
-            [
-              _c("v-text-field", {
-                attrs: { label: "Email de l'utilisateur ", required: "" },
-                model: {
-                  value: _vm.email,
-                  callback: function($$v) {
-                    _vm.email = $$v
-                  },
-                  expression: "email"
-                }
-              })
+              _c(
+                "v-row",
+                { staticClass: "mr-5 ml-5" },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      label: "Nom de l'utilisateur",
+                      rules: _vm.nameRules,
+                      "prepend-icon": "mdi-account",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.name,
+                      callback: function($$v) {
+                        _vm.name = $$v
+                      },
+                      expression: "name"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                { staticClass: "mr-5 ml-5" },
+                [
+                  _c("v-text-field", {
+                    attrs: {
+                      rules: _vm.emailRules,
+                      label: "Email de l'utilisateur",
+                      "prepend-icon": "mdi-account",
+                      required: ""
+                    },
+                    model: {
+                      value: _vm.email,
+                      callback: function($$v) {
+                        _vm.email = $$v
+                      },
+                      expression: "email"
+                    }
+                  })
+                ],
+                1
+              )
             ],
             1
           )
@@ -20972,7 +21039,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("addOrdi")], 1)
+  return _c(
+    "div",
+    [
+      _c("addOrdi", {
+        on: {
+          addClient: function($event) {
+            return _vm.add($event)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm._l(_vm.clients, function(client, key) {
+        return _c(
+          "div",
+          { key: key },
+          [_c("v-col", [_vm._v(_vm._s(client))])],
+          1
+        )
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
