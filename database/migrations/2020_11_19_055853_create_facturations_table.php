@@ -16,7 +16,7 @@ class CreateFacturationsTable extends Migration
         Schema::create('facturations', function (Blueprint $table) {
             $table->id();
             $table->boolean('is_paid');
-            $table->string('name');
+            $table->string('filename');
             $table->timestamps();
         });
     }
