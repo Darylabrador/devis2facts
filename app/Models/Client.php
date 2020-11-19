@@ -9,11 +9,11 @@ class Client extends Model
 {
     use HasFactory;
     protected $table = 'clients';
-    protected $fillable = ['name', 'clientaddress_id', 'postcode', 'city', 'email'];
+    protected $fillable = ['name', 'email'];
     public $timestamps = false;
 
     public function clientAddresses()
     {
-        return $this->belongsTo(ClientAddresses::class, 'clientaddress_id');
+        return $this->hasMany(ClientAddresses::class, 'clients_id');
     }
 }
