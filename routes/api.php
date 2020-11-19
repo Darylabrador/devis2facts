@@ -20,6 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route for to create Product
+//Route to create Product
 Route::post ("product/add", [ProductController::class, 'store']);
+
+//Client
+
 Route::post('clients/add', [ClientsController::class, 'add']);
+Route::get('clients/getAll', [ClientsController::class, 'getAllClients']);
+

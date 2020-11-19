@@ -1,4 +1,4 @@
-//import Axios from "axios";
+import Axios from "axios";
 
 export default {
     components: {
@@ -6,26 +6,24 @@ export default {
     },
     data() {
         return {
-            nom: 'toto',
+            clients: [],
         }
     },
 
     created() {
-        this.getClients();
+        //this.getClients();
     },
 
     methods: {
         getClients() {
             Axios.get('api/client').then(({ data }) => {
-                data.data.forEach(ordinateur => {
-                    this.ordinateurs.push(ordinateur)
-                })
-            })
-        },
 
-        add(ordi) {
-            const index = _.findIndex(this.ordinateurs, { id: ordi.id });
-            this.ordinateurs.push(ordi);
+                console.log(data);
+                // data.data.forEach(client => {
+                //     this.ordinateurs.push(ordinateur)
+                // })
+                
+            })
         },
 
         getDate(date) {
