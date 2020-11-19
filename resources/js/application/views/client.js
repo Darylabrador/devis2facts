@@ -1,33 +1,29 @@
-import Axios from "axios";
+                import Axios from "axios";
+
 
 export default {
-    components: {
 
-    },
     data() {
         return {
             clients: [],
+            icons: mdiDelete
         }
     },
 
     created() {
-        //this.getClients();
+        this.getClients();
+        //console.log("oui");
     },
 
     methods: {
         getClients() {
-            Axios.get('api/client').then(({ data }) => {
+            Axios.get('api/clients/getAll').then(({ data }) => {
 
-                console.log(data);
-                // data.data.forEach(client => {
-                //     this.ordinateurs.push(ordinateur)
-                // })
-                
+                console.log(data)
+                data.data.forEach(client => {
+                    this.clients.push(client)
+                })
             })
-        },
-
-        getDate(date) {
-            this.date = date;
         }
-    }
+    },
 }

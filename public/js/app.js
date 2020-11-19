@@ -2009,25 +2009,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
   data: function data() {
     return {
-      clients: []
+      clients: [],
+      icons: mdiDelete
     };
   },
-  created: function created() {//this.getClients();
+  created: function created() {
+    this.getClients(); //console.log("oui");
   },
   methods: {
     getClients: function getClients() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/client').then(function (_ref) {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/clients/getAll').then(function (_ref) {
         var data = _ref.data;
-        console.log(data); // data.data.forEach(client => {
-        //     this.ordinateurs.push(ordinateur)
-        // })
+        console.log(data);
+        data.data.forEach(function (client) {
+          _this.clients.push(client);
+        });
       });
-    },
-    getDate: function getDate(date) {
-      this.date = date;
     }
   }
 });
@@ -2114,7 +2115,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.adminFooter[data-v-cb0b7df0] {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-end;\n  align-items: center;\n  background-color: brown;\n  height: 50px;\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n}\n.adminFooterTexte[data-v-cb0b7df0] {\n    position: relative;\n    right: 5%;\n}\n", ""]);
+exports.push([module.i, "\n.adminFooter[data-v-cb0b7df0] {\r\n  display: flex;\r\n  flex-flow: row;\r\n  justify-content: flex-end;\r\n  align-items: center;\r\n  background-color: brown;\r\n  height: 50px;\r\n  position: fixed;\r\n  bottom: 0;\r\n  width: 100%;\n}\n.adminFooterTexte[data-v-cb0b7df0] {\r\n    position: relative;\r\n    right: 5%;\n}\r\n", ""]);
 
 // exports
 
@@ -20757,20 +20758,62 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._v("\n    Client List\n    \n    "),
       _c(
-        "v-container",
-        _vm._l(_vm.clients, function(client, key) {
-          return _c("v-row", { key: key }, [
-            _vm._v(
-              "\n\n            " +
-                _vm._s(client) +
-                "\n                \n        "
-            )
-          ])
-        }),
+        "v-card",
+        { staticClass: "mx-auto", attrs: { width: "200px" } },
+        [_c("v-card-title", [_vm._v("\n    Liste Clients\n  ")])],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("v-simple-table", {
+        staticStyle: {
+          "margin-left": "25vw",
+          "margin-top": "10vh",
+          width: "50vw"
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function() {
+              return [
+                _c(
+                  "tbody",
+                  _vm._l(_vm.clients, function(client, key) {
+                    return _c("tr", { key: key }, [
+                      _c("td", [_vm._v(_vm._s(client.name))]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "v-btn",
+                            { attrs: { depressed: "" } },
+                            [
+                              _c(
+                                "v-icon",
+                                { attrs: { color: "red", right: "" } },
+                                [
+                                  _vm._v(
+                                    "\n                                      mdi-delete\n                                  "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]
+            },
+            proxy: true
+          }
+        ])
+      })
     ],
     1
   )
@@ -80592,8 +80635,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/robert/Bureau/Projet/FORMATION/devis2facts/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/robert/Bureau/Projet/FORMATION/devis2facts/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! D:\logiciels\xampp\htdocs\Simplon\0-devis2fact\devis2facts-proj\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\logiciels\xampp\htdocs\Simplon\0-devis2fact\devis2facts-proj\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
