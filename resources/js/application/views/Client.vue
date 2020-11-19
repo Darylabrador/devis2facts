@@ -14,9 +14,7 @@
             <td>{{ client.name }}</td>
 
             <td class="text-right">
-              <v-btn icon>
-                <v-icon color="red"> {{ icons }} </v-icon>
-              </v-btn>
+                <delClient :client=client.id @delClient="del($event)" />
             </td>
           </tr>
         </tbody>
