@@ -14,12 +14,10 @@ class ClientResource extends JsonResource
      */
     public function toArray($request)
     {
-        $clientaddress = new ClientAddressesResource($this->clientaddresses);
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'clientaddress' => $clientaddress,
-            'postcode' => $this->token,
+            'email' => $this->email
         ];
     }
 }

@@ -2,27 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\ClientResource;
+use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ClientsController extends Controller
 {
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
 
         $validator = Validator::make(
             $request->all(),
             [
-                'name' => 'required|email',
-                // 'clientaddress_id' => 'required',
-                // 'postcode' => 'required',
-                // 'city' => 'required',
-                // 'email' => 'required'
+                'name' => 'required|max:100',
+                'email' => 'required|email',
             ],
             [
                 'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
             ]
         )->validate();
 
-        return $validator;
+        $client = new Client();
+        $client->name = $validator['name'];
+        $client->email = $validator['email'];
+        $client->save();
+
+        return new ClientResource($client);
+
+
     }
 }
