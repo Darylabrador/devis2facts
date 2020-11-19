@@ -17,7 +17,6 @@ class ClientsSeeder extends Seeder
         $array = [
                 'name' => 'xylophone',
                 'email' => 'telephone@instrument.com'
-
         ];
 
         DB::table('clients')->insert(
