@@ -1,18 +1,7 @@
 import Axios from "axios"
-import Chart from "chart.js";
-import ModalAddProduct from "../components/modal/AddProduct.vue"
+import DashboardStats from "../service/charts/dashboardStats.js";
 
 export default {
-
-    // components: {},
-    // props: {},
-
-    // data() {
-    //     return {
-
-    //     }
-    // },
-
     created() {
         this.createStats()
     },
@@ -25,41 +14,12 @@ export default {
             try {
                 const statsInfo = await Axios.get('/api/stats');
                 const responseData = statsInfo.data.data;
-          
-                let camembertFacturation = document.querySelector('#statsFacturation');
-                var chartFacturation;
-
-                var ctx = camembertFacturation.getContext('2d');
-                var color = Chart.helpers.color;
-
-                chartFacturation = new Chart(ctx, {
-                    type: 'pie',
-                    data: {
-                        datasets: [{
-                            backgroundColor: [
-                                color('yellow').alpha(0.6).rgbString(),
-                                color('orange').alpha(0.6).rgbString(),
-                            ],
-                            label: "Suivi facturations",
-                            data: responseData,
-                        }],
-                        labels: ["Payées", "Non payées"],
-                    },
-                    options: {
-                        responsive: true,
-                        title: {
-                            display: true,
-                            text: 'Proportion des facturations payées ou non'
-                        }
-                    }
-                });
+                DashboardStats(responseData);
+                
             
             } catch (error) {
                 console.error(error);
             }
         },
-    },
-    components: {
-        ModalAddProduct
     }
 }
