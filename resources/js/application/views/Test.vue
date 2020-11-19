@@ -1,14 +1,7 @@
 <template>
     <div>
-        <add-ordi />
+        <addOrdi />
     </div>
 </template>
 
-<script>
-import AddOrdi from '../components/AddOrdi.vue'
-export default {
-    components: {
-        AddOrdi
-    }
-}
-</script>
+<script src='./test.js' />
