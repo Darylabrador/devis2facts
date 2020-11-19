@@ -20,13 +20,11 @@ class DevisSeeder extends Seeder
             'client_id' => 1,
             'filename' => 'qsd.pdf',
             'tva' => 8.5,
-            'is_accepted' => true,
+            'is_accepted' => true
+        ];
 
-
-    ];
-
-    DB::table('devis')->insert(
-        $array
-    );
+        DB::table('devis')->insert(
+            $array
+        );
     }
 }
