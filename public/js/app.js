@@ -1972,7 +1972,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      test: 'gilles'
+      drawerRight: null,
+      name: '',
+      price: ''
     };
   }
 });
@@ -20576,9 +20578,175 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("p", [_vm._v("\n        " + _vm._s(_vm.test) + "\n    ")])
-  ])
+  return _c(
+    "div",
+    [
+      _c(
+        "v-btn",
+        {
+          attrs: { text: "" },
+          on: {
+            click: function($event) {
+              $event.stopPropagation()
+              _vm.drawerRight = !_vm.drawerRight
+            }
+          }
+        },
+        [
+          _c("v-icon", { staticClass: "ml-2 success--text" }, [
+            _vm._v("mdi-tag-outline")
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-navigation-drawer",
+        {
+          attrs: { app: "", temporary: "", "hide-overlay": "", right: "" },
+          scopedSlots: _vm._u([
+            {
+              key: "append",
+              fn: function() {
+                return [
+                  _c(
+                    "v-row",
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6", sm: "6" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "success--text",
+                              attrs: { text: "" }
+                            },
+                            [
+                              _vm._v("\n            Valider\n            "),
+                              _c("v-icon", { staticClass: "ml-3" }, [
+                                _vm._v("mdi-check")
+                              ])
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "6", sm: "6" } },
+                        [
+                          _c(
+                            "v-btn",
+                            {
+                              staticClass: "red--text",
+                              attrs: { text: "" },
+                              on: {
+                                click: function($event) {
+                                  _vm.drawerRight = !_vm.drawerRight
+                                }
+                              }
+                            },
+                            [_vm._v("\n            Annuler\n          ")]
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]
+              },
+              proxy: true
+            }
+          ]),
+          model: {
+            value: _vm.drawerRight,
+            callback: function($$v) {
+              _vm.drawerRight = $$v
+            },
+            expression: "drawerRight"
+          }
+        },
+        [
+          _c(
+            "v-btn",
+            {
+              staticClass: "red--text mr-5 mt-2",
+              attrs: { icon: "" },
+              on: {
+                click: function($event) {
+                  _vm.drawerRight = !_vm.drawerRight
+                }
+              }
+            },
+            [_c("v-icon", [_vm._v("mdi-close")])],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-list-item",
+            [
+              _c(
+                "v-list-item-content",
+                [
+                  _c(
+                    "v-list-item-title",
+                    { staticClass: "title mt-3 text-center" },
+                    [_vm._v("Ajouter Produit ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-divider"),
+          _vm._v(" "),
+          _c(
+            "v-row",
+            { staticClass: "mr-5 ml-5" },
+            [
+              _c("v-text-field", {
+                attrs: { label: "Nom du Produit ", required: "" },
+                model: {
+                  value: _vm.name,
+                  callback: function($$v) {
+                    _vm.name = $$v
+                  },
+                  expression: "name"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-row",
+            { staticClass: "mr-5 ml-5" },
+            [
+              _c("v-text-field", {
+                attrs: { label: "Prix du Produit", required: "" },
+                model: {
+                  value: _vm.price,
+                  callback: function($$v) {
+                    _vm.price = $$v
+                  },
+                  expression: "price"
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -1,7 +1,9 @@
 export default {
     data() {
         return {
-            test: 'gilles',
+            drawerRight: null,
+            name: '',
+            price: '',
         }
     },
 }

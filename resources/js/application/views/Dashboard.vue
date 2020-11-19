@@ -1,7 +1,7 @@
 x<template>
   <div>
 
-    <ModalAddProduct></ModalAddProduct>
+    <ModalAddProduct/>
   </div>
 </template>
 
