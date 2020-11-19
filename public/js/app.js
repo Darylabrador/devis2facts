@@ -20852,10 +20852,16 @@ var render = function() {
         return _c(
           "div",
           { key: key },
-          [_c("v-col", [_vm._v(_vm._s(client))])],
+          [
+            _vm.clients.length != 0
+              ? _c("v-col", [_vm._v(_vm._s(client.name))])
+              : _vm._e()
+          ],
           1
         )
-      })
+      }),
+      _vm._v(" "),
+      _vm.clients.length == 0 ? _c("v-col", [_vm._v(" toto ")]) : _vm._e()
     ],
     2
   )

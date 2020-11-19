@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\DevisController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -28,3 +29,6 @@ Route::post ("product/add", [ProductController::class, 'store']);
 Route::post('clients/add', [ClientsController::class, 'add']);
 Route::get('clients/getAll', [ClientsController::class, 'getAllClients']);
 
+// Devis 
+
+Route::get('devis/get', [DevisController::class, 'get']);
