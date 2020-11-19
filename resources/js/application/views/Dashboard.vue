@@ -1,7 +1,5 @@
 <template>
   <div>
-
-    <ModalAddProduct/>
     <v-textarea
       background-color="light-blue"
       color="cyan"

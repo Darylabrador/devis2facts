@@ -2,12 +2,13 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from './views/Dashboard.vue';
 import Clients from './views/Client.vue';
+import Products from './views/Product.vue';
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: 'history',
-    routes: [
-        {
+    routes: [{
             path: '/',
             name: 'home',
             component: Home,
@@ -16,6 +17,11 @@ const router = new VueRouter({
             path: '/clients',
             name: 'clients',
             component: Clients
+        },
+        {
+            path: '/products',
+            name: 'product',
+            component: Products
         },
     ]
 });
