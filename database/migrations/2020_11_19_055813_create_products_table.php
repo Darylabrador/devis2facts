@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Adresse extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class Adresse extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->float('default_price');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class Adresse extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('products');
     }
 }

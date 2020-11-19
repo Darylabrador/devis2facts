@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from './views/Home';
+import Home from './views/Dashboard.vue';
 
 Vue.use(VueRouter);
 
@@ -13,8 +13,7 @@ const router = new VueRouter({
             component: Home,
         },
     ]
-})
-
+});
 
 
 export default router;

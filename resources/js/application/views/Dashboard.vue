@@ -4,4 +4,4 @@
     </div>
 </template>
 
-<script src="./home.js" />
+<script src="./dashboard.js" />
