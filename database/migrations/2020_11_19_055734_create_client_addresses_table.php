@@ -31,5 +31,3 @@ class CreateClientAddressesTable extends Migration
         Schema::dropIfExists('clients');
     }
 }
-
-
