@@ -1959,7 +1959,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    console.log(axios__WEBPACK_IMPORTED_MODULE_0___default.a);
+  }
+});
 
 /***/ }),
 
@@ -1994,7 +2001,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.adminFooter[data-v-cb0b7df0] {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-end;\n  align-items: center;\n  background-color: brown;\n  height: 50px;\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n}\n.adminFooterTexte[data-v-cb0b7df0] {\n    position: relative;\n    right: 5%;\n}\n", ""]);
+exports.push([module.i, "\n.adminFooter[data-v-cb0b7df0] {\r\n  display: flex;\r\n  flex-flow: row;\r\n  justify-content: flex-end;\r\n  align-items: center;\r\n  background-color: brown;\r\n  height: 50px;\r\n  position: fixed;\r\n  bottom: 0;\r\n  width: 100%;\n}\n.adminFooterTexte[data-v-cb0b7df0] {\r\n    position: relative;\r\n    right: 5%;\n}\r\n", ""]);
 
 // exports
 
@@ -20410,7 +20417,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    toto\n")])
+<<<<<<< HEAD
+  return _c("v-container", { attrs: { fluid: "" } }, [_vm._v("\n    toto\n")])
+=======
+  return _c(
+    "div",
+    [
+      _c("v-textarea", {
+        attrs: {
+          "background-color": "light-blue",
+          color: "cyan",
+          label: "Label"
+        }
+      }),
+      _vm._v(" "),
+      _c("v-system-bar", { attrs: { color: "light-blue", dark: "" } }, [
+        _vm._v(" tesst ")
+      ])
+    ],
+    1
+  )
+>>>>>>> 60444671e2037a4c7e985ab556234d2927470c13
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -79919,8 +79946,13 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! /home/gilles/devis2facts/resources/js/app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! /home/gilles/devis2facts/resources/css/app.css */"./resources/css/app.css");
+=======
+__webpack_require__(/*! D:\logiciels\xampp\htdocs\Simplon\0-devis2fact\devis2facts-proj\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\logiciels\xampp\htdocs\Simplon\0-devis2fact\devis2facts-proj\resources\css\app.css */"./resources/css/app.css");
+>>>>>>> 5410a442a16212dc6dfbca4ca03efede27acbd2c
 
 
 /***/ })

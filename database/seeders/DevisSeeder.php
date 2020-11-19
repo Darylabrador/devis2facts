@@ -5,7 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ClientsSeeder extends Seeder
+
+class DevisSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,13 +15,15 @@ class ClientsSeeder extends Seeder
      */
     public function run()
     {
-        $array = [
-                'name' => 'xylophone',
-                'email' => 'telephone@instrument.com'
 
+        $array = [
+            'client_id' => 1,
+            'filename' => 'qsd.pdf',
+            'tva' => 8.5,
+            'is_accepted' => true
         ];
 
-        DB::table('clients')->insert(
+        DB::table('devis')->insert(
             $array
         );
     }

@@ -16,9 +16,9 @@ class ClientaddressesSeeder extends Seeder
     {
         $array = [
             'address' => '12 rue de la musique',
+            'client_id' => 1,
             'postcode' => 97427,
             'city' => 'Etang-sale'
-
         ];
 
         DB::table('clientaddresses')->insert(

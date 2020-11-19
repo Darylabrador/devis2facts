@@ -1,3 +1,5 @@
+
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -13,11 +15,14 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('clientaddresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('clientaddress_id')->nullable()->constrained();
-            $table->string('name');
-            $table->string('email');
+            $table->string('address');
+            $table->integer('postcode');
+
+            $table->foreignId('client_id')->nullable()->constrained();
+
+            $table->string('city'); 
             $table->timestamps();
         });
     }
@@ -29,6 +34,11 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        
+
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('clientaddresses');
+        Schema::enableForeignKeyConstraints();
+
     }
 }
