@@ -21,8 +21,16 @@ class DevisFactory extends Factory
      */
     public function definition()
     {
+        $year  = date('Y');
+        $month = $this->faker->month;
+        $id = 0;
+        $id = $id++;
+
         return [
-            //
+            'client_id'     => $this->faker->numberBetween(1, 5), 
+            'filename'      => "DE-{$year}-{$month}-{$id}.pdf", 
+            'tva'           => 8.5, 
+            'is_accepted'   => true
         ];
     }
 }

@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\LigneDevis;
+use App\Models\ClientAddresses;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class LigneDevisFactory extends Factory
+class ClientAddressesFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = LigneDevis::class;
+    protected $model = ClientAddresses::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,10 @@ class LigneDevisFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'address'   => $this->faker->address,
+            'postcode'  => 97427,
+            'city'      => $this->faker->city,
+            'client_id' => $this->faker->numberBetween(1, 5)
         ];
     }
 }

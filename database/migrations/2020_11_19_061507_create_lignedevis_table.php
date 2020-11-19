@@ -18,9 +18,9 @@ class CreateLignedevisTable extends Migration
             $table->foreignId('devis_id')->nullable()->constrained();
             $table->foreignId('product_id')->nullable()->constrained();
             $table->foreignId('facturation_id')->nullable()->constrained();
-            $table->string('description');
-            $table->integer('quantity');
-            $table->float('price');
+            $table->string('description')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->float('price')->nullable();
             $table->timestamps();
         });
     }

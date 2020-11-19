@@ -1,7 +1,13 @@
-x<template>
+<template>
   <div>
 
     <ModalAddProduct/>
+    <v-textarea
+      background-color="light-blue"
+      color="cyan"
+      label="Label"
+    ></v-textarea>
+   <v-system-bar color="light-blue" dark> tesst </v-system-bar>
   </div>
 </template>
 

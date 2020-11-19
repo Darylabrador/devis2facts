@@ -12,8 +12,8 @@ class Client extends Model
     protected $fillable = ['name', 'email'];
     public $timestamps = false;
 
-    public function clientAddresses()
+    public function clientAddress()
     {
-        return $this->hasMany(ClientAddresses::class, 'clients_id');
+        return $this->hasOne(ClientAddresses::class, 'client_id');
     }
 }

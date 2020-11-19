@@ -1,9 +1,6 @@
 <template>
-   <div>
-    <v-btn
-      @click.stop="(drawerRight = !drawerRight)"
-      text
-    >
+  <div>
+    <v-btn @click.stop="drawerRight = !drawerRight" text>
       <v-icon class="ml-2 success--text">mdi-tag-outline</v-icon>
     </v-btn>
 
@@ -18,30 +15,39 @@
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title mt-3 text-center"
-            >Ajouter Produit </v-list-item-title
+            >Ajouter d'un Produit</v-list-item-title
           >
         </v-list-item-content>
       </v-list-item>
 
       <v-divider></v-divider>
-      <v-row class="mr-5 ml-5">
-        <v-text-field
-          v-model="name"
-          label="Nom du Produit "
-          required
-        ></v-text-field>
-      </v-row>
-      <v-row class="mr-5 ml-5">
-        <v-text-field
-          v-model="price"
-          label="Prix du Produit"
-          required
-        ></v-text-field>
-      </v-row>
+      <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+        <v-row class="mr-5 ml-5">
+          <v-text-field
+            v-model="name"
+            label="Nom du produit"
+            :rules="nameRules"
+            prepend-icon="mdi-tag-outline"
+            required
+          ></v-text-field>
+        </v-row>
+        <v-row class="mr-5 ml-5">
+          <v-text-field
+            v-model="price"
+            :rules="priceRules"
+            min='0'
+            type="number"
+            label="Prix du produit"
+            prepend-icon="mdi-currency-eur"
+            required
+          ></v-text-field>
+        </v-row>
+      </v-form>
+
       <template v-slot:append>
         <v-row>
           <v-col cols="12" md="6" sm="6">
-            <v-btn class="success--text" text>
+            <v-btn class="success--text" :disabled="!valid" @click="addProduct()" text>
               Valider
               <v-icon class="ml-3">mdi-check</v-icon>
             </v-btn>
