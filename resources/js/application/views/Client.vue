@@ -16,7 +16,7 @@
                         <template v-slot:default>
                             <tbody>
                                 <tr
-                                v-for="client in clients" :key
+                                v-for="(client, key) in clients" :key=key
                                 >
                                 <td>{{client.name}}</td>
 

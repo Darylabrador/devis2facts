@@ -20778,8 +20778,8 @@ var render = function() {
               return [
                 _c(
                   "tbody",
-                  _vm._l(_vm.clients, function(client) {
-                    return _c("tr", [
+                  _vm._l(_vm.clients, function(client, key) {
+                    return _c("tr", { key: key }, [
                       _c("td", [_vm._v(_vm._s(client.name))]),
                       _vm._v(" "),
                       _c(
