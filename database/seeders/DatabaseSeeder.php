@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
             $year  = date('Y');
             $month = $faker->month;
             DB::table('facturations')->insert([
-                'is_paid'  => true,
+                'is_paid'  => false,
                 'filename' => "FA-{$year}-{$month}-{$i}.pdf", 
             ]);
         }
