@@ -1963,25 +1963,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {},
   data: function data() {
     return {
-      clients: []
+      clients: [],
+      icons: mdiDelete
     };
   },
-  created: function created() {//this.getClients();
+  created: function created() {
+    this.getClients(); //console.log("oui");
   },
   methods: {
     getClients: function getClients() {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/client').then(function (_ref) {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/clients/getAll').then(function (_ref) {
         var data = _ref.data;
-        console.log(data); // data.data.forEach(client => {
-        //     this.ordinateurs.push(ordinateur)
-        // })
+        console.log(data);
+        data.data.forEach(function (client) {
+          _this.clients.push(client);
+        });
       });
-    },
-    getDate: function getDate(date) {
-      this.date = date;
     }
   }
 });
@@ -20477,20 +20478,62 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._v("\n    Client List\n    \n    "),
       _c(
-        "v-container",
-        _vm._l(_vm.clients, function(client, key) {
-          return _c("v-row", { key: key }, [
-            _vm._v(
-              "\n\n            " +
-                _vm._s(client) +
-                "\n                \n        "
-            )
-          ])
-        }),
+        "v-card",
+        { staticClass: "mx-auto", attrs: { width: "200px" } },
+        [_c("v-card-title", [_vm._v("\n    Liste Clients\n  ")])],
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("v-simple-table", {
+        staticStyle: {
+          "margin-left": "25vw",
+          "margin-top": "10vh",
+          width: "50vw"
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function() {
+              return [
+                _c(
+                  "tbody",
+                  _vm._l(_vm.clients, function(client) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(client.name))]),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "v-btn",
+                            { attrs: { depressed: "" } },
+                            [
+                              _c(
+                                "v-icon",
+                                { attrs: { color: "red", right: "" } },
+                                [
+                                  _vm._v(
+                                    "\n                                      mdi-delete\n                                  "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ]
+            },
+            proxy: true
+          }
+        ])
+      })
     ],
     1
   )
@@ -80248,8 +80291,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/robert/Bureau/Projet/FORMATION/devis2facts/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/robert/Bureau/Projet/FORMATION/devis2facts/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/quentin/Projet/simplon/devis2facts/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/quentin/Projet/simplon/devis2facts/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })
