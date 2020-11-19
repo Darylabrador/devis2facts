@@ -15,8 +15,7 @@ class CreateDevisTable extends Migration
     {
         Schema::create('devis', function (Blueprint $table) {
             $table->id();
-
-            $table->int('client_id');
+            $table->integer('client_id');
             $table->string('filename');
             $table->int('tva');
             $table->boolean('is_accepted');

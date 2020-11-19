@@ -15,14 +15,12 @@ class CreateLignedevisTable extends Migration
     {
         Schema::create('lignedevis', function (Blueprint $table) {
             $table->id();
-
-            $table->int('devis_id');
-            $table->int('product_id');
-            $table->int('facturation_id');
+            $table->integer('devis_id');
+            $table->integer('product_id');
+            $table->integer('facturation_id');
             $table->string('description');
-            $table->int('quantity');
-            $table->int('price');
-
+            $table->integer('quantity');
+            $table->integer('price');
             $table->timestamps();
         });
     }
