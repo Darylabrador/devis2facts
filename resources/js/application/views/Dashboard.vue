@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <v-container fluid>
         toto
-    </div>
+    </v-container>
 </template>
 
 <script src="./dashboard.js" />
