@@ -31,6 +31,7 @@ Route::post ("product/add", [ProductController::class, 'store']);
 //Client
 Route::post('clients/add', [ClientsController::class, 'add']);
 Route::get('clients/getAll', [ClientsController::class, 'getAllClients']);
+Route::post('/clients/remove/{client}', [ClientsController::class, 'remove']);
 
 // Devis 
 Route::get('devis/get', [DevisController::class, 'get']);

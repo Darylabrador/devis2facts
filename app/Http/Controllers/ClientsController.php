@@ -37,4 +37,9 @@ class ClientsController extends Controller
         $clients = Client::all();
         return ClientResource::collection($clients);
     }
+
+    public function delete (Client $client) {
+        $client->delete();
+    }
+    
 }
