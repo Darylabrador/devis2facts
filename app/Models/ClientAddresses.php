@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class ClientAddresses extends Model
 {
     use HasFactory;
-    protected $table = 'clientadresses';
-    protected $fillable = ['address', 'postcode', 'city'];
+    protected $table = 'clientaddresses';
+    protected $fillable = ['address', 'postcode', 'city', 'client_id'];
     public $timestamps = false;
 
-    public function clients()
+    public function client()
     {
-        return $this->hasMany(Client::class, 'clientaddress_id');
+        return $this->belongsTo(Client::class, 'client_id');
     }
 }

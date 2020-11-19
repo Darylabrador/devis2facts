@@ -20417,9 +20417,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-<<<<<<< HEAD
-  return _c("v-container", { attrs: { fluid: "" } }, [_vm._v("\n    toto\n")])
-=======
   return _c(
     "div",
     [
@@ -20437,7 +20434,6 @@ var render = function() {
     ],
     1
   )
->>>>>>> 60444671e2037a4c7e985ab556234d2927470c13
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -79946,13 +79942,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! /home/gilles/devis2facts/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/gilles/devis2facts/resources/css/app.css */"./resources/css/app.css");
-=======
 __webpack_require__(/*! D:\logiciels\xampp\htdocs\Simplon\0-devis2fact\devis2facts-proj\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! D:\logiciels\xampp\htdocs\Simplon\0-devis2fact\devis2facts-proj\resources\css\app.css */"./resources/css/app.css");
->>>>>>> 5410a442a16212dc6dfbca4ca03efede27acbd2c
 
 
 /***/ })
