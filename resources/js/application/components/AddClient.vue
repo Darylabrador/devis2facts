@@ -61,4 +61,4 @@
   </div>
 </template>
 
-<script src="./addOrdi.js" />
+<script src="./addClient.js" />
