@@ -1,12 +1,17 @@
-                import Axios from "axios";
-
+import Axios from "axios";
+import AddClient from '../components/AddClient.vue'
 
 export default {
+
+    components: {
+        AddClient
+    },
 
     data() {
         return {
             clients: [],
-            icons: mdiDelete
+            icons: 'mdi-delete',
+
         }
     },
 
@@ -19,11 +24,15 @@ export default {
         getClients() {
             Axios.get('api/clients/getAll').then(({ data }) => {
 
-                console.log(data)
                 data.data.forEach(client => {
                     this.clients.push(client)
                 })
             })
+        },
+
+        add(client) {
+            console.log(client);
+            this.clients.push(client.data);
         }
     },
 }

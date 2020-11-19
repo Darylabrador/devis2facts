@@ -26,7 +26,7 @@ class ClientsController extends Controller
         $client = new Client();
         $client->name = $validator['name'];
         $client->email = $validator['email'];
-        // $client->save();
+        $client->save();
 
         return new ClientResource($client);
 

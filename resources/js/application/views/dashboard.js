@@ -1,5 +1,6 @@
 import Axios from "axios"
 import Chart from "chart.js";
+import ModalAddProduct from "../components/modal/AddProduct.vue"
 
 export default {
 
@@ -57,5 +58,8 @@ export default {
                 console.error(error);
             }
         },
+    },
+    components: {
+        ModalAddProduct
     }
 }
