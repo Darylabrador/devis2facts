@@ -12,11 +12,11 @@ class ClientsController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name' => 'required',
-                'clientaddress_id' => 'required',
-                'postcode' => 'required',
-                'city' => 'required',
-                'email' => 'required'
+                'name' => 'required|email',
+                // 'clientaddress_id' => 'required',
+                // 'postcode' => 'required',
+                // 'city' => 'required',
+                // 'email' => 'required'
             ],
             [
                 'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
