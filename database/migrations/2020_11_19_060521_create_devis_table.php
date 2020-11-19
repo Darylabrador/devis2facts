@@ -15,11 +15,10 @@ class CreateDevisTable extends Migration
     {
         Schema::create('devis', function (Blueprint $table) {
             $table->id();
-            $table->integer('client_id');
+            $table->foreignId('client_id')->nullable()->constrained();
             $table->string('filename');
-            $table->int('tva');
+            $table->float('tva');
             $table->boolean('is_accepted');
-
             $table->timestamps();
         });
     }

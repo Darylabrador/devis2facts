@@ -13,7 +13,6 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
@@ -21,7 +20,7 @@ class CreateUsersTable extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->int('role_id');
+            $table->foreignId('role_id')->nullable()->constrained();
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
