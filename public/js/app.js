@@ -1997,6 +1997,50 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./resources/js/application/components/delClient.js?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./resources/js/application/components/delClient.js?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dialog: false
+    };
+  },
+  props: {
+    client: {
+      "default": function _default() {
+        return {};
+      }
+    } //['client']
+
+  },
+  created: function created() {
+    console.log(this.client);
+  },
+  methods: {
+    delClient: function delClient() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/clients/del', {
+        id: this.id
+      }).then(function (data) {
+        _this.$emit('delClient', data.data);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./resources/js/application/components/modal/js/AddProduct.js?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./resources/js/application/components/modal/js/AddProduct.js?vue&type=script&lang=js& ***!
@@ -2178,11 +2222,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_AddClient_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/AddClient.vue */ "./resources/js/application/components/AddClient.vue");
+/* harmony import */ var _components_DelClient_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/DelClient.vue */ "./resources/js/application/components/DelClient.vue");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    AddClient: _components_AddClient_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    AddClient: _components_AddClient_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    DelClient: _components_DelClient_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -2207,6 +2254,16 @@ __webpack_require__.r(__webpack_exports__);
     add: function add(client) {
       console.log(client);
       this.clients.push(client.data);
+    },
+    del: function del() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/clients/del', {
+        name: this.name,
+        email: this.email
+      }).then(function (data) {
+        _this2.$emit('addClient', data.data);
+      });
     }
   }
 });
@@ -2218,18 +2275,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./resources/js/application/views/dashboard.js?vue&type=script&lang=js& ***!
   \************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  created: function created() {
-    console.log(axios__WEBPACK_IMPORTED_MODULE_0___default.a);
-  }
-});
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/gilles/devis2facts/resources/js/application/views/dashboard.js: Unexpected token, expected \"=>\" (14:21)\n\n\u001b[0m \u001b[90m 12 | \u001b[39m\u001b[90m     * Get all information for stats graph\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m\u001b[90m     */\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 | \u001b[39m    async createStats() {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m        \u001b[36mtry\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 16 | \u001b[39m            \u001b[36mconst\u001b[39m statsInfo \u001b[33m=\u001b[39m await \u001b[33mAxios\u001b[39m\u001b[33m.\u001b[39mget(\u001b[32m'/api/stats'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 17 | \u001b[39m            \u001b[36mconst\u001b[39m responseData \u001b[33m=\u001b[39m statsInfo\u001b[33m.\u001b[39mdata\u001b[33m.\u001b[39mdata\u001b[33m;\u001b[39m\u001b[0m\n    at Parser._raise (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:790:17)\n    at Parser.raiseWithData (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:783:17)\n    at Parser.raise (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:777:17)\n    at Parser.unexpected (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9095:16)\n    at Parser.expect (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9081:28)\n    at Parser.parseAsyncArrowUnaryFunction (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10543:10)\n    at Parser.parseExprAtom (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10376:27)\n    at Parser.parseExprSubscripts (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10094:23)\n    at Parser.parseUpdate (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10074:21)\n    at Parser.parseMaybeUnary (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10063:17)\n    at Parser.parseExprOps (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9933:23)\n    at Parser.parseMaybeConditional (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9907:23)\n    at Parser.parseMaybeAssign (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9870:21)\n    at Parser.parseExpressionBase (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9815:23)\n    at allowInAnd (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9809:39)\n    at Parser.allowInAnd (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11504:16)\n    at Parser.parseExpression (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9809:17)\n    at Parser.parseStatementContent (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11770:23)\n    at Parser.parseStatement (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11639:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12221:25)\n    at Parser.parseBlockBody (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12207:10)\n    at Parser.parseBlock (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12191:10)\n    at Parser.parseStatementContent (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11715:21)\n    at Parser.parseStatement (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11639:17)\n    at Parser.parseLabeledStatement (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12171:22)\n    at Parser.parseStatementContent (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11773:19)\n    at Parser.parseStatement (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11639:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12221:25)\n    at Parser.parseBlockBody (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12207:10)\n    at Parser.parseTopLevel (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11570:10)\n    at Parser.parse (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:13381:10)\n    at parse (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:13434:38)\n    at parser (/home/gilles/devis2facts/node_modules/@babel/core/lib/parser/index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/home/gilles/devis2facts/node_modules/@babel/core/lib/transformation/normalize-file.js:99:38)\n    at normalizeFile.next (<anonymous>)");
 
 /***/ }),
 
@@ -21597,6 +21645,125 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/application/components/DelClient.vue?vue&type=template&id=23615dba&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/application/components/DelClient.vue?vue&type=template&id=23615dba& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-row",
+    { attrs: { justify: "center" } },
+    [
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "290" },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                var attrs = ref.attrs
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      _vm._b(
+                        { attrs: { icon: "", color: "primary", dark: "" } },
+                        "v-btn",
+                        attrs,
+                        false
+                      ),
+                      on
+                    ),
+                    [
+                      _c("v-icon", { attrs: { color: "red" } }, [
+                        _vm._v(" mdi-delete ")
+                      ])
+                    ],
+                    1
+                  )
+                ]
+              }
+            }
+          ]),
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
+          _vm._v(" "),
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "headline" }, [
+                _vm._v("\n        Etes-vous sûr ?\n      ")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("\n          Oui\n        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green darken-1", text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("\n          Non\n        ")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/application/components/modal/AddProduct.vue?vue&type=template&id=3a94185c&":
 /*!*******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/application/components/modal/AddProduct.vue?vue&type=template&id=3a94185c& ***!
@@ -22158,16 +22325,14 @@ var render = function() {
                         "td",
                         { staticClass: "text-right" },
                         [
-                          _c(
-                            "v-btn",
-                            { attrs: { icon: "" } },
-                            [
-                              _c("v-icon", { attrs: { color: "red" } }, [
-                                _vm._v(" " + _vm._s(_vm.icons) + " ")
-                              ])
-                            ],
-                            1
-                          )
+                          _c("delClient", {
+                            attrs: { client: client.id },
+                            on: {
+                              delClient: function($event) {
+                                return _vm.del($event)
+                              }
+                            }
+                          })
                         ],
                         1
                       )
@@ -22229,7 +22394,9 @@ var render = function() {
       _vm._v(" "),
       _c("v-system-bar", { attrs: { color: "light-blue", dark: "" } }, [
         _vm._v(" tesst ")
-      ])
+      ]),
+      _vm._v(" "),
+      _c("v-container", [_c("canvas", { attrs: { id: "statsFacturation" } })])
     ],
     1
   )
@@ -81519,6 +81686,61 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/application/components/DelClient.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/application/components/DelClient.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DelClient_vue_vue_type_template_id_23615dba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DelClient.vue?vue&type=template&id=23615dba& */ "./resources/js/application/components/DelClient.vue?vue&type=template&id=23615dba&");
+/* harmony import */ var _delClient_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./delClient.js?vue&type=script&lang=js& */ "./resources/js/application/components/delClient.js?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _delClient_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DelClient_vue_vue_type_template_id_23615dba___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DelClient_vue_vue_type_template_id_23615dba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/application/components/DelClient.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/application/components/DelClient.vue?vue&type=template&id=23615dba&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/application/components/DelClient.vue?vue&type=template&id=23615dba& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DelClient_vue_vue_type_template_id_23615dba___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./DelClient.vue?vue&type=template&id=23615dba& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/application/components/DelClient.vue?vue&type=template&id=23615dba&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DelClient_vue_vue_type_template_id_23615dba___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DelClient_vue_vue_type_template_id_23615dba___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/application/components/addClient.js?vue&type=script&lang=js&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/application/components/addClient.js?vue&type=script&lang=js& ***!
@@ -81530,6 +81752,20 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_addClient_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!./addClient.js?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./resources/js/application/components/addClient.js?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_addClient_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/application/components/delClient.js?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/application/components/delClient.js?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_delClient_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!./delClient.js?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./resources/js/application/components/delClient.js?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_delClient_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

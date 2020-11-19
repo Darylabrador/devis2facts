@@ -14,16 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-
-        // $this->call([
-        //     ClientsSeeder::class,
-        //     ClientaddressesSeeder::class,
-        //     MycompanySeeder::class,
-        //     ProductsSeeder::class,
-        //     DevisSeeder::class
-        // ]);
-
         $faker = \Faker\Factory::create();
 
         $this->call([
@@ -75,12 +65,12 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 1; $i < 20; $i++) {
             DB::table('lignedevis')->insert([
-                'devis_id'    => $i, 
-                'product_id'  => $faker->numberBetween(1,5), 
-                'facturation_id'  => $faker->numberBetween(1, 20), 
-                'description' => "", 
-                'quantity'    => $i, 
-                'price'       => $faker->numberBetween(1, 10)
+                'devis_id'       => $faker->numberBetween(1,19), 
+                'product_id'     => $faker->numberBetween(1,5), 
+                'facturation_id' => $i, 
+                'description'    => "", 
+                'quantity'       => $i, 
+                'price'          => $faker->numberBetween(1, 10)
             ]);
         }
 
