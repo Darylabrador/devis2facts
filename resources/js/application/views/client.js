@@ -1,7 +1,9 @@
 import Axios from "axios";
 
 export default {
+    components: {
 
+    },
     data() {
         return {
             clients: [],
@@ -9,28 +11,23 @@ export default {
     },
 
     created() {
-        this.initialize();
-        this.displayHoraire(this.attributions);
+        //this.getClients();
     },
 
     methods: {
-        initialize() {
+        getClients() {
+            Axios.get('api/client').then(({ data }) => {
 
-            
-
+                console.log(data);
+                // data.data.forEach(client => {
+                //     this.ordinateurs.push(ordinateur)
+                // })
+                
+            })
         },
 
-        displayHoraire(attributions) {
-            attributions.forEach(attribution => {
-                for (let i = 0; i < this.horaires.length; i++) {
-                    if (this.horaires[i].horaire == attribution.horaire) {
-                        this.horaires[i] = attribution;
-
-                    }
-                }
-            })
-
-
+        getDate(date) {
+            this.date = date;
         }
     }
 }

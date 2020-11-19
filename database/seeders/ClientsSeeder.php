@@ -15,7 +15,6 @@ class ClientsSeeder extends Seeder
     public function run()
     {
         $array = [
-                'clientaddress_id' => 1,
                 'name' => 'xylophone',
                 'email' => 'telephone@instrument.com'
 

@@ -32,4 +32,8 @@ class ClientsController extends Controller
 
 
     }
+
+    public function getAllClients () {
+        return Client::all();
+    }
 }
