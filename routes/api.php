@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\FacturationController;
+use App\Http\Controllers\DevisController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -20,6 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Route for dashboard informations
+Route::get("/stats", [FacturationController::class, 'index']);
+
 //Route to create Product
 Route::post ("products/add", [ProductController::class, 'store']);
 Route::get('products/getAll', [ProductController::class, 'index']);
@@ -27,7 +32,8 @@ Route::post('products/delete', [ProductController::class, 'destroy']);
 Route::post('products/update', [ProductController::class, 'update']);
 
 //Client
-
 Route::post('clients/add', [ClientsController::class, 'add']);
 Route::get('clients/getAll', [ClientsController::class, 'getAllClients']);
 
+// Devis 
+Route::get('devis/get', [DevisController::class, 'get']);

@@ -26,7 +26,7 @@ class ClientsController extends Controller
         $client = new Client();
         $client->name = $validator['name'];
         $client->email = $validator['email'];
-        // $client->save();
+        $client->save();
 
         return new ClientResource($client);
 
@@ -34,6 +34,7 @@ class ClientsController extends Controller
     }
 
     public function getAllClients () {
-        return Client::all();
+        $clients = Client::all();
+        return ClientResource::collection($clients);
     }
 }
