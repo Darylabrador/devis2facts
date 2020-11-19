@@ -1908,8 +1908,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _navigations_Navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../navigations/Navbar */ "./resources/js/application/navigations/Navbar.vue");
-/* harmony import */ var _navigations_Footer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../navigations/Footer */ "./resources/js/application/navigations/Footer.vue");
+/* harmony import */ var _navigations_Navbar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../navigations/Navbar.vue */ "./resources/js/application/navigations/Navbar.vue");
+/* harmony import */ var _navigations_Footer_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../navigations/Footer.vue */ "./resources/js/application/navigations/Footer.vue");
 //
 //
 //
@@ -1932,8 +1932,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Navbar: _navigations_Navbar__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Footer: _navigations_Footer__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Navbar: _navigations_Navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Footer: _navigations_Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -1992,7 +1992,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.adminFooter[data-v-cb0b7df0] {\n  display: flex;\n  flex-flow: row;\n  justify-content: flex-end;\n  align-items: center;\n  background-color: brown;\n  height: 50px;\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n}\n.adminFooterTexte[data-v-cb0b7df0] {\n    position: relative;\n    right: 5%;\n}\n", ""]);
+exports.push([module.i, "\n.adminFooter[data-v-cb0b7df0] {\r\n  display: flex;\r\n  flex-flow: row;\r\n  justify-content: flex-end;\r\n  align-items: center;\r\n  background-color: brown;\r\n  height: 50px;\r\n  position: fixed;\r\n  bottom: 0;\r\n  width: 100%;\n}\n.adminFooterTexte[data-v-cb0b7df0] {\r\n    position: relative;\r\n    right: 5%;\n}\r\n", ""]);
 
 // exports
 
@@ -79791,18 +79791,18 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _views_Home__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/Home */ "./resources/js/application/views/Home.vue");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _views_Home_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/Home.vue */ "./resources/js/application/views/Home.vue");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: [{
     path: '/',
     name: 'home',
-    component: _views_Home__WEBPACK_IMPORTED_MODULE_2__["default"]
+    component: _views_Home_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   }]
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
@@ -79920,8 +79920,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/robert/Bureau/Projet/FORMATION/devis2facts/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/robert/Bureau/Projet/FORMATION/devis2facts/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! D:\logiciels\xampp\htdocs\Simplon\0-devis2fact\devis2facts-proj\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\logiciels\xampp\htdocs\Simplon\0-devis2fact\devis2facts-proj\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })
