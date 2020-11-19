@@ -34,6 +34,12 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
+<<<<<<< HEAD
         Schema::dropIfExists('clientaddresses');
+=======
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('clients');
+        Schema::enableForeignKeyConstraints();
+>>>>>>> 0e6d2734cf71fced12365992c6c81a3adae10f0a
     }
 }

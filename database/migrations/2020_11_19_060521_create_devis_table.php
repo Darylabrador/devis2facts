@@ -30,6 +30,8 @@ class CreateDevisTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('devis');
+        Schema::enableForeignKeyConstraints();
     }
 }
