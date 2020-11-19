@@ -32,7 +32,15 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Client::factory(5)->create();
-        \App\Models\ClientAddresses::factory(5)->create();
+
+        for($i = 1; $i < 6; $i++) {
+            DB::table('clientaddresses')->insert([
+                'address'   => $faker->address,
+                'postcode'  => 97427,
+                'city'      => $faker->city,
+                'client_id' => $i
+            ]);
+        }
 
         for($i = 1; $i < 20; $i++) {
             $year  = date('Y');
