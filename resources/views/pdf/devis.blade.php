@@ -8,13 +8,13 @@
     <div>
         {{ $company->name }}, 
         <br>
-        {{ $company->address }}, 
+        Adresse : {{ $company->address }}, 
         <br>
-        {{ $company->city }}, 
+        Ville :{{ $company->city }}, 
         <br>
-        {{ $company->postcode }}, 
+        Code postal :{{ $company->postcode }}, 
         <br>
-        {{ $company->siret }}, 
+        Siret : {{ $company->siret }}, 
         <br>
         TVA : {{ $devisResource[0]->devis->tva }}
     </div>
@@ -22,6 +22,11 @@
     <br><br>
 
     <div>
+        <h1>Information du client</h1>
+        {{ $devisResource[0]->devis->clients->clientAddress->address }}
+        {{ $devisResource[0]->devis->clients->clientAddress->city }}
+        {{ $devisResource[0]->devis->clients->clientAddress->postcode }}
+        <br>
         {{ $devisResource[0]->devis->clients->name }}, 
         <br>
         {{ $devisResource[0]->devis->clients->email }}, 
