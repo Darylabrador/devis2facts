@@ -1,5 +1,5 @@
 import Axios from "axios";
-import AddClient from '../components/AddClient.vue'
+import AddClient from '../components/clients/AddClient.vue'
 import DelClient from '../components/DelClient.vue'
 
 export default {
@@ -35,10 +35,11 @@ export default {
             console.log(client);
             this.clients.push(client.data);
         },
-        del(){
-            Axios.post('/api/clients/del', {name: this.name, email:this.email}).then(data => {
-                this.$emit('addClient', data.data);
-            })
+        
+        del(client){
+            console.log(clients);
+            delete this.clients.client;
+            console.log(clients);
         }
     },
 }

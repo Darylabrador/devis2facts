@@ -10,16 +10,17 @@ export default {
         /**
          * Get all information for stats graph
          */
-        // createStats: async function() {
-        //     try {
-        //         const statsInfo = await Axios.get('/api/stats');
-        //         const responseData = statsInfo.data.data;
-        //         DashboardStats(responseData);
+        async createStats() {
+            try {
+                const statsInfo = await Axios.get('/api/stats');
+                const responseData = statsInfo.data.data;
+                DashboardStats(responseData);
 
 
-        //     } catch (error) {
-        //         console.error(error);
-        //     }
-        // },
+            } catch (error) {
+                console.error(error);
+            }
+        },
     }
+
 }

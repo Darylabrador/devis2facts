@@ -14,14 +14,14 @@ class LigneDevis extends Model
 
     public function devis()
     {
-        return $this->belongsTo(User::class, 'devis_id');
+        return $this->belongsTo(Devis::class, 'devis_id');
     }
     public function products()
     {
-        return $this->belongsTo(User::class, 'product_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
     public function factures()
     {
-        return $this->belongsTo(User::class, 'facture_id');
+        return $this->belongsTo(Facturation::class, 'facture_id');
     }
 }

@@ -22,7 +22,7 @@ export default {
 
     methods: {
         delClient() {
-            Axios.post('/api/clients/del', {id: this.id}).then(data => {
+            Axios.post('/api/clients/del', {client: this.client}).then(data => {
                 this.$emit('delClient', data.data);
             })
         }

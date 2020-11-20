@@ -14,7 +14,7 @@
             <td>{{ client.name }}</td>
 
             <td class="text-right">
-                <delClient :client=client.id @delClient="del($event)" />
+                <delClient :client=client @delClient="del($event)" />
             </td>
           </tr>
         </tbody>

@@ -15,10 +15,12 @@ class LigneDevisResource extends JsonResource
     public function toArray($request)
     {
         $devis = new DevisResource($this->devis);
-        $facture = new DevisResource($this->factures);
+        $product = new ProductResource($this->products);
+        $facture = new FacturationResource($this->factures);
         return [
             'id' => $this->id,
             'devis' => $devis,
+            'product' => $product,
             'facture' => $facture,
             'description' => $this->description,
             'quantity' => $this->quantity,
