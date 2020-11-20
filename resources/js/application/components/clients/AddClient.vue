@@ -4,7 +4,7 @@
       <v-icon class="ml-2 success--text">mdi-account-multiple-plus</v-icon>
     </v-btn>
     <v-btn v-if='isModifier' @click.stop="drawerRight = !drawerRight,update(client)" text>
-      <v-icon class="ml-2 primary--text">mdi-account-multiple-plus</v-icon>
+      <v-icon class="ml-2 primary--text">mdi-settings</v-icon>
     </v-btn>
     <v-navigation-drawer v-model="drawerRight" app temporary hide-overlay right>
       <v-btn

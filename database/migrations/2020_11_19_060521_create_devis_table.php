@@ -19,6 +19,8 @@ class CreateDevisTable extends Migration
             $table->string('filename');
             $table->float('tva');
             $table->boolean('is_accepted');
+            $table->date('date_creation');
+            $table->date('date_expiration');
             $table->timestamps();
         });
     }

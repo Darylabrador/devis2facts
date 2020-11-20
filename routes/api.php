@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\FacturationController;
 use App\Http\Controllers\DevisController;
+use App\Http\Controllers\LigneDevisController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -41,3 +42,6 @@ Route::get('devis/find/ligne/{id}', [DevisController::class, 'findLigne'])->wher
 Route::get('devis/find/{id}', [DevisController::class, 'findDevis'])->where('id', '[0-9]+');
 Route::get('devis/clients', [DevisController::class, 'autocomplete']);
 Route::get('devis/getAll', [DevisController::class, 'getAll']);
+
+//Ligne devis
+Route::post('lignedevis/create', [LigneDevisController::class, 'create']);

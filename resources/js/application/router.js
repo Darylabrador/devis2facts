@@ -23,7 +23,7 @@ const router = new VueRouter({
             component: Clients
         },
         {
-            path: '/devis',
+            path: '/devis/:id',
             name: 'devis',
             component: Devis
         },

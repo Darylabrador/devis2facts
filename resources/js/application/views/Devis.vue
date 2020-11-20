@@ -1,13 +1,42 @@
 <template>
   <v-container>
     <template>
-      <div>date</div>
-      <div>date</div>
-      <v-row class="justify-center">
+      <v-row justify="end">
+        <v-col md="4">
+          <v-card class="pa-5" outlined>
+            <div>Date de création : {{ creation }}</div>
+            <div>Date d'éxpiration : {{ expiration }}</div>
+          </v-card>
+        </v-col>
+        <v-col md="4"> </v-col>
+        <v-col md="4">
+          <v-card class="pa-5 text-left" outlined>
+            <v-simple-table>
+              <template v-slot:default>
+                <tbody>
+                  <tr>
+                    <td>Total hors taxe</td>
+                    <td>{{ valuetht }}</td>
+                  </tr>
+                  <tr>
+                    <td>Total ttc en cours</td>
+                    <td>{{ valuettc }}</td>
+                  </tr>
+                  <tr>
+                    <td>Remise (en %)</td>
+                    <td><v-text-field v-model='remise' type='number' :rules="pourcentRule" @change='emis(remise)' min='0' max='100'></v-text-field></td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row class="justify-center mt-10">
         <v-data-table
           :headers="headers"
-          :items="ligne"
-          :items-per-page="5"
+          :items="lignes"
+          :items-per-page="10"
           hide-default-footer
           class="elevation-1"
         >
@@ -16,18 +45,21 @@
               <tr>
                 <th :colspan="headers.length">
                   <v-row>
-                    <v-col md='4' class="mt-4"><addLigne /></v-col>
-                    <v-col md="4"><autocomplete /></v-col>
+                    <v-col md="4"
+                      ><addLigne @addLigne="add($event)"
+                    /></v-col>
+                    <v-col md="4">
+                      <!-- <autocomplete /> -->
+                      </v-col>
                     <v-col md="4"><tva /></v-col>
                   </v-row>
                 </th>
               </tr>
             </thead>
           </template>
-          <template v-slot:item.product="{ item }"> {{item.name}}</template>
-          <template v-slot:item.quantity="{ item }">{{
-            item.quantity
-          }}</template>
+          <template v-slot:item.product="{ item }"> {{ item.name }}</template>
+          <template v-slot:item.quantity="{ item }">{{ item.quantity }}</template>
+          <template v-slot:item.description="{ item }">{{item.description}}</template>
           <template v-slot:item.price="{ item }">{{ item.price }}</template>
           <template v-slot:item.total="{ item }"
             >{{ item.quantity * item.price }}
