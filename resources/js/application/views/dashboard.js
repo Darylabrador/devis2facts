@@ -1,5 +1,5 @@
 import Axios from "axios"
-//import DashboardStats from "../service/charts/dashboardStats.js";
+import DashboardStats from "../service/charts/dashboardStats.js";
 
 export default {
     created() {
