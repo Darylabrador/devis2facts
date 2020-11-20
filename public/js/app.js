@@ -2031,7 +2031,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/clients/del', {
-        id: this.id
+        client: this.client
       }).then(function (data) {
         _this.$emit('delClient', data.data);
       });
@@ -2097,15 +2097,10 @@ __webpack_require__.r(__webpack_exports__);
       console.log(client);
       this.clients.push(client.data);
     },
-    del: function del() {
-      var _this2 = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/clients/del', {
-        name: this.name,
-        email: this.email
-      }).then(function (data) {
-        _this2.$emit('addClient', data.data);
-      });
+    del: function del(client) {
+      console.log(clients);
+      delete this.clients.client;
+      console.log(clients);
     }
   }
 });
@@ -21768,7 +21763,7 @@ var render = function() {
                         { staticClass: "text-right" },
                         [
                           _c("delClient", {
-                            attrs: { client: client.id },
+                            attrs: { client: client },
                             on: {
                               delClient: function($event) {
                                 return _vm.del($event)
