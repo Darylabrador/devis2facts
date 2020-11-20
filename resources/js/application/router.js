@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from './views/Dashboard.vue';
 import Clients from './views/Client.vue';
 import Devis from './views/Devis.vue';
+import listDevis from './views/ListDevis.vue';
 import Products from './views/Product.vue';
 
 // route temporaire pour la génération du pdf
@@ -26,6 +27,11 @@ const router = new VueRouter({
             path: '/devis/:id',
             name: 'devis',
             component: Devis
+        },
+        {
+            path: '/listdevis',
+            name: 'listDevis',
+            component: listDevis
         },
         {
             path: '/products',

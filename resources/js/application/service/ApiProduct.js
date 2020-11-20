@@ -1,4 +1,3 @@
-import { update } from 'lodash'
 import api from './api'
 
 //collection of request to API for product
