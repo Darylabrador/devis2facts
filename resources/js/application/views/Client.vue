@@ -22,13 +22,14 @@
                 />
                 <delClient
                   class="hidden-sm-and-up"
-                  :client="client.id"
+                  :client="client"
                   @delClient="del($event)"
                 />
+
                 <delClient
                   class="hidden-sm-and-down"
                   style="margin-right: -15vh"
-                  :client="client.id"
+                  :client="client"
                   @delClient="del($event)"
                 />
               </v-row>

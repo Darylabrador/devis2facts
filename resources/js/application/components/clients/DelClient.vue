@@ -25,7 +25,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click="dialog = false"
+            @click="dialog = false; delClient()"
           >
             Oui
           </v-btn>

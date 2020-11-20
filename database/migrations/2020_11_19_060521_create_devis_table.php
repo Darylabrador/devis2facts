@@ -15,7 +15,7 @@ class CreateDevisTable extends Migration
     {
         Schema::create('devis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->nullable()->constrained();
+            $table->foreignId('client_id')->nullable()->onDelete('cascade');
             $table->string('filename');
             $table->float('tva');
             $table->boolean('is_accepted');
