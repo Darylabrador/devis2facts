@@ -20,6 +20,8 @@ class DevisSeeder extends Seeder
             'client_id' => 1,
             'filename' => 'qsd.pdf',
             'tva' => 8.5,
+            'date_creation' => '2020-11-09',
+            'date_expiration' => '2020-11-11',
             'is_accepted' => true
         ];
 

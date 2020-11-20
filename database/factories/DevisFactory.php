@@ -30,6 +30,8 @@ class DevisFactory extends Factory
             'client_id'     => $this->faker->numberBetween(1, 5), 
             'filename'      => "DE-{$year}-{$month}-{$id}.pdf", 
             'tva'           => 8.5, 
+            'date_expiration' => '2020-11-11',
+            'date_creation' => '2020-11-9',
             'is_accepted'   => true
         ];
     }
