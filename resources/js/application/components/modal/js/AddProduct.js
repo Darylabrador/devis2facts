@@ -26,7 +26,10 @@ export default {
 
             var res = await apiProduct.create(data)
 
-            console.log(res)
+            this.$emit('addProduct', res.data.product)
+
+            this.name = ""
+            this.price = ""
         }
     },
 

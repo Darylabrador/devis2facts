@@ -15,11 +15,13 @@ export default {
                 const statsInfo = await Axios.get('/api/stats');
                 const responseData = statsInfo.data.data;
                 DashboardStats(responseData);
-                
-            
+
+
             } catch (error) {
                 console.error(error);
             }
         },
     }
+
 }
+

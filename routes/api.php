@@ -37,4 +37,6 @@ Route::get('clients/getAll', [ClientsController::class, 'getAllClients']);
 Route::post('/clients/del/{client}', [ClientsController::class, 'delete']);
 
 // Devis 
-Route::get('devis/get', [DevisController::class, 'get']);
+Route::get('devis/find/ligne/{id}', [DevisController::class, 'findLigne'])->where('id', '[0-9]+');
+Route::get('devis/find/{id}', [DevisController::class, 'findDevis'])->where('id', '[0-9]+');
+Route::get('devis/clients', [DevisController::class, 'autocomplete']);
