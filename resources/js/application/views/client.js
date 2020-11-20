@@ -1,5 +1,5 @@
 import Axios from "axios";
-import AddClient from '../components/AddClient.vue'
+import AddClient from '../components/clients/AddClient.vue'
 
 export default {
 

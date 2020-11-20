@@ -3,13 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\DevisResource;
+use App\Http\Resources\LigneDevisResource;
+use App\Models\Client;
 use App\Models\Devis;
+use App\Models\LigneDevis;
 
 class DevisController extends Controller
 {
-    public function get()
+    public function findLigne($id)
     {
-        $devis = Devis::get();
-        return DevisResource::collection($devis);
+        $lignedevis = LigneDevis::where('devis_id', $id)->get();
+        return LigneDevisResource::collection($lignedevis);
+    }
+    public function findDevis($id) {
+        $devis = Devis::find($id);
+        return new DevisResource($devis);
+    }
+
+    public function autocomplete() {
+        $clients = Client::get();
+        return $clients;
     }
 }
