@@ -38,8 +38,11 @@ class ClientsController extends Controller
         return ClientResource::collection($clients);
     }
 
-    public function delete (Client $client) {
-        $client->delete();
+    public function delete ($id) {
+
+        Client::destroy($id);
+        return response()->json(["id" => $id]);
+
     }
     
 }

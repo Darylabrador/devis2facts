@@ -17,15 +17,17 @@ export default {
     },
 
     created(){
-        console.log(this.client);
+        //console.log(this.client);
     },
 
     methods: {
         delClient() {
-            Axios.post('/api/clients/del', {client: this.client}).then(data => {
-                this.$emit('delClient', data.data);
+            //console.log("btn suppr with + ", this.client)
+            Axios.delete('/api/clients/del/'+this.client.id).then(data => {
+                this.$emit('delClient', data.data)
+                
             })
         }
-    },
+    }
 
 }
