@@ -16,6 +16,7 @@ class MycompanySeeder extends Seeder
     public function run()
     {
         $array = [
+            'name' => "Dev2Fact RE",
             'address' => '87 rue de la poesie',
             'postcode' => 97427,
             'siret' => 'AED6-SQ54-S77',

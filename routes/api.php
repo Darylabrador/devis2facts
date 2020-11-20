@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\FacturationController;
 use App\Http\Controllers\DevisController;
+use App\Http\Controllers\LigneDevisController;
 use App\Http\Controllers\PdfController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,8 @@ Route::get('devis/find/{id}', [DevisController::class, 'findDevis'])->where('id'
 Route::get('devis/clients', [DevisController::class, 'autocomplete']);
 Route::get('devis/getAll', [DevisController::class, 'getAll']);
 
+//Ligne devis
+Route::post('lignedevis/create', [LigneDevisController::class, 'create']);
 // PDF
 Route::get('/devis/pdf/{id}', [PdfController::class, "generateDevis"]);
 Route::get('/facture/pdf/{id}', [PdfController::class, "generateInvoice"]);

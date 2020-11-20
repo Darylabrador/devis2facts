@@ -21,6 +21,8 @@ class DevisResource extends JsonResource
             'client' => $client,
             'filename' => $this->filename,
             'tva' => $this->tva,
+            'creation' => $this->date_creation,
+            'expiration' => $this->date_expiration,
             'is_accepted' => $this->is_accepted
         ];
     }
