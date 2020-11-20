@@ -1,9 +1,11 @@
 <template>
   <div>
-    <v-btn @click.stop="drawerRight = !drawerRight" text>
+    <v-btn v-if='!isModifier' @click.stop="drawerRight = !drawerRight" text>
       <v-icon class="ml-2 success--text">mdi-account-multiple-plus</v-icon>
     </v-btn>
-
+    <v-btn v-if='isModifier' @click.stop="drawerRight = !drawerRight,update(client)" text>
+      <v-icon class="ml-2 primary--text">mdi-settings</v-icon>
+    </v-btn>
     <v-navigation-drawer v-model="drawerRight" app temporary hide-overlay right>
       <v-btn
         @click="drawerRight = !drawerRight"
@@ -14,8 +16,12 @@
       </v-btn>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="title mt-3 text-center"
+          <v-list-item-title v-if='!isModifier'  class="title mt-3 text-center"
             >Ajouter un client</v-list-item-title
+          >
+
+          <v-list-item-title v-if='isModifier' class="title mt-3 text-center"
+            >Modifier un client</v-list-item-title
           >
         </v-list-item-content>
       </v-list-item>

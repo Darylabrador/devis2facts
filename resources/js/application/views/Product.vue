@@ -7,7 +7,10 @@
     <v-simple-table style="margin-left: 25vw; margin-top: 10vh; width: 50vw">
       <template v-slot:default>
         <thead>
-          <addProduct @addProduct="add($event)" :product="{id:null, name:null, default_price:null }" />
+          <addProduct
+            @addProduct="add($event)"
+            :product="{ id: null, name: null, default_price: null }"
+          />
         </thead>
         <tbody>
           <tr class="text-center">
@@ -20,16 +23,18 @@
             <td>{{ product.default_price }} €</td>
 
             <td class="text-right">
-              <addProduct
-                @addProduct="add($event)"
-                :isModified="true"
-                :product="product"
-              />
-              <deleteProductModal
-                :product="product"
-                :index="key"
-                @deleteProduct="deleteProd($event)"
-              />
+              <v-row class="d-flex flex-row-reverse">
+                <addProduct
+                  @addProduct="add($event)"
+                  :isModified="true"
+                  :product="product"
+                />
+                <deleteProductModal
+                  :product="product"
+                  :index="key"
+                  @deleteProduct="deleteProd($event)"
+                />
+              </v-row>
             </td>
           </tr>
         </tbody>

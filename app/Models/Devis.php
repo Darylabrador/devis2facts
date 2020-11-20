@@ -14,6 +14,6 @@ class Devis extends Model
 
     public function clients()
     {
-        return $this->belongsTo(Client::class, 'client_id');
+        return $this->belongsTo('App\Models\Client', 'client_id', 'id');
     }
 }
