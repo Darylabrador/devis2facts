@@ -2,7 +2,9 @@ export default {
     data() {
         return {
             dialog: false,
-            selectDevis: '',
+            selectProduct: '',
+            valid: false,
+            product: []
 
         }
     },

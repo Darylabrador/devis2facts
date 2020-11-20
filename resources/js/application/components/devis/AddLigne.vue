@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialog" persistent max-width="290">
+    <v-dialog v-model="dialog" max-width="290">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           icon
@@ -17,11 +17,11 @@
             <v-row>
               <v-col cols="12" md="4">
                 <v-select
-                  v-model="selectDevis"
-                  :items="devis"
+                  v-model="selectProduct"
+                  :items="product"
                   item-value='id'
                   item-text='filename'
-                  label="Devis"
+                  label="Produit"
                   required
                 ></v-select>
               </v-col>
