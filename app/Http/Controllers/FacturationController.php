@@ -15,8 +15,11 @@ class FacturationController extends Controller
      */
     public function index()
     {
-        $facturationsInfo = Facturation::all();
-        return FacturationResource::collection($facturationsInfo);
+        $data[] = Facturation::where(['is_paid' => 1])->count();
+        $data[] = Facturation::where(['is_paid' => 0])->count();
+        return response()->json([
+            "data" => $data 
+        ]);
     }
 
     /**

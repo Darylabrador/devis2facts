@@ -1,17 +1,18 @@
 import Axios from "axios";
 import AddClient from '../components/clients/AddClient.vue'
+import DelClient from '../components/DelClient.vue'
 
 export default {
 
     components: {
-        AddClient
+        AddClient,
+        DelClient,
     },
 
     data() {
         return {
             clients: [],
             icons: 'mdi-delete',
-
         }
     },
 
@@ -33,6 +34,11 @@ export default {
         add(client) {
             console.log(client);
             this.clients.push(client.data);
+        },
+        del(){
+            Axios.post('/api/clients/del', {name: this.name, email:this.email}).then(data => {
+                this.$emit('addClient', data.data);
+            })
         }
     },
 }
