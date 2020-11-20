@@ -1,7 +1,10 @@
 <template>
   <div>
-    <v-btn @click.stop="drawerRight = !drawerRight" text>
+    <v-btn @click.stop="drawerRight = !drawerRight" text v-if="!isModified">
       <v-icon class="ml-2 success--text">mdi-tag-outline</v-icon>
+    </v-btn>
+    <v-btn @click.stop="drawerRight = !drawerRight" text v-if="isModified">
+      <v-icon class="ml-2 success--text" >mdi-settings</v-icon>
     </v-btn>
 
     <v-navigation-drawer v-model="drawerRight" app temporary hide-overlay right>
@@ -14,9 +17,12 @@
       </v-btn>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="title mt-3 text-center"
-            >Ajouter d'un Produit</v-list-item-title
-          >
+          <v-list-item-title class="title mt-3 text-center" v-if="!isModified">
+            Ajouter un Produit
+          </v-list-item-title>
+          <v-list-item-title class="title mt-3 text-center" v-if="isModified">
+            Modifier un Produit
+          </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -35,7 +41,7 @@
           <v-text-field
             v-model="price"
             :rules="priceRules"
-            min='0'
+            min="0"
             type="number"
             label="Prix du produit"
             prepend-icon="mdi-currency-eur"
@@ -47,8 +53,24 @@
       <template v-slot:append>
         <v-row>
           <v-col cols="12" md="6" sm="6">
-            <v-btn class="success--text" :disabled="!valid" @click="addProduct()" text>
+            <v-btn
+              class="success--text"
+              :disabled="!valid"
+              @click="addProduct()"
+              text
+              v-if="!isModified"
+            >
               Valider
+              <v-icon class="ml-3">mdi-check</v-icon>
+            </v-btn>
+            <v-btn
+              class="success--text"
+              :disabled="!valid"
+              @click="addProduct()"
+              text
+              v-if="isModified"
+            >
+              Modifier
               <v-icon class="ml-3">mdi-check</v-icon>
             </v-btn>
           </v-col>

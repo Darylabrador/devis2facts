@@ -1,3 +1,4 @@
+import { update } from 'lodash'
 import api from './api'
 
 //collection of request to API for product
@@ -10,5 +11,8 @@ export default {
     },
     deleteProduct(data) {
         return api.post('products/delete', data)
+    },
+    updateProduct(data) {
+        return api.post('products/update', data)
     }
 }

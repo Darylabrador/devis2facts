@@ -1,6 +1,6 @@
 import Axios from "axios";
 import AddClient from '../components/clients/AddClient.vue'
-import DelClient from '../components/DelClient.vue'
+import DelClient from '../components/clients/DelClient.vue'
 
 export default {
 
@@ -32,14 +32,16 @@ export default {
         },
 
         add(client) {
-            console.log(client);
+            //console.log(client);
             this.clients.push(client.data);
         },
-        
+
         del(client){
-            console.log(clients);
-            delete this.clients.client;
-            console.log(clients);
+            // console.log(client.id);
+            const refreshDeleteData = this.clients.filter(element => element.id != client.id);
+            this.clients = refreshDeleteData;
+
+            
         }
     },
 }
