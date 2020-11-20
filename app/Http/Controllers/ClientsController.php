@@ -17,29 +17,38 @@ class ClientsController extends Controller
             [
                 'name' => 'required|max:100',
                 'email' => 'required|email',
+                'id' => '',
             ],
             [
                 'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
             ]
         )->validate();
 
-        $client = new Client();
+        $client = Client::find($validator['id']);
+        if ($client) {
+
+        } else if (!$client) {
+            $client = new Client();
+        }
         $client->name = $validator['name'];
         $client->email = $validator['email'];
         $client->save();
 
         return new ClientResource($client);
 
-
     }
 
-    public function getAllClients () {
+    public function getAllClients()
+    {
         $clients = Client::all();
         return ClientResource::collection($clients);
     }
 
-    public function delete (Client $client) {
-        $client->delete();
+    public function delete ($id) {
+
+        Client::destroy($id);
+        return response()->json(["id" => $id]);
+
     }
-    
+
 }

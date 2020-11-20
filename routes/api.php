@@ -34,7 +34,7 @@ Route::post('products/update', [ProductController::class, 'update']);
 //Client
 Route::post('clients/add', [ClientsController::class, 'add']);
 Route::get('clients/getAll', [ClientsController::class, 'getAllClients']);
-Route::post('/clients/del/{client}', [ClientsController::class, 'delete']);
+Route::delete('clients/del/{id}', [ClientsController::class, 'delete']);
 
 // Devis
 Route::get('devis/find/ligne/{id}', [DevisController::class, 'findLigne'])->where('id', '[0-9]+');
