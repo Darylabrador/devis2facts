@@ -5,6 +5,9 @@ import Clients from './views/Client.vue';
 import Devis from './views/Devis.vue';
 import Products from './views/Product.vue';
 
+// route temporaire pour la génération du pdf
+import GeneratePdf from './views/GeneratePDF.vue';
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -28,6 +31,11 @@ const router = new VueRouter({
             path: '/products',
             name: 'product',
             component: Products
+        },
+        {
+            path: '/generate',
+            name: 'pdf',
+            component: GeneratePdf
         }
     ]
 });

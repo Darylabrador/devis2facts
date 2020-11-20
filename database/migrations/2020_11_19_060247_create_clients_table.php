@@ -19,9 +19,7 @@ class CreateClientsTable extends Migration
             $table->id();
             $table->string('address');
             $table->integer('postcode');
-
             $table->foreignId('client_id')->nullable()->constrained();
-
             $table->string('city'); 
             $table->timestamps();
         });
