@@ -8,8 +8,8 @@
       <v-btn color="error" class="mr-4" to="/clients" text>
         Clients
       </v-btn>
-      
-      <v-btn color="error" class="mr-4" to="/devis" text>
+
+      <v-btn color="error" class="mr-4" to="/listdevis" text>
         Devis
       </v-btn>
 

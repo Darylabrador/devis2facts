@@ -41,7 +41,7 @@
             <v-btn icon @click="generateFile(item.id, true)">
               <v-icon>mdi-file-download</v-icon>
             </v-btn>
-            <v-btn icon>
+            <v-btn icon :to="'/devis/'+ item.id">
               <v-icon>mdi-eye-settings</v-icon>
             </v-btn>
           </v-row>
