@@ -2067,7 +2067,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       dialog: false,
-      selectDevis: ''
+      selectProduct: '',
+      valid: false,
+      product: []
     };
   },
   methods: {
@@ -22113,7 +22115,7 @@ var render = function() {
       _c(
         "v-dialog",
         {
-          attrs: { persistent: "", "max-width": "290" },
+          attrs: { "max-width": "290" },
           scopedSlots: _vm._u([
             {
               key: "activator",
@@ -22184,18 +22186,18 @@ var render = function() {
                             [
                               _c("v-select", {
                                 attrs: {
-                                  items: _vm.devis,
+                                  items: _vm.product,
                                   "item-value": "id",
                                   "item-text": "filename",
-                                  label: "Devis",
+                                  label: "Produit",
                                   required: ""
                                 },
                                 model: {
-                                  value: _vm.selectDevis,
+                                  value: _vm.selectProduct,
                                   callback: function($$v) {
-                                    _vm.selectDevis = $$v
+                                    _vm.selectProduct = $$v
                                   },
-                                  expression: "selectDevis"
+                                  expression: "selectProduct"
                                 }
                               })
                             ],
