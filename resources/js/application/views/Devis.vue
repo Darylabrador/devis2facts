@@ -16,16 +16,15 @@
               <tr>
                 <th :colspan="headers.length">
                   <v-row>
-                    <v-col md="6"><autocomplete /></v-col>
-                    <v-col md="6"><tva /></v-col>
+                    <v-col md='4' class="mt-4"><addLigne /></v-col>
+                    <v-col md="4"><autocomplete /></v-col>
+                    <v-col md="4"><tva /></v-col>
                   </v-row>
                 </th>
               </tr>
             </thead>
           </template>
-          <template v-slot:item.actions="{ item }">
-            <v-btn icon class="success--text"><v-icon>mdi-plus</v-icon></v-btn>
-          </template>
+          <template v-slot:item.product="{ item }"> {{item.name}}</template>
           <template v-slot:item.quantity="{ item }">{{
             item.quantity
           }}</template>

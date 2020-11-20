@@ -1,10 +1,12 @@
 import Axios from "axios"
 import Tva from '../components/devis/Tva.vue'
 import Autocomplete from '../components/devis/Autocomplete.vue'
+import AddLigne from '../components/devis/AddLigne.vue'
 export default {
     components: {
         Tva,
-        Autocomplete
+        Autocomplete,
+        AddLigne
     },
 
 
@@ -15,10 +17,10 @@ export default {
             tva: '',
             headers: [
                 {
-                    text: '',
+                    text: 'Produit',
                     align: 'start',
                     sortable: false,
-                    value: 'actions',
+                    value: 'product.name',
                 },
                 { text: 'Quantité', value: 'quantity' },
                 { text: 'Prix Unitaire HT', value: 'price' },
