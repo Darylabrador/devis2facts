@@ -24,4 +24,9 @@ class DevisController extends Controller
         $clients = Client::get();
         return $clients;
     }
+
+    public function getAll() {
+        $clients = Devis::all();
+        return DevisResource::collection($clients);
+    }
 }

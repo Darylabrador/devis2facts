@@ -37,10 +37,11 @@ Route::post('clients/add', [ClientsController::class, 'add']);
 Route::get('clients/getAll', [ClientsController::class, 'getAllClients']);
 Route::delete('clients/del/{id}', [ClientsController::class, 'delete']);
 
-// Devis 
+// Devis
 Route::get('devis/find/ligne/{id}', [DevisController::class, 'findLigne'])->where('id', '[0-9]+');
 Route::get('devis/find/{id}', [DevisController::class, 'findDevis'])->where('id', '[0-9]+');
 Route::get('devis/clients', [DevisController::class, 'autocomplete']);
+Route::get('devis/getAll', [DevisController::class, 'getAll']);
 
 // PDF
 Route::get('/devis/pdf/{id}', [PdfController::class, "generateDevis"]);
