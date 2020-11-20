@@ -2052,7 +2052,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _service_ApiProduct__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../service/ApiProduct */ "./resources/js/application/service/ApiProduct.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _service_ApiProduct__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../service/ApiProduct */ "./resources/js/application/service/ApiProduct.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2060,7 +2062,17 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    product: {
+      type: Object
+    },
+    isModified: {
+      type: Boolean,
+      "default": false
+    }
+  },
   data: function data() {
     return {
       drawerRight: null,
@@ -2075,7 +2087,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return !!v || "Un nom est requis";
       }],
       valid: true,
-      lazy: false
+      lazy: false,
+      title: ""
     };
   },
   methods: {
@@ -2087,19 +2100,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 data = {
+                  id: this.product.id,
                   name: this.name,
                   default_price: this.price
                 };
-                _context.next = 3;
-                return _service_ApiProduct__WEBPACK_IMPORTED_MODULE_1__["default"].create(data);
 
-              case 3:
+                if (this.isModified) {
+                  _context.next = 10;
+                  break;
+                }
+
+                _context.next = 4;
+                return _service_ApiProduct__WEBPACK_IMPORTED_MODULE_2__["default"].create(data);
+
+              case 4:
                 res = _context.sent;
-                this.$emit('addProduct', res.data.product);
                 this.name = "";
                 this.price = "";
+                this.$emit('addProduct', res.data.product);
+                _context.next = 15;
+                break;
 
-              case 7:
+              case 10:
+                _context.next = 12;
+                return _service_ApiProduct__WEBPACK_IMPORTED_MODULE_2__["default"].updateProduct(data);
+
+              case 12:
+                res = _context.sent;
+                this.product.name = res.data.product.name;
+                this.product.default_price = res.data.product.default_price;
+
+              case 15:
               case "end":
                 return _context.stop();
             }
@@ -2113,6 +2144,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return addProduct;
     }()
+  },
+  created: function created() {
+    if (this.isModified) {
+      this.name = this.product.name;
+      this.price = this.product.default_price;
+    }
   }
 });
 
@@ -2275,9 +2312,32 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib??ref--4-0!./resources/js/application/views/dashboard.js?vue&type=script&lang=js& ***!
   \************************************************************************************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/gilles/devis2facts/resources/js/application/views/dashboard.js: Unexpected token, expected \"=>\" (14:21)\n\n\u001b[0m \u001b[90m 12 | \u001b[39m\u001b[90m     * Get all information for stats graph\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 | \u001b[39m\u001b[90m     */\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 | \u001b[39m    async createStats() {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m        \u001b[36mtry\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m 16 | \u001b[39m            \u001b[36mconst\u001b[39m statsInfo \u001b[33m=\u001b[39m await \u001b[33mAxios\u001b[39m\u001b[33m.\u001b[39mget(\u001b[32m'/api/stats'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 17 | \u001b[39m            \u001b[36mconst\u001b[39m responseData \u001b[33m=\u001b[39m statsInfo\u001b[33m.\u001b[39mdata\u001b[33m.\u001b[39mdata\u001b[33m;\u001b[39m\u001b[0m\n    at Parser._raise (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:790:17)\n    at Parser.raiseWithData (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:783:17)\n    at Parser.raise (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:777:17)\n    at Parser.unexpected (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9095:16)\n    at Parser.expect (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9081:28)\n    at Parser.parseAsyncArrowUnaryFunction (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10543:10)\n    at Parser.parseExprAtom (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10376:27)\n    at Parser.parseExprSubscripts (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10094:23)\n    at Parser.parseUpdate (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10074:21)\n    at Parser.parseMaybeUnary (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:10063:17)\n    at Parser.parseExprOps (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9933:23)\n    at Parser.parseMaybeConditional (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9907:23)\n    at Parser.parseMaybeAssign (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9870:21)\n    at Parser.parseExpressionBase (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9815:23)\n    at allowInAnd (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9809:39)\n    at Parser.allowInAnd (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11504:16)\n    at Parser.parseExpression (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:9809:17)\n    at Parser.parseStatementContent (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11770:23)\n    at Parser.parseStatement (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11639:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12221:25)\n    at Parser.parseBlockBody (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12207:10)\n    at Parser.parseBlock (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12191:10)\n    at Parser.parseStatementContent (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11715:21)\n    at Parser.parseStatement (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11639:17)\n    at Parser.parseLabeledStatement (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12171:22)\n    at Parser.parseStatementContent (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11773:19)\n    at Parser.parseStatement (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11639:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12221:25)\n    at Parser.parseBlockBody (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:12207:10)\n    at Parser.parseTopLevel (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:11570:10)\n    at Parser.parse (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:13381:10)\n    at parse (/home/gilles/devis2facts/node_modules/@babel/parser/lib/index.js:13434:38)\n    at parser (/home/gilles/devis2facts/node_modules/@babel/core/lib/parser/index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/home/gilles/devis2facts/node_modules/@babel/core/lib/transformation/normalize-file.js:99:38)\n    at normalizeFile.next (<anonymous>)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+ //import DashboardStats from "../service/charts/dashboardStats.js";
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {//this.createStats()
+  },
+  methods: {
+    /**
+     * Get all information for stats graph
+     */
+    // createStats: async function() {
+    //     try {
+    //         const statsInfo = await Axios.get('/api/stats');
+    //         const responseData = statsInfo.data.data;
+    //         DashboardStats(responseData);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // },
+  }
+});
 
 /***/ }),
 
@@ -21782,24 +21842,47 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "v-btn",
-        {
-          attrs: { text: "" },
-          on: {
-            click: function($event) {
-              $event.stopPropagation()
-              _vm.drawerRight = !_vm.drawerRight
-            }
-          }
-        },
-        [
-          _c("v-icon", { staticClass: "ml-2 success--text" }, [
-            _vm._v("mdi-tag-outline")
-          ])
-        ],
-        1
-      ),
+      !_vm.isModified
+        ? _c(
+            "v-btn",
+            {
+              attrs: { text: "" },
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  _vm.drawerRight = !_vm.drawerRight
+                }
+              }
+            },
+            [
+              _c("v-icon", { staticClass: "ml-2 success--text" }, [
+                _vm._v("mdi-tag-outline")
+              ])
+            ],
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isModified
+        ? _c(
+            "v-btn",
+            {
+              attrs: { text: "" },
+              on: {
+                click: function($event) {
+                  $event.stopPropagation()
+                  _vm.drawerRight = !_vm.drawerRight
+                }
+              }
+            },
+            [
+              _c("v-icon", { staticClass: "ml-2 success--text" }, [
+                _vm._v("mdi-settings")
+              ])
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "v-navigation-drawer",
@@ -21817,25 +21900,51 @@ var render = function() {
                         "v-col",
                         { attrs: { cols: "12", md: "6", sm: "6" } },
                         [
-                          _c(
-                            "v-btn",
-                            {
-                              staticClass: "success--text",
-                              attrs: { disabled: !_vm.valid, text: "" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.addProduct()
-                                }
-                              }
-                            },
-                            [
-                              _vm._v("\n            Valider\n            "),
-                              _c("v-icon", { staticClass: "ml-3" }, [
-                                _vm._v("mdi-check")
-                              ])
-                            ],
-                            1
-                          )
+                          !_vm.isModified
+                            ? _c(
+                                "v-btn",
+                                {
+                                  staticClass: "success--text",
+                                  attrs: { disabled: !_vm.valid, text: "" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addProduct()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v("\n            Valider\n            "),
+                                  _c("v-icon", { staticClass: "ml-3" }, [
+                                    _vm._v("mdi-check")
+                                  ])
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.isModified
+                            ? _c(
+                                "v-btn",
+                                {
+                                  staticClass: "success--text",
+                                  attrs: { disabled: !_vm.valid, text: "" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addProduct()
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n            Modifier\n            "
+                                  ),
+                                  _c("v-icon", { staticClass: "ml-3" }, [
+                                    _vm._v("mdi-check")
+                                  ])
+                                ],
+                                1
+                              )
+                            : _vm._e()
                         ],
                         1
                       ),
@@ -21898,11 +22007,21 @@ var render = function() {
               _c(
                 "v-list-item-content",
                 [
-                  _c(
-                    "v-list-item-title",
-                    { staticClass: "title mt-3 text-center" },
-                    [_vm._v("Ajouter d'un Produit")]
-                  )
+                  !_vm.isModified
+                    ? _c(
+                        "v-list-item-title",
+                        { staticClass: "title mt-3 text-center" },
+                        [_vm._v("\n          Ajouter un Produit\n        ")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.isModified
+                    ? _c(
+                        "v-list-item-title",
+                        { staticClass: "title mt-3 text-center" },
+                        [_vm._v("\n          Modifier un Produit\n        ")]
+                      )
+                    : _vm._e()
                 ],
                 1
               )
@@ -22443,6 +22562,9 @@ var render = function() {
                   "thead",
                   [
                     _c("addProduct", {
+                      attrs: {
+                        product: { id: null, name: null, default_price: null }
+                      },
                       on: {
                         addProduct: function($event) {
                           return _vm.add($event)
@@ -22456,7 +22578,7 @@ var render = function() {
                 _c(
                   "tbody",
                   [
-                    _c("tr", [
+                    _c("tr", { staticClass: "text-center" }, [
                       _c("td", [_vm._v("Nom du Produit")]),
                       _vm._v(" "),
                       _c("td", [_vm._v("Prix par Default")]),
@@ -22465,29 +22587,42 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _vm._l(_vm.products, function(product, key) {
-                      return _c("tr", { key: key }, [
-                        _c("td", [_vm._v(_vm._s(product.name))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(product.default_price) + " €")
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          { staticClass: "text-right" },
-                          [
-                            _c("deleteProductModal", {
-                              attrs: { product: product, index: key },
-                              on: {
-                                deleteProduct: function($event) {
-                                  return _vm.deleteProd($event)
+                      return _c(
+                        "tr",
+                        { key: key, staticClass: "text-center" },
+                        [
+                          _c("td", [_vm._v(_vm._s(product.name))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(_vm._s(product.default_price) + " €")
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "td",
+                            { staticClass: "text-right" },
+                            [
+                              _c("addProduct", {
+                                attrs: { isModified: true, product: product },
+                                on: {
+                                  addProduct: function($event) {
+                                    return _vm.add($event)
+                                  }
                                 }
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      ])
+                              }),
+                              _vm._v(" "),
+                              _c("deleteProductModal", {
+                                attrs: { product: product, index: key },
+                                on: {
+                                  deleteProduct: function($event) {
+                                    return _vm.deleteProd($event)
+                                  }
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ]
+                      )
                     })
                   ],
                   2
@@ -22508,7 +22643,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
-      _c("h1", [_vm._v("Liste Clients")])
+      _c("h1", [_vm._v("Liste Produits")])
     ])
   }
 ]
@@ -82207,18 +82342,24 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ "./resources/js/application/service/api.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api */ "./resources/js/application/service/api.js");
+
  //collection of request to API for product
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   create: function create(data) {
-    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post('products/add', data);
+    return _api__WEBPACK_IMPORTED_MODULE_1__["default"].post('products/add', data);
   },
   getProducts: function getProducts() {
-    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get('products/getAll');
+    return _api__WEBPACK_IMPORTED_MODULE_1__["default"].get('products/getAll');
   },
   deleteProduct: function deleteProduct(data) {
-    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post('products/delete', data);
+    return _api__WEBPACK_IMPORTED_MODULE_1__["default"].post('products/delete', data);
+  },
+  updateProduct: function updateProduct(data) {
+    return _api__WEBPACK_IMPORTED_MODULE_1__["default"].post('products/update', data);
   }
 });
 
