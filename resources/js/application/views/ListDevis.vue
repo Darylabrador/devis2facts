@@ -35,7 +35,7 @@
             <v-btn icon>
               <v-icon>mdi-delete</v-icon>
             </v-btn>
-            <v-btn icon>
+            <v-btn icon @click="generateEmail(item.id)">
               <v-icon>mdi-email</v-icon>
             </v-btn>
             <v-btn icon @click="generateFile(item.id, true)">

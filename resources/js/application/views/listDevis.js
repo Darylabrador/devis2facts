@@ -54,6 +54,11 @@ export default {
             }
         },
 
+        generateEmail: async function(id) {
+            const sendMail = await Axios.get(`/api/devis/send-email-pdf/${id}`);
+            console.log(sendMail)
+        },
+
         downloadPDF(responseData, fileData) {
             var a = document.createElement('a');
             var url = window.URL.createObjectURL(new Blob([responseData], { type: 'application/pdf' }));
