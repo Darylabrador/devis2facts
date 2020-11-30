@@ -35,12 +35,12 @@ export default {
             ],
             lignes: [],
             tht: 0,
-            ttc: 0,
+            ttc:0,
 
-            valuetht: 0,
-            valuettc: 0,
+            valuetht:0,
+            valuettc:0,
 
-            remise: 0,
+            remise:0,
             creation: '',
             expiration: '',
             factures: []
@@ -50,25 +50,26 @@ export default {
     created() {
         this.getLigne()
         this.getDevis()
-
-
+        
+        
     },
     methods: {
         getLigne() {
             Axios.get('/api/devis/find/ligne/' + this.$route.params.id).then(({ data }) => {
 
                 data.data.forEach(ligne => {
-                    this.getFacture(ligne);
                     this.lignes.push(ligne)
                     this.tht += ligne.price * ligne.quantity
-                    this.ttc += (ligne.price + ligne.price) * ligne.quantity
-
+                    this.ttc += ( ligne.price + ligne.price * ligne.devis.tva / 100 ) * ligne.quantity
+                    
                 })
                 this.valuetht = this.tht
                 this.valuettc = this.ttc
 
             })
 
+           
+                
         },
 
         getDevis() {
@@ -81,18 +82,17 @@ export default {
         add(ligne) {
             this.lignes.push(ligne)
             this.tht += ligne.price * ligne.quantity
-            this.ttc += (ligne.price + ligne.price) * ligne.quantity
+            this.ttc += ( ligne.price + ligne.price * ligne.devis.tva / 100 ) * ligne.quantity
 
             this.valuetht = this.tht
             this.valuettc = this.ttc
         },
 
-        emis(remise) {
-            this.valuettc = this.ttc - this.ttc * value / 100
-            this.valuetht = this.tht - this.tht * value / 100
-        },
+        emis(value) {
 
+            this.valuettc = this.ttc - this.ttc*value/100
+            this.valuetht = this.tht- this.tht*value/100
+        }
 
     }
-
 }
