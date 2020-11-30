@@ -24,7 +24,7 @@
                   </tr>
                   <tr>
                     <td>Remise (en %)</td>
-                    <td><v-text-field v-model='remise' type='number' :rules="pourcentRule" @change='emis(remise)' min='0' max='100'></v-text-field></td>
+                    <td><v-text-field v-model='remise' type='number' :rules="pourcentRule" @change='emis(remise)' value="remise" min='0' max='100'></v-text-field></td>
                   </tr>
                 </tbody>
               </template>

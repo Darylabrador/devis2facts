@@ -23,6 +23,7 @@ class DevisResource extends JsonResource
             'tva'         => $this->tva,
             'creation'    => $this->created_at,
             'expiration'  => $this->date_expiration,
+            'remise'  => $this->remise,
             'is_accepted' => $this->is_accepted
         ];
     }

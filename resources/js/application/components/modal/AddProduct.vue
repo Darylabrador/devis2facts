@@ -85,4 +85,5 @@
   </div>
 </template>
 
+
 <script src="./js/AddProduct.js"></script>
