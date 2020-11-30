@@ -30,6 +30,7 @@
 												type="number"
 												:rules="pourcentRule"
 												@change="emis(remise)"
+												value="remise"
 												min="0"
 												max="100"
 											></v-text-field>
@@ -100,7 +101,12 @@
 						>{{ item.quantity * item.price }}
 					</template>
 					<template v-slot:item.check="{ item }">
-            <check @createFacture='createFacture($event)' :valid='valid' :verifCheck='verifCheck' :ligne='item'/>
+						<check
+							@createFacture="createFacture($event)"
+							:valid="valid"
+							:verifCheck="verifCheck"
+							:ligne="item"
+						/>
 					</template>
 				</v-data-table>
 			</v-row>

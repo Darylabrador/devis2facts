@@ -20,6 +20,7 @@ class CreateDevisTable extends Migration
             $table->float('tva');
             $table->boolean('is_accepted');
             $table->date('date_expiration');
+            $table->integer('remise');
             $table->timestamps();
         });
     }

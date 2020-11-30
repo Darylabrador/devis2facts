@@ -82,7 +82,10 @@ export default {
             Axios.get('/api/devis/find/' + this.$route.params.id).then(({ data }) => {
                 this.creation = data.data.creation
                 this.expiration = data.data.expiration
+                this.remise = data.data.remise
+                
             })
+            
         },
 
         add(ligne) {
