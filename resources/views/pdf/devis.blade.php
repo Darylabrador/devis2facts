@@ -9,6 +9,10 @@
         .fontBold {
             font-weight: bold;
         }
+
+        table {
+            border-collapse: collapse;
+        }
     </style>
 </head>
 <body>
@@ -42,14 +46,12 @@
                     {{  Carbon\Carbon::parse($devisResource[0]->devis->created_at)->format('d-m-Y') }}
                 </td>
             </tr>
-            
             <tr>
                 <td class="fontStyle">Date expiration : 
                     {{  Carbon\Carbon::parse($devisResource[0]->devis->date_expiration)->format('d-m-Y') }}
                 </td>
             </tr>
         </table>
-   
     </div>
 
       <div style="margin-top: 30px; margin-left: 500px;">
@@ -70,33 +72,32 @@
     </div>
    
 
-    <table>
+    <table style="margin-top: 45px !important; margin-left: 10px; width: 100%; padding: 0;" class="fontStyle">
         <thead>
-            <tr>
-                <th> Produit </th>
-                <th> Quantité </th>
-                <th> Prix unitaire HT </th>
-                <th> Total HT </th>
+            <tr style="padding: 0;">
+                <th style="border: 1px solid black;"> Produit </th>
+                <th style="border: 1px solid black;"> Quantité </th>
+                <th style="border: 1px solid black;"> Prix unitaire HT </th>
+                <th style="border: 1px solid black;"> Total HT </th>
             </tr>
         </thead>
         <tbody>
         @foreach ($devisResource as $value)
-        <tr>
-            <td> {{ $value->products->name }}</td> 
-            <td> {{ $value->quantity }}</td> 
+        <tr style="outline: 0;">
+            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->name }}</td> 
+            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->quantity }}</td> 
 
             @if ($value->price == null)
-            <td> {{ $value->products->default_price }}</td> 
+            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->default_price }}</td> 
             @else
-            <td> {{ $value->price }}</td> 
+            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->price }}</td> 
             @endif
             
             @if ($value->price == null)
-            <td> {{ $value->products->default_price * $value->quantity }}</td> 
+            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->default_price * $value->quantity }}</td> 
             @else
-            <td> {{ $value->price * $value->quantity  }}</td> 
+            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->price * $value->quantity  }}</td> 
             @endif
-            
         </tr>
         @endforeach
         </tbody>
