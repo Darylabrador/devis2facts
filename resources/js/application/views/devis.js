@@ -82,6 +82,8 @@ export default {
             
         },
 
+
+
         add(ligne) {
             this.lignes.push(ligne)
             this.tht += ligne.price * ligne.quantity
@@ -91,10 +93,17 @@ export default {
             this.valuettc = this.ttc
         },
 
+
+
         emis(value) {
 
             this.valuettc = this.ttc - this.ttc*value/100
             this.valuetht = this.tht- this.tht*value/100
+
+
+            Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
+               // console.log('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise)
+            })
         }
 
     }

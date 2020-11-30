@@ -45,6 +45,7 @@ Route::get('devis/clients', [DevisController::class, 'autocomplete']);
 Route::get('devis/getAll', [DevisController::class, 'getAll']);
 Route::post('devis/add', [DevisController::class, 'add']);
 Route::delete('devis/del/{id}', [DevisController::class, 'delete']);
+Route::get('devis/up/remise/{id}/{r}', [DevisController::class, 'updateRemise']);
 
 //Ligne devis
 Route::post('lignedevis/create', [LigneDevisController::class, 'create']);
