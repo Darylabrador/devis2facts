@@ -51,16 +51,12 @@ class PdfController extends Controller
         return $pdf->stream();
     }
 
+
     /**
      * Generate invoice PDF
      */
     public function generateInvoice($id) {
-        $data = [
-            'title' => 'My first PDF test',
-            'date' => date('m/d/Y')
-        ];
-        $pdf = PDF::loadView('pdf.devis', $data);
-        return $pdf->stream();
+
     }
 
 

@@ -18,13 +18,13 @@ class LigneDevisResource extends JsonResource
         $product = new ProductResource($this->products);
         $facture = new FacturationResource($this->factures);
         return [
-            'id' => $this->id,
-            'devis' => $devis,
-            'product' => $product,
-            'facture' => $facture,
+            'id'         => $this->id,
+            'devis'      => $devis,
+            'product'    => $product,
+            'facture'    => $facture,
             'description' => $this->description,
-            'quantity' => $this->quantity,
-            'price' => $this->price
+            'quantity'    => $this->quantity,
+            'price'       => $this->price
         ];
     }
 }

@@ -9,7 +9,7 @@ class LigneDevis extends Model
 {
     use HasFactory;
     protected $table = 'lignedevis';
-    protected $fillable = ['devis_id', 'product_id', 'facture_id', 'description', 'quantity', 'price'];
+    protected $fillable = ['devis_id', 'product_id', 'facturation_id', 'description', 'quantity', 'price'];
     public $timestamps = false;
 
     public function devis()
@@ -22,6 +22,6 @@ class LigneDevis extends Model
     }
     public function factures()
     {
-        return $this->belongsTo(Facturation::class, 'facture_id');
+        return $this->belongsTo(Facturation::class, 'facturation_id');
     }
 }

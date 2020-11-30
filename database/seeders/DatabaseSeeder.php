@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Client::factory(5)->create();
 
+        $now = now()->toDateString();
+        
         for ($i = 1; $i < 6; $i++) {
             DB::table('clientaddresses')->insert([
                 'address' => $faker->address,
