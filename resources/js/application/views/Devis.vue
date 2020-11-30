@@ -40,7 +40,7 @@
 						</v-simple-table>
 					</v-card>
 					<div>
-						<v-btn @click.stop="isFact()" depressed>
+						<v-btn @click="isFact()" depressed>
 							<v-icon class="ml-2 primary--text">mdi-eye</v-icon> Facturer
 						</v-btn>
 						<v-navigation-drawer
@@ -100,7 +100,7 @@
 						>{{ item.quantity * item.price }}
 					</template>
 					<template v-slot:item.check="{ item }">
-						<v-checkbox class="mb-2" @change="check(item)" />
+            <check @createFacture='createFacture($event)' :valid='valid' :verifCheck='verifCheck' :ligne='item'/>
 					</template>
 				</v-data-table>
 			</v-row>

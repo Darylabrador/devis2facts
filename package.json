@@ -20,6 +20,7 @@
     "dependencies": {
         "@mdi/js": "^5.8.55",
         "chart.js": "^2.9.4",
+        "rxjs": "^6.6.3",
         "vue": "^2.6.12",
         "vue-router": "^3.4.9",
         "vuetify": "^2.3.17"

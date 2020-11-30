@@ -3,12 +3,15 @@ import Tva from '../components/devis/Tva.vue'
 import Autocomplete from '../components/devis/Autocomplete.vue'
 import AddLigne from '../components/devis/AddLigne.vue'
 import Facturation from '../components/devis/lignedevis/Facturation.vue'
+import Check from '../components/devis/lignedevis/Check.vue'
+import {apiService} from '../_services/apiService'
 export default {
     components: {
         Tva,
         Autocomplete,
         AddLigne,
-        Facturation
+        Facturation,
+        Check
     },
 
 
@@ -44,7 +47,9 @@ export default {
             expiration: '',
             factures: [],
             drawerRight: false,
-            isFacture: false
+            isFacture: false,
+            verifCheck: false,
+            valid: true,
 
         }
     },
@@ -56,7 +61,7 @@ export default {
     },
     methods: {
         getLigne() {
-            Axios.get('/api/devis/find/ligne/' + this.$route.params.id).then(({ data }) => {
+            apiService.get('/api/devis/find/ligne/' + this.$route.params.id).then(({ data }) => {
 
                 data.data.forEach(ligne => {
                     this.lignes.push(ligne)
@@ -96,13 +101,16 @@ export default {
         },
 
         isFact() {
+            this.checkbox = !this.checkbox;
             this.isFacture = !this.isFacture;
+            this.verifCheck = true;
+            this.valid = !this.valid;
             this.drawerRight = !this.drawerRight;
-            
+
         },
 
-        check(item) {
-            this.factures.push(item);
+        createFacture(facture) {
+            this.factures.push(facture);
         }
 
     }
