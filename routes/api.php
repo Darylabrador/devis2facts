@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\FacturationController;
 use App\Http\Controllers\DevisController;
@@ -43,7 +44,9 @@ Route::get('devis/find/ligne/{id}', [DevisController::class, 'findLigne'])->wher
 Route::get('devis/find/{id}', [DevisController::class, 'findDevis'])->where('id', '[0-9]+');
 Route::get('devis/clients', [DevisController::class, 'autocomplete']);
 Route::get('devis/getAll', [DevisController::class, 'getAll']);
+Route::post('devis/add', [DevisController::class, 'add']);
 Route::delete('devis/del/{id}', [DevisController::class, 'delete']);
+Route::get('devis/up/remise/{id}/{r}', [DevisController::class, 'updateRemise']);
 
 //Ligne devis
 Route::post('lignedevis/create', [LigneDevisController::class, 'create']);
@@ -53,3 +56,5 @@ Route::get('/devis/pdf/{id}', [PdfController::class, "generateDevis"]);
 Route::get('/facture/pdf/{id}', [PdfController::class, "generateInvoice"]);
 Route::get('/devis/pdf/name/{id}', [PdfController::class, "getFilenameDevis"]);
 Route::get('/facture/pdf/name/{id}', [PdfController::class, "getFilenameInvoice"]);
+
+Route::post('/login', [AuthController::class, "login"]);

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MycompanySeeder::class,
             ProductsSeeder::class,
+            UsersSeeder::class
         ]);
 
         \App\Models\Client::factory(5)->create();
@@ -44,6 +45,7 @@ class DatabaseSeeder extends Seeder
                 'date_expiration' => "{$year}-{$month}-" . rand(10, 20),
                 'is_accepted' => true,
                 'created_at' => "{$year}-{$month}-" . rand(1, 10),
+                'remise' => rand(0, 40),
             ]);
         }
 

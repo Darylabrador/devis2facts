@@ -85,6 +85,5 @@
   </div>
 </template>
 
-<script src="./addOrdi.js" />
 
 <script src="./js/AddProduct.js"></script>
