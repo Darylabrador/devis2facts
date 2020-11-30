@@ -19,17 +19,21 @@
         </v-text-field>
       </v-card-title>
       <v-data-table :headers="headers" :items="info" :search="search">
+        
         <template v-slot:item.is_accepted="{ item }">
           <v-switch
             v-model="item.is_accepted"
           ></v-switch>
         </template>
+
         <template v-slot:item.filename="{ item }">
           {{ format(item.filename) }}
         </template>
+
         <template v-slot:item.client="{ item }">
           {{ item.client.name }}
         </template>
+
         <template v-slot:item.carbs="{ item }">
           <v-row class="d-flex flex-row-reverse">
             <v-btn icon>

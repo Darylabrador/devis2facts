@@ -25,11 +25,12 @@ export default {
             var res = await apiDevis.getAllDevis()
             this.info = res.data.data
         },
+        
         format(filename) {
             var  data = filename.split('.')
-
             return data[0]
         },
+
         async generateFile(id, isFacture) {
             if (isFacture) {
                 try {
@@ -43,11 +44,11 @@ export default {
                 }
             } else {
                 try {
-                    const devis = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
-                    const file = await Axios.get(`/api/facture/pdf/name/${id}`);
-                    const responseData = devis.data;
-                    const fileData = file.data.data;
-                    this.downloadPDF(responseData, fileData);
+                    const facture = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
+                    const fileInfo = await Axios.get(`/api/facture/pdf/name/${id}`);
+                    const responseDataFacture = facture.data;
+                    const fileDataInfo = fileInfo.data.data;
+                    this.downloadPDF(responseDataFacture, fileDataInfo);
                 } catch (error) {
                     console.log(error)
                 }
@@ -75,7 +76,4 @@ export default {
             })
         }
     },
-
-
-
 }

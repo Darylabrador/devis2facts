@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {{-- <title>DE-2020-11-1</title> --}}
-</head>
+<head></head>
 <body>
 
-    <div>
-        {{ $company->name }}, 
-        <br>
-        Adresse : {{ $company->address }}, 
-        <br>
-        Ville :{{ $company->city }}, 
-        <br>
-        Code postal :{{ $company->postcode }}, 
-        <br>
-        Siret : {{ $company->siret }}, 
-        <br>
-        TVA : {{ $devisResource[0]->devis->tva }}
+    <div style="display:flex; justify-content: space-between;">
+        <div>
+            {{ $company->name }}, 
+            <br>
+            Adresse : {{ $company->address }}, 
+            <br>
+            Ville :{{ $company->city }}, 
+            <br>
+            Code postal :{{ $company->postcode }}, 
+            <br>
+            Siret : {{ $company->siret }}, 
+            <br>
+            TVA : {{ $devisResource[0]->devis->tva }}
+        </div>
+
+        <div>
+            {{ $company->name }}, 
+            <br>
+            Adresse : {{ $company->address }}, 
+            <br>
+            Ville :{{ $company->city }}, 
+            <br>
+            Code postal :{{ $company->postcode }}, 
+            <br>
+            Siret : {{ $company->siret }}, 
+            <br>
+            TVA : {{ $devisResource[0]->devis->tva }}
+        </div>
+   
     </div>
 
     <br><br>
 
     <div>
-        <h1>Information du client</h1>
+        <h4>Information du client</h4>
         {{ $devisResource[0]->devis->clients->clientAddress->address }}
         {{ $devisResource[0]->devis->clients->clientAddress->city }}
         {{ $devisResource[0]->devis->clients->clientAddress->postcode }}
@@ -31,10 +46,6 @@
         <br>
         {{ $devisResource[0]->devis->clients->email }}, 
     </div>
-
-    <div style="background: grey;">
-    </div>
-
 
     <table>
         <thead>
