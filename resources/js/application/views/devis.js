@@ -62,7 +62,7 @@ export default {
                     this.lignes.push(ligne)
                     this.tht += ligne.price * ligne.quantity
                     this.ttc += (ligne.price + ligne.price) * ligne.quantity
-                   
+
                 })
                 this.valuetht = this.tht
                 this.valuettc = this.ttc
@@ -88,15 +88,11 @@ export default {
         },
 
         emis(remise) {
-            this.valuettc = this.ttc - this.ttc * remise / 100
-            this.valuetht = this.tht - this.tht * remise / 100
+            this.valuettc = this.ttc - this.ttc * value / 100
+            this.valuetht = this.tht - this.tht * value / 100
         },
 
-        getFacture(ligne) {
-            if (ligne.facture.is_paid == 1) {
-                this.factures.push(ligne.facture.filename)
-            } 
-        }
 
     }
+
 }

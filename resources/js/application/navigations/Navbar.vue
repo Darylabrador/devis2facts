@@ -13,8 +13,8 @@
         Devis
       </v-btn>
 
-      <v-btn color="error" class="mr-4" to="/products" text>
-        Products
+      <v-btn color="error" class="mr-4" to="/produits" text>
+        Produits
       </v-btn>
 
       <v-btn color="error" class="mr-4" to="/generate" text>
