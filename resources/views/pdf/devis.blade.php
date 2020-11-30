@@ -1,51 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-<head></head>
+<html lang="fr">
+<head>
+
+    <style>
+        .fontStyle{
+            font-size: 13px;
+        }
+        .fontBold {
+            font-weight: bold;
+        }
+    </style>
+</head>
 <body>
 
-    <div style="display:flex; justify-content: space-between;">
-        <div>
-            {{ $company->name }}, 
-            <br>
-            Adresse : {{ $company->address }}, 
-            <br>
-            Ville :{{ $company->city }}, 
-            <br>
-            Code postal :{{ $company->postcode }}, 
-            <br>
-            Siret : {{ $company->siret }}, 
-            <br>
-            TVA : {{ $devisResource[0]->devis->tva }}
-        </div>
+    <div>
+        <table>
+            <tr>
+                <td class="fontStyle fontBold"> {{ $company->name }} </td>
+            </tr>
+            <tr>
+                <td class="fontStyle">{{ $company->address }}</td>
+            </tr>
+            <tr>
+                <td class="fontStyle">{{ $company->city }}, {{ $company->postcode }}</td>
+            </tr>
+            <tr>
+                <td class="fontStyle">Siret : {{ $company->siret }}</td>
+            </tr>            
+            <tr>
+                <td class="fontStyle">TVA : {{ $devisResource[0]->devis->tva }}</td>
+            </tr>
+        </table>
 
-        <div>
-            {{ $company->name }}, 
-            <br>
-            Adresse : {{ $company->address }}, 
-            <br>
-            Ville :{{ $company->city }}, 
-            <br>
-            Code postal :{{ $company->postcode }}, 
-            <br>
-            Siret : {{ $company->siret }}, 
-            <br>
-            TVA : {{ $devisResource[0]->devis->tva }}
-        </div>
+     
+        <table style="margin-left: 500px !important; margin-top: -100px !important;">
+            <tr>
+                <td class="fontStyle fontBold"> Devis n°{{ $devisResource[0]->devis->id }} </td>
+            </tr>
+            <tr>
+                <td class="fontStyle">Date creation : 
+                    {{  Carbon\Carbon::parse($devisResource[0]->devis->created_at)->format('d-m-Y') }}
+                </td>
+            </tr>
+            
+            <tr>
+                <td class="fontStyle">Date expiration : 
+                    {{  Carbon\Carbon::parse($devisResource[0]->devis->date_expiration)->format('d-m-Y') }}
+                </td>
+            </tr>
+        </table>
    
     </div>
 
-    <br><br>
-
-    <div>
-        <h4>Information du client</h4>
-        {{ $devisResource[0]->devis->clients->clientAddress->address }}
-        {{ $devisResource[0]->devis->clients->clientAddress->city }}
-        {{ $devisResource[0]->devis->clients->clientAddress->postcode }}
-        <br>
-        {{ $devisResource[0]->devis->clients->name }}, 
-        <br>
-        {{ $devisResource[0]->devis->clients->email }}, 
+      <div style="margin-top: 30px; margin-left: 500px;">
+        <table>
+            <tr>
+                <td class="fontStyle fontBold"> {{ $devisResource[0]->devis->clients->name }} </td>
+            </tr>
+            <tr>
+                <td class="fontStyle">{{ $devisResource[0]->devis->clients->clientAddress->address }}</td>
+            </tr>
+            <tr>
+                <td class="fontStyle">{{ $devisResource[0]->devis->clients->clientAddress->city }}, {{ $devisResource[0]->devis->clients->clientAddress->postcode }}</td>
+            </tr>
+            <tr>
+                <td class="fontStyle">E-mail : {{ $devisResource[0]->devis->clients->email }}</td>
+            </tr>            
+        </table>
     </div>
+   
 
     <table>
         <thead>
