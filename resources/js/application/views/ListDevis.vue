@@ -19,11 +19,8 @@
         </v-text-field>
       </v-card-title>
       <v-data-table :headers="headers" :items="info" :search="search">
-        
         <template v-slot:item.is_accepted="{ item }">
-          <v-switch
-            v-model="item.is_accepted"
-          ></v-switch>
+          <v-switch v-model="item.is_accepted"></v-switch>
         </template>
 
         <template v-slot:item.filename="{ item }">
@@ -36,16 +33,16 @@
 
         <template v-slot:item.carbs="{ item }">
           <v-row class="d-flex flex-row-reverse">
-            <v-btn icon>
-              <v-icon>mdi-delete</v-icon>
-            </v-btn>
+
+            <deleteDevis @delDevis="delDevis($event)" :filename=format(item.filename) :devis="item" />
+
             <v-btn icon>
               <v-icon>mdi-email</v-icon>
             </v-btn>
             <v-btn icon @click="generateFile(item.id, true)">
               <v-icon>mdi-file-download</v-icon>
             </v-btn>
-            <v-btn icon :to="'/devis/'+ item.id">
+            <v-btn icon :to="'/devis/' + item.id">
               <v-icon>mdi-eye-settings</v-icon>
             </v-btn>
           </v-row>
