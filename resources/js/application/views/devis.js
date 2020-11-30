@@ -87,8 +87,8 @@ export default {
 
         emis(value) {
 
-            this.valuetht = this.ttc*value/100
-            this.valuettc = this.tht*value/100
+            this.valuettc = this.ttc - this.ttc*value/100
+            this.valuetht = this.tht- this.tht*value/100
         }
 
     }

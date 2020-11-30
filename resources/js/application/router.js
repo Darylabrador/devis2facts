@@ -34,7 +34,7 @@ const router = new VueRouter({
             component: listDevis
         },
         {
-            path: '/products',
+            path: '/produits',
             name: 'product',
             component: Products
         },
