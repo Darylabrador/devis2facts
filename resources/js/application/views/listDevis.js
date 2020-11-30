@@ -1,4 +1,5 @@
 import apiDevis from '../service/ApiDevis.js'
+import Axios from "axios";
 
 export default {
     data() {
@@ -13,7 +14,7 @@ export default {
                 },
                 { text: 'Nom du Client', value: 'client.name' },
 
-                { text: 'is_accepted', value: 'is_accepted' },
+                { text: 'Devis acceptés', value: 'is_accepted' },
                 { text: '', value: 'carbs' },
             ],
         }
@@ -28,6 +29,38 @@ export default {
             var  data = filename.split('.')
 
             return data[0]
+        },
+        async generateFile(id, isFacture) {
+            if (isFacture) {
+                try {
+                    const devis = await Axios.get(`/api/devis/pdf/${id}`, { responseType: 'arraybuffer' });
+                    const file = await Axios.get(`/api/devis/pdf/name/${id}`);
+                    const responseData = devis.data;
+                    const fileData = file.data.data;
+                    this.downloadPDF(responseData, fileData);
+                } catch (error) {
+                    console.log(error)
+                }
+            } else {
+                try {
+                    const devis = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
+                    const file = await Axios.get(`/api/facture/pdf/name/${id}`);
+                    const responseData = devis.data;
+                    const fileData = file.data.data;
+                    this.downloadPDF(responseData, fileData);
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        },
+
+        downloadPDF(responseData, fileData) {
+            var a = document.createElement('a');
+            var url = window.URL.createObjectURL(new Blob([responseData], { type: 'application/pdf' }));
+            a.href = url;
+            a.download = fileData.filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
         }
     },
 
@@ -41,6 +74,8 @@ export default {
                 return devis.filename.toLowerCase().includes(this.search.toLowerCase())
             })
         }
-    }
+    },
+
+
 
 }

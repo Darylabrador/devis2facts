@@ -9,6 +9,6 @@ class MyCompany extends Model
 {
     use HasFactory;
     protected $table = 'mycompany';
-    protected $fillable = ['address', 'postcode', 'siret', 'city'];
+    protected $fillable = ['name', 'address', 'postcode', 'siret', 'city'];
     public $timestamps = false;
 }

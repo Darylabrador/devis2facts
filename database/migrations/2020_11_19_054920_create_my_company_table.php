@@ -15,6 +15,7 @@ class CreateMyCompanyTable extends Migration
     {
         Schema::create('mycompany', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('address');
             $table->integer('postcode');
             $table->string('siret');

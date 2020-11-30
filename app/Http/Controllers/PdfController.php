@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\DevisResource;
 use App\Http\Resources\FacturationResource;
 use App\Http\Resources\LigneDevisResource;
+use App\Http\Resources\MyCompanyResource;
 use App\Models\Client;
 use App\Models\ClientAddresses;
 use App\Models\Devis;
@@ -42,9 +43,11 @@ class PdfController extends Controller
      * Generate devis PDF
      */
     public function generateDevis($id) {
-        $devis     = LigneDevis::where('devis_id', $id)->get();
-        $ressource = LigneDevisResource::collection($devis);
-        $pdf = PDF::loadView('pdf.devis', compact("ressource"));
+        $devis          = LigneDevis::where('devis_id', $id)->get();
+        $devisResource  = LigneDevisResource::collection($devis);
+        $companyInfo    = MyCompany::where(['id' => 1])->first();
+        $company        = new MyCompanyResource($companyInfo);
+        $pdf = PDF::loadView('pdf.devis', compact("devisResource", "company"));
         return $pdf->stream();
     }
 
