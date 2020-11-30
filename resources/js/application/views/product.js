@@ -33,7 +33,7 @@ export default {
         },
 
         deleteProd(index) {
-            console.log(index)
+            //console.log(index)
             if (index == 0) {
                 this.products.splice(0, 1)
             } else {

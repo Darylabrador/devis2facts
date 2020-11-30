@@ -1,4 +1,5 @@
 import Axios from "axios"
+import { apiService } from "../../_services/apiService";
 
 export default {
     data() {
@@ -12,9 +13,9 @@ export default {
         this.getDevis();
     },
     
-    methods: {
+    methods: {  
         getDevis() {
-            Axios.get("/api/devis/find/1").then(({data}) => {
+            apiService.get("/api/devis/find/1").then(({data}) => {
                 this.devis.push(data.data);
             })
         }

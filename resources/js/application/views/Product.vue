@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-center">
-      <h1>Liste Produits</h1>
+      <h1 class="ma-7 py-0 px-2">Liste Produits</h1>
     </div>
 
     <v-simple-table style="margin-left: 25vw; margin-top: 10vh; width: 50vw">

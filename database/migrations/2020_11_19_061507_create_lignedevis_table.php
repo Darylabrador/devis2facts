@@ -15,7 +15,7 @@ class CreateLignedevisTable extends Migration
     {
         Schema::create('lignedevis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('devis_id')->nullable()->constrained();
+            $table->foreignId('devis_id')->nullable()->onDelete('cascade');
             $table->foreignId('product_id')->nullable()->constrained();
             $table->foreignId('facturation_id')->nullable()->constrained();
             $table->string('description')->nullable();

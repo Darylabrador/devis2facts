@@ -19,9 +19,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MycompanySeeder::class,
             ProductsSeeder::class,
+            UsersSeeder::class
         ]);
 
         \App\Models\Client::factory(5)->create();
+
+        $now = now()->toDateString();
 
         for ($i = 1; $i < 6; $i++) {
             DB::table('clientaddresses')->insert([
@@ -39,9 +42,10 @@ class DatabaseSeeder extends Seeder
                 'client_id' => $faker->numberBetween(1, 5),
                 'filename' => "DE-{$year}-{$month}-{$i}.pdf",
                 'tva' => 8.5,
-                'date_creation' => "{$year}-{$month}-" . rand(1, 10),
                 'date_expiration' => "{$year}-{$month}-" . rand(10, 20),
                 'is_accepted' => true,
+                'created_at' => "{$year}-{$month}-" . rand(1, 10),
+                'remise' => rand(0, 40),
             ]);
         }
 

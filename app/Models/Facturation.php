@@ -11,4 +11,8 @@ class Facturation extends Model
     protected $table = 'facturations';
     protected $fillable = ['is_paid', 'filename'];
     public $timestamps = false;
+    public function ligneDevis()
+    {
+        return $this->hasMany(LigneDevis::class, 'product_id');
+    }
 }
