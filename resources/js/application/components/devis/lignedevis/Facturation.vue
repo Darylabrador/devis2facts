@@ -11,7 +11,7 @@
             >Liste des factures</v-list-item-title
           >
           <v-list-item v-for="(facture, key) in factures" :key="key">
-            {{ facture }}
+            {{ facture.product.name }}
           </v-list-item>
         </v-list-item-content>
       </v-list-item>

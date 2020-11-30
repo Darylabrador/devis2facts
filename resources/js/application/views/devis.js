@@ -16,7 +16,6 @@ export default {
         return {
             pourcentRule: [v => (!isNaN(parseFloat(v)) && v >= 0 && v <= 100) || 'Le nombre doit être compris entre 0 et 100'],
             total: [],
-            checkbox: false,
             tva: '',
             prix: [],
             headers: [
@@ -35,23 +34,25 @@ export default {
             ],
             lignes: [],
             tht: 0,
-            ttc:0,
+            ttc: 0,
 
-            valuetht:0,
-            valuettc:0,
+            valuetht: 0,
+            valuettc: 0,
 
-            remise:0,
+            remise: 0,
             creation: '',
             expiration: '',
-            factures: []
+            factures: [],
+            drawerRight: false,
+            isFacture: false
 
         }
     },
     created() {
         this.getLigne()
         this.getDevis()
-        
-        
+
+
     },
     methods: {
         getLigne() {
@@ -60,16 +61,16 @@ export default {
                 data.data.forEach(ligne => {
                     this.lignes.push(ligne)
                     this.tht += ligne.price * ligne.quantity
-                    this.ttc += ( ligne.price + ligne.price * ligne.devis.tva / 100 ) * ligne.quantity
-                    
+                    this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
+
                 })
                 this.valuetht = this.tht
                 this.valuettc = this.ttc
 
             })
 
-           
-                
+
+
         },
 
         getDevis() {
@@ -82,7 +83,7 @@ export default {
         add(ligne) {
             this.lignes.push(ligne)
             this.tht += ligne.price * ligne.quantity
-            this.ttc += ( ligne.price + ligne.price * ligne.devis.tva / 100 ) * ligne.quantity
+            this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
 
             this.valuetht = this.tht
             this.valuettc = this.ttc
@@ -90,8 +91,18 @@ export default {
 
         emis(value) {
 
-            this.valuettc = this.ttc - this.ttc*value/100
-            this.valuetht = this.tht- this.tht*value/100
+            this.valuettc = this.ttc - this.ttc * value / 100
+            this.valuetht = this.tht - this.tht * value / 100
+        },
+
+        isFact() {
+            this.isFacture = !this.isFacture;
+            this.drawerRight = !this.drawerRight;
+            
+        },
+
+        check(item) {
+            this.factures.push(item);
         }
 
     }

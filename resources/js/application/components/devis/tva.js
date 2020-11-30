@@ -12,7 +12,7 @@ export default {
         this.getDevis();
     },
     
-    methods: {
+    methods: {  
         getDevis() {
             Axios.get("/api/devis/find/1").then(({data}) => {
                 this.devis.push(data.data);

@@ -12,4 +12,13 @@ export default {
         }
     },
 
+    created() {
+        console.log(this.facture);
+    }, 
+
+    methods: {
+        check(item) {
+            console.log(item);
+        }
+    }
 }
