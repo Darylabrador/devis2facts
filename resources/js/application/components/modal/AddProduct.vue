@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn @click.stop="drawerRight = !drawerRight" text v-if="!isModified">
-      + <v-icon class="ml-2 success--text">mdi-tag-outline</v-icon>
+      <v-icon class="ml-2 success--text">mdi-tag-plus-outline</v-icon>
     </v-btn>
     <v-btn @click.stop="drawerRight = !drawerRight" text v-if="isModified">
       <v-icon class="ml-2 success--text" >mdi-settings</v-icon>

@@ -2,11 +2,13 @@ import Axios from "axios"
 import Tva from '../components/devis/Tva.vue'
 import Autocomplete from '../components/devis/Autocomplete.vue'
 import AddLigne from '../components/devis/AddLigne.vue'
+import Facturation from '../components/devis/lignedevis/Facturation.vue'
 export default {
     components: {
         Tva,
         Autocomplete,
-        AddLigne
+        AddLigne,
+        Facturation
     },
 
 
@@ -41,6 +43,7 @@ export default {
             remise:0,
             creation: '',
             expiration: '',
+            factures: []
 
         }
     },

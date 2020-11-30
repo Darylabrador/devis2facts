@@ -30,6 +30,7 @@
               </template>
             </v-simple-table>
           </v-card>
+          <facturation :factures='factures'/>
         </v-col>
       </v-row>
       <v-row class="justify-center mt-10">

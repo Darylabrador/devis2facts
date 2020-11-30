@@ -30,4 +30,11 @@ class DevisController extends Controller
         return DevisResource::collection($devis);
     }
 
+    public function delete ($id) {
+
+        Devis::destroy($id);
+        return response()->json(["id" => $id]);
+
+    }
+
 }

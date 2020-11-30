@@ -17,7 +17,7 @@ class LigneDevisController extends Controller
                 'product_id' => 'required|numeric',
                 'quantity' => 'required|numeric',
                 'price' => 'required|numeric',
-                'description' => 'required',
+                'description' => '',
             ],
             [
                 'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure

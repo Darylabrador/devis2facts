@@ -51,7 +51,7 @@ class FacturationController extends Controller
      */
     public function show($id)
     {
-        //
+       //
     }
 
     /**

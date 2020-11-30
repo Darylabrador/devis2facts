@@ -1,7 +1,13 @@
-import apiDevis from '../service/ApiDevis.js'
+import apiDevis from '../service/ApiDevis.js';
 import Axios from "axios";
+import deleteDevis from '../components/modal/DeleteDevis'
 
 export default {
+    components: {
+        deleteDevis,
+    },
+
+    
     data() {
         return {
             info: [],
@@ -21,8 +27,16 @@ export default {
     },
 
     methods: {
+
+        delDevis(e){
+            const refreshDeleteData = this.info.filter(element => element.id != e.id);
+            this.info = refreshDeleteData;
+        },
+
+
         getlistDevis: async function() {
             var res = await apiDevis.getAllDevis()
+            
             this.info = res.data.data
         },
         
@@ -76,4 +90,5 @@ export default {
             })
         }
     },
+    
 }

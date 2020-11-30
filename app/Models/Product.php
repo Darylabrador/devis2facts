@@ -14,6 +14,6 @@ class Product extends Model
 
     public function ligneDevis()
     {
-        return $this->hasMany(User::class, 'product_id');
+        return $this->hasMany(LigneDevis::class, 'product_id');
     }
 }

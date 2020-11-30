@@ -4,7 +4,7 @@ export default {
     props: {
         product: {
             type: Object,
-            default: () => [{ id: null, name: null, default_price: null }],
+            default: () => [{ id: null }],
         },
         index: {
             type: Number,
@@ -19,17 +19,17 @@ export default {
     },
     methods: {
         deleteProduct: async function() {
-            var data = {
-                id: this.product.id
-            }
+            // var data = {
+            //     id: this.product.id
+            // }
 
-            var res = await apiProduct.deleteProduct(data)
+            // var res = await apiProduct.deleteProduct(data)
 
-            this.$emit('deleteProduct', this.index)
+            // this.$emit('deleteProduct', this.index)
 
-            console.log(res)
+             console.log("res")
 
-            this.dialog = false
+             this.dialog = false
         }
     },
 }
