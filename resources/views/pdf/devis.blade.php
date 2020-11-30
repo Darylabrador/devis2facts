@@ -102,5 +102,27 @@
         @endforeach
         </tbody>
     </table>
+
+    <div style="margin-left: 485px; margin-top: 10px;">
+        <table class="fontStyle" style="width: 218px;">
+            <tr style="border: 1px solid black; padding-left: 5px;">
+                <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">Remise</th>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+            </tr>
+            <tr style="border: 1px solid black; padding-left: 5px;">
+                <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">Montant TVA</th>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+            </tr>
+            <tr style="border: 1px solid black; padding-left: 5px;">
+                <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">THT</th>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+            </tr>
+            <tr style="border: 1px solid black; padding-left: 5px;">
+                <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">TTC</th>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+            </tr>
+        </table>
+    </div>
+
 </body>
 </html>
