@@ -5,9 +5,10 @@
     </div>
       <v-container>
             <v-row class="mb-7">
-                  <v-btn class="mr-4" @click="$router.push({ path: 'devis' })">
-                      + Ajouter un Devis
-                  </v-btn>
+                  
+
+                  <addDevis/>
+
                   <v-spacer></v-spacer>
                   <v-text-field
                       v-model="search"

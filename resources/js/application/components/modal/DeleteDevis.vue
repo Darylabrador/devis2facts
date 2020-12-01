@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <div>
 
     <v-dialog v-model="dialog" persistent max-width="600">
 
@@ -42,7 +42,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
+  </div>
 </template>
 
 <script src="./js/DeleteDevis.js">
