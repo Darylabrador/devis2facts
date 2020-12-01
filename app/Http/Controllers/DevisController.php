@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,6 +23,7 @@ class DevisController extends Controller
                 'client_id' => 'required',
                 'filename' => 'required|max:50',
                 'tva' => 'required',
+                'remise' => 'required'
                 //'isAccepted' => 'required' -> false
             ],
             [
@@ -31,10 +32,12 @@ class DevisController extends Controller
         )->validate();
 
         $devis = new Devis();
-        
+
         $devis->client_id = $validator['client_id'];
         $devis->filename = $validator['email'];
         $devis->tva = $validator['tva'];
+        $devis->remise = $validator['remise'];
+        $devis->isAccepted = false;
 
         $devis->save();
 
@@ -69,5 +72,16 @@ class DevisController extends Controller
         return response()->json(["id" => $id]);
 
     }
+
+    public function updateRemise ($id,$r) {
+
+        //Devis::destroy($id);
+        //return response()->json(["id" => $id]);
+
+        Devis::where('id', $id)->update(['remise' => $r]);
+
+    }
+
+    
 
 }

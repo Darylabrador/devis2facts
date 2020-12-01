@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="text-center">
-      <h1>Liste Clients</h1>
+      <h1 class="ma-7 py-0 px-2">Liste Clients</h1>
     </div>
     <v-container>
       <v-simple-table>
