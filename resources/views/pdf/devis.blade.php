@@ -124,5 +124,8 @@
         </table>
     </div>
 
+    <div style="margin-left: 485px;">
+        <p class="fontStyle">Bon pour accord</p>
+    </div>
 </body>
 </html>
