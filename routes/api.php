@@ -48,9 +48,8 @@ Route::get('devis/getAll', [DevisController::class, 'getAll']);
 Route::get('devis/lastIdDevis', [DevisController::class, 'lastIdDevis']);
 Route::post('devis/add', [DevisController::class, 'add']);
 Route::delete('devis/del/{id}', [DevisController::class, 'delete']);
-//--update
+
 Route::get('devis/up/remise/{id}/{r}', [DevisController::class, 'updateRemise']);
-Route::post('devis/update', [DevisController::class, 'update']);
 
 //Ligne devis
 Route::post('lignedevis/create', [LigneDevisController::class, 'create']);
@@ -61,7 +60,7 @@ Route::get('/facture/pdf/{id}', [PdfController::class, "generateInvoice"]);
 Route::get('/devis/pdf/name/{id}', [PdfController::class, "getFilenameDevis"]);
 Route::get('/facture/pdf/name/{id}', [PdfController::class, "getFilenameInvoice"]);
 Route::post('/facture/create', [FacturationController::class, "create"]);
-Route::post('/facture/get/{id}', [FacturationController::class, "get"])->where('id', '[0-9]+');
+Route::get('/facture/get/{id}', [FacturationController::class, "get"])->where('id', '[0-9]+');
 
 //mail with pdf
 //Route::get ('/devis/sendemailpdf/{devisId}', [PdfController::class, 'index' ]);
