@@ -41,7 +41,7 @@
 						</v-simple-table>
 					</v-card>
 					<div>
-						<v-btn @click="isFact()" depressed>
+						<v-btn :disabled='isDisable' @click="isFact()" depressed>
 							<v-icon class="ml-2 primary--text">mdi-eye</v-icon> Facturer
 						</v-btn>
 						<v-navigation-drawer
@@ -106,7 +106,6 @@
 					<template v-slot:item.check="{ item }">
 						<check
 							@createFacture="createFacture($event)"
-							:valid="valid"
 							:verifCheck="verifCheck"
 							:ligne="item"
 						/>
