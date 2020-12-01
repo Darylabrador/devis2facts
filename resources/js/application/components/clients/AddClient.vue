@@ -1,10 +1,11 @@
 <template>
   <div>
-    <v-btn v-if='!isModifier' @click.stop="drawerRight = !drawerRight" text>
-      <v-icon class="ml-2 success--text">mdi-account-multiple-plus</v-icon>
+    <v-btn v-if='!isModifier' @click.stop="drawerRight = !drawerRight" class="mr-4 btn-grey">
+        <v-icon class="mr-2" >mdi-account-multiple-plus</v-icon>
+        Ajouter client
     </v-btn>
     <v-btn v-if='isModifier' @click.stop="drawerRight = !drawerRight,update(client)" text>
-      <v-icon class="ml-2 primary--text">mdi-settings</v-icon>
+      <v-icon class="ml-2" color="#737373">mdi-settings</v-icon>
     </v-btn>
     <v-navigation-drawer v-model="drawerRight" app temporary hide-overlay right>
       <v-btn
@@ -66,5 +67,11 @@
     </v-navigation-drawer>
   </div>
 </template>
+
+<style>
+.btn-grey{
+    background-color: #9F9F9F !important;
+}
+</style>
 
 <script src="./addClient.js" />
