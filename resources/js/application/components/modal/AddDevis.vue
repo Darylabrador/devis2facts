@@ -8,7 +8,6 @@
         <v-card-title>
           <span class="headline">Création d'un devis</span>
         </v-card-title>
-        
         <v-card-text>
           <v-container>
             <v-row>
@@ -22,6 +21,7 @@
                         dense
                         item-value="id"
                         item-text="name"
+                        color="#f90"
                         label="Client"
                       ></v-autocomplete>
                     </v-col>
@@ -40,6 +40,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-text-field
             v-model="dateM"
+            color="#f90"
             label="date expiration"
             prepend-icon="mdi-calendar"
             readonly
@@ -71,7 +72,7 @@
               </v-col>
 
               <v-col cols="12" sm="6" md="4">
-                <v-text-field label="TVA" v-model="tva"></v-text-field>
+                <v-text-field label="TVA" color="#f90" v-model="tva"></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -83,16 +84,15 @@
           <v-btn
             color="green"
             text
-
             v-if="selectedClient"
-
             @click="
               addDevis();
               dialog = false;
             "
-          >
-            Créer
-          </v-btn>
+            >
+                Créer
+            </v-btn>
+
         </v-card-actions>
       </v-card>
     </v-dialog>

@@ -198,5 +198,8 @@ export default {
         },
 
 
+        generateInvoice(facture) {
+            console.log(facture)
+        }
     }
 }
