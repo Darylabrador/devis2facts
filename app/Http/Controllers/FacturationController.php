@@ -3,88 +3,137 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\FacturationResource;
+use App\Http\Resources\LigneDevisResource;
 use App\Models\Facturation;
+use App\Models\LigneDevis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FacturationController extends Controller
 {
-    /**
-     * Display a listing of facturation for dashbaord interface.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $data[] = Facturation::where(['is_paid' => 1])->count();
-        $data[] = Facturation::where(['is_paid' => 0])->count();
-        return response()->json([
-            "data" => $data 
-        ]);
-    }
+ /**
+  * Display a listing of facturation for dashbaord interface.
+  *
+  * @return \Illuminate\Http\Response
+  */
+ public function index()
+ {
+  $data[] = Facturation::where(['is_paid' => 1])->count();
+  $data[] = Facturation::where(['is_paid' => 0])->count();
+  return response()->json([
+   "data" => $data,
+  ]);
+ }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+ public function get($id)
+ {
+  $ligne = LigneDevis::withTrashed()->where('devis_id', $id)->with('factures')->get();
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  return LigneDevisResource::collection($ligne);
+ }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-       //
-    }
+ /**
+  * Show the form for creating a new resource.
+  *
+  * @return \Illuminate\Http\Response
+  */
+ public function create(Request $request)
+ {
+  $validator = Validator::make(
+   $request->all(),
+   [
+    'lignes_devis' => 'required',
+   ],
+   [
+    'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
+   ]
+  )->validate();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+  $lastFacturation = Facturation::all()->last();
+  $lastFilename = $lastFacturation->filename;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+  $expl = explode("-", $lastFilename);
+  $explId = explode(".", $expl[3])[0];
+  $explYear = (int) $expl[1];
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  $date = now();
+  $currentYear = $date->year;
+  $currentMonth = $date->month;
+
+  $facturation = new Facturation;
+  $facturation->is_paid = 0;
+  if ($explYear == $currentYear) {
+   $facturation->filename = "FA-" . $currentYear . "-" . $currentMonth . "-" . ($explId + 1) . ".pdf";
+  } else {
+   $facturation->filename = "FA-" . $currentYear . "-" . $currentMonth . "-" . 1 . ".pdf";
+  }
+  $facturation->save();
+
+  $factId = $facturation->id;
+
+  foreach ($validator["lignes_devis"] as $_ligne) {
+   $ligneDevis = LigneDevis::find($_ligne);
+   $ligneDevis->facturation_id = $factId;
+   $ligneDevis->save();
+   $delete = LigneDevis::destroy($_ligne) ? "ok" : "nok";
+  }
+
+  return new FacturationResource($facturation);
+ }
+
+ /**
+  * Store a newly created resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @return \Illuminate\Http\Response
+  */
+ public function store(Request $request)
+ {
+  //
+ }
+
+ /**
+  * Display the specified resource.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+ public function show($id)
+ {
+  //
+ }
+
+ /**
+  * Show the form for editing the specified resource.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+ public function edit($id)
+ {
+  //
+ }
+
+ /**
+  * Update the specified resource in storage.
+  *
+  * @param  \Illuminate\Http\Request  $request
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+ public function update(Request $request, $id)
+ {
+  //
+ }
+
+ /**
+  * Remove the specified resource from storage.
+  *
+  * @param  int  $id
+  * @return \Illuminate\Http\Response
+  */
+ public function destroy($id)
+ {
+  //
+ }
 }

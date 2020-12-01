@@ -23,8 +23,9 @@ class DevisController extends Controller
                 'client_id' => 'required',
                 'filename' => 'required|max:50',
                 'tva' => 'required',
-                'remise' => 'required'
-                //'isAccepted' => 'required' -> false
+                'remise' => 'required',
+                //'isAccepted' => 'required' // -> false
+                'date_expiration' =>'required',
             ],
             [
                 'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
@@ -37,6 +38,7 @@ class DevisController extends Controller
         $devis->filename = $validator['email'];
         $devis->tva = $validator['tva'];
         $devis->remise = $validator['remise'];
+        $devis->remise = $validator['date_expiration'];
         $devis->isAccepted = false;
 
         $devis->save();
