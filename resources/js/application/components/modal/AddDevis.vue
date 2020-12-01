@@ -1,8 +1,8 @@
 <template>
-  <v-row justify="center">
+
     <v-dialog v-model="dialog" max-width="600px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn v-bind="attrs" v-on="on"> + Créer un devis </v-btn>
+        <v-btn class="mr-4 btn-grey" v-bind="attrs" v-on="on" > + Créer un devis </v-btn>
       </template>
       <v-card>
         <v-card-title>
@@ -12,7 +12,7 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                
+
                   <v-row align="center">
                     <v-col cols="12">
                       <v-autocomplete
@@ -21,14 +21,14 @@
                         dense
                         item-value="id"
                         item-text="name"
-                        
+
                         label="Client"
                       ></v-autocomplete>
                     </v-col>
                   </v-row>
               </v-col>
               <v-col cols="12" sm="6" md="4">
-                
+
                 <v-text-field
                   label="date expiration"
                   required
@@ -59,8 +59,12 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
 </template>
+<style>
+.btn-grey{
+    background-color: #9F9F9F !important;
+}
+</style>
 <script src="./js/AddDevis.js"></script>
 
 
