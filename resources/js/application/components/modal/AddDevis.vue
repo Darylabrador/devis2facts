@@ -8,6 +8,7 @@
         <v-card-title>
           <span class="headline">Création d'un devis</span>
         </v-card-title>
+        
         <v-card-text>
           <v-container>
             <v-row>
@@ -21,7 +22,6 @@
                         dense
                         item-value="id"
                         item-text="name"
-
                         label="Client"
                       ></v-autocomplete>
                     </v-col>
@@ -66,5 +66,3 @@
 }
 </style>
 <script src="./js/AddDevis.js"></script>
-
-

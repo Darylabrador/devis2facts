@@ -4,8 +4,8 @@
 			<v-row justify="end">
 				<v-col md="4">
 					<v-card class="pa-5" outlined>
-						<div>Date de création : {{ creation }}</div>
-						<div>Date d'éxpiration : {{ expiration }}</div>
+						<div>Date de création : {{ this.devis.creation }}</div>
+						<div>Date d'éxpiration : {{ this.devis.expiration }}</div>
 					</v-card>
 				</v-col>
 				<v-col md="4"> </v-col>
@@ -40,36 +40,6 @@
 							</template>
 						</v-simple-table>
 					</v-card>
-					<div>
-						<v-btn v-if='!isDisable' :disabled='isDisable' @click="isFact()" depressed>
-							<v-icon class="ml-2 primary--text">mdi-eye-plus</v-icon> Facturer
-						</v-btn>
-							<v-btn v-else :disabled='!isDisable' @click="drawerRight = !drawerRight" depressed>
-							<v-icon class="ml-2 primary--text">mdi-eye</v-icon> Facturer
-						</v-btn>
-						<v-navigation-drawer
-							v-model="drawerRight"
-							app
-							persistent
-							hide-overlay
-							right
-						>
-							<v-list-item>
-								<v-list-item-content>
-									<v-list-item-title class="title mt-3 text-center"
-										>Liste des factures</v-list-item-title
-									>
-								</v-list-item-content>
-							</v-list-item>
-
-							<v-divider></v-divider>
-							<div  class="mt-7">
-								<v-list-item v-for="(facture, key) in getFactures" :key="key">
-									<v-btn depressed><v-icon>mdi-download</v-icon>	{{ facture.facture.filename }}</v-btn>
-								</v-list-item>
-							</div>
-						</v-navigation-drawer>
-					</div>
 				</v-col>
 			</v-row>
 			<v-row class="justify-center mt-10">
@@ -85,11 +55,65 @@
 							<tr>
 								<th :colspan="headers.length">
 									<v-row>
-										<v-col md="4"><addLigne @addLigne="add($event)" /></v-col>
-										<v-col md="4">
-											<!-- <autocomplete /> -->
+										<v-col md="3"><addLigne @addLigne="add($event)" /></v-col>
+										<v-col md="3">
+											<deleteLigne />
 										</v-col>
-										<v-col md="4"><tva /></v-col>
+										<v-col md="3">
+											<v-container>
+												<v-btn
+													v-if="!isDisable"
+													:disabled="isDisable"
+													@click="isFact()"
+													depressed
+												>
+													<v-icon class="ml-2 primary--text"
+														>mdi-eye-plus</v-icon
+													>
+													Facturer
+												</v-btn>
+												<v-btn
+													v-else
+													:disabled="!isDisable"
+													@click="drawerRight = !drawerRight"
+													depressed
+												>
+													<v-icon class="ml-2 primary--text">mdi-eye</v-icon>
+													Facturer
+												</v-btn>
+												<v-navigation-drawer
+													v-model="drawerRight"
+													app
+													persistent
+													hide-overlay
+													right
+												>
+													<v-list-item>
+														<v-list-item-content>
+															<v-list-item-title class="title mt-3 text-center"
+																>Liste des factures</v-list-item-title
+															>
+														</v-list-item-content>
+													</v-list-item>
+
+													<v-divider></v-divider>
+													<div class="mt-7">
+														<v-list-item
+															v-for="(facture, key) in getFactures"
+															:key="key"
+														>
+															<v-btn depressed
+																><v-icon>mdi-download</v-icon>
+																{{ facture.facture.filename }}</v-btn
+															>
+														</v-list-item>
+													</div>
+												</v-navigation-drawer>
+											</v-container>
+										</v-col>
+										<v-col md="3">
+											<!-- <tva /> -->
+										</v-col>
 									</v-row>
 								</th>
 							</tr>

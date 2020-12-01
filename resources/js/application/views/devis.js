@@ -7,13 +7,15 @@ import Check from '../components/devis/lignedevis/Check.vue'
 import { apiService } from '../_services/apiService'
 import { controllers } from "chart.js"
 import { mdiConsoleNetworkOutline } from "@mdi/js"
+import DeleteLigne from '../components/devis/lignedevis/DeleteLigne.vue'
 export default {
     components: {
         Tva,
         Autocomplete,
         AddLigne,
         Facturation,
-        Check
+        Check,
+        DeleteLigne
     },
 
 
@@ -51,6 +53,10 @@ export default {
             drawerRight: false,
             isFacture: false,
             verifCheck: false,
+            valid: true,
+
+
+            devis:[],
             getFactures: [],
             ligneFactures: [],
             isDisable: true,
@@ -74,8 +80,13 @@ export default {
                     this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
 
                 })
+
                 this.valuetht = this.tht
                 this.valuettc = this.ttc
+
+                this.devis.tht = this.valuetht
+                this.devis.ttc = this.valuettc
+                this.devis.montantTva = this.devis.ttc - this.devis.tht
 
             })
 
@@ -88,6 +99,9 @@ export default {
                 this.creation = data.data.creation
                 this.expiration = data.data.expiration
                 this.remise = data.data.remise
+
+                this.devis = data.data
+
             })
         },
 
@@ -100,6 +114,10 @@ export default {
 
             this.valuetht = this.tht
             this.valuettc = this.ttc
+
+            this.devis.tht = this.valuetht
+            this.devis.ttc = this.valuettc
+            this.devis.montantTva = this.devis.ttc - this.devis.tht
         },
 
 
@@ -109,9 +127,16 @@ export default {
             this.valuettc = this.ttc - this.ttc * value / 100
             this.valuetht = this.tht - this.tht * value / 100
 
+            this.devis.tht = this.valuetht
+            this.devis.ttc = this.valuettc
+            this.devis.montantTva = this.devis.ttc - this.devis.tht
+
             if (this.remise <= 100 && this.remise >= 0) {
-                Axios.get('/api/devis/up/remise/' + this.$route.params.id + '/' + this.remise).then(({ data }) => {
-                    // console.log('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise)
+                Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
+                })
+
+                Axios.post('/api/devis/update/', {id:this.devis.id, client_id: this.devis.client.id, tva:this.devis.tva, tht:this.devis.tht, ttc:this.devis.ttc, montantTva:this.devis.montantTva, remise:this.devis.remise, is_accepted:this.devis.is_accepted, date_expiration:this.devis.expiration} ).then(({ data }) => {
+
                 })
             }
 
