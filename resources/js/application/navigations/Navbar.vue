@@ -18,21 +18,22 @@
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
-        <v-app-bar app>
+        <v-app-bar app class="bg-yellow">
         <span class="hidden-sm-and-up">
             <v-app-bar-nav-icon  @click="sidebar = !sidebar"> </v-app-bar-nav-icon>
       </span>
             <v-toolbar-title>
-                <router-link to="/" tag="span" style="cursor: pointer">
+                <router-link to="/" tag="span" style="cursor: pointer" class="font-weight-bold">
                     Devis2fact
                 </router-link>
             </v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items class="hidden-xs-only">
-                <v-btn color="error" class="mr-4"
+                <v-btn color="black" class="mr-4 color-black"
                        v-for="item in menuItems"
                        :key="item.title"
                        :to="item.path"
+
                        text>
                     {{item.title}}
                 </v-btn>
@@ -44,5 +45,13 @@
         </v-app-bar>
     </div>
 </template>
+<style>
+.bg-yellow {
+    background-color: #FF9900 !important;
 
+}
+.color-black{
+    color: #424242 !important;
+}
+</style>
 <script src='./navbar.js' />
