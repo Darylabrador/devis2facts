@@ -37,7 +37,7 @@
 
                           <deleteDevis @delDevis="delDevis($event)" :filename=format(item.filename) :devis="item" />
 
-                          <v-btn icon>
+                          <v-btn icon  @click="generateEmail(item.id)">
                               <v-icon>mdi-email</v-icon>
                           </v-btn>
                           <v-btn icon @click="generateFile(item.id, true)">

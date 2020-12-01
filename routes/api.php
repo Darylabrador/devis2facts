@@ -56,5 +56,8 @@ Route::get('/devis/pdf/{id}', [PdfController::class, "generateDevis"]);
 Route::get('/facture/pdf/{id}', [PdfController::class, "generateInvoice"]);
 Route::get('/devis/pdf/name/{id}', [PdfController::class, "getFilenameDevis"]);
 Route::get('/facture/pdf/name/{id}', [PdfController::class, "getFilenameInvoice"]);
+//mail with pdf
+Route::get ('/devis/send-email-pdf/{id}', [PdfController::class, 'index' ]);
 
 Route::post('/login', [AuthController::class, "login"]);
+
