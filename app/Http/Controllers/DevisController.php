@@ -23,6 +23,7 @@ class DevisController extends Controller
                 'client_id' => 'required',
                 'filename' => 'required|max:50',
                 'tva' => 'required',
+                'remise' => 'required'
                 //'isAccepted' => 'required' -> false
             ],
             [
@@ -35,6 +36,8 @@ class DevisController extends Controller
         $devis->client_id = $validator['client_id'];
         $devis->filename = $validator['email'];
         $devis->tva = $validator['tva'];
+        $devis->remise = $validator['remise'];
+        $devis->isAccepted = false;
 
         $devis->save();
 

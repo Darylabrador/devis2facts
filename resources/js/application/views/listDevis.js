@@ -1,10 +1,12 @@
 import apiDevis from '../service/ApiDevis.js';
 import Axios from "axios";
 import deleteDevis from '../components/modal/DeleteDevis'
+import addDevis from '../components/modal/AddDevis'
 
 export default {
     components: {
         deleteDevis,
+        addDevis,
     },
 
     
