@@ -4,7 +4,7 @@ import Autocomplete from '../components/devis/Autocomplete.vue'
 import AddLigne from '../components/devis/AddLigne.vue'
 import Facturation from '../components/devis/lignedevis/Facturation.vue'
 import Check from '../components/devis/lignedevis/Check.vue'
-import {apiService} from '../_services/apiService'
+import { apiService } from '../_services/apiService'
 export default {
     components: {
         Tva,
@@ -50,12 +50,14 @@ export default {
             isFacture: false,
             verifCheck: false,
             valid: true,
+            getFactures: []
 
         }
     },
     created() {
         this.getLigne()
         this.getDevis()
+        this.getFact()
 
 
     },
@@ -83,9 +85,9 @@ export default {
                 this.creation = data.data.creation
                 this.expiration = data.data.expiration
                 this.remise = data.data.remise
-                
+
             })
-            
+
         },
 
 
@@ -106,13 +108,30 @@ export default {
             this.valuettc = this.ttc - this.ttc*value/100
             this.valuetht = this.tht- this.tht*value/100
 
+            if (this.remise <= 100 && this.remise >= 0) {
+                Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
+                    // console.log('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise)
+                 })
+            }
 
-            Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
-               // console.log('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise)
-            })
         },
 
         isFact() {
+
+            console.log();
+
+            // creation de la ligne de facture
+            if (this.factures.length != 0 && this.drawerRight) {
+                Axios.post('/api/facture/create', { lignes_devis: this.factures }).then(({ data }) => {
+                    let facture = {}
+                    facture = { facture: data.data };
+                    const index = this.lignes.indexOf(this.facture);
+                    this.lignes.splice(index, 1);
+                    this.getFactures.push(facture);
+                })
+            }
+
+
             this.checkbox = !this.checkbox;
             this.isFacture = !this.isFacture;
             this.verifCheck = true;
@@ -123,6 +142,19 @@ export default {
 
         createFacture(facture) {
             this.factures.push(facture);
+        },
+
+        getFact() {
+            Axios.get('/api/facture/get/' + this.$route.params.id).then(({ data }) => {
+                data.data.forEach(_data => {
+                    if (_data.facture != null) {
+                        this.getFactures.push(_data);
+                    }
+                })
+
+
+
+            })
         }
 
     }

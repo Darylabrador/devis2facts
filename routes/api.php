@@ -23,8 +23,9 @@ use App\Http\Controllers\ProductController;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
 
+});
+Route::middleware('auth:api')->get ('/devis/sendemailpdf/{devisId}', [PdfController::class, 'index' ]);
 // Route for dashboard informations
 Route::get("/stats", [FacturationController::class, 'index']);
 
@@ -56,5 +57,11 @@ Route::get('/devis/pdf/{id}', [PdfController::class, "generateDevis"]);
 Route::get('/facture/pdf/{id}', [PdfController::class, "generateInvoice"]);
 Route::get('/devis/pdf/name/{id}', [PdfController::class, "getFilenameDevis"]);
 Route::get('/facture/pdf/name/{id}', [PdfController::class, "getFilenameInvoice"]);
+Route::post('/facture/create', [FacturationController::class, "create"]);
+Route::get('/facture/get/{id}', [FacturationController::class, "get"])->where('id', '[0-9]+');
+
+//mail with pdf
+//Route::get ('/devis/sendemailpdf/{devisId}', [PdfController::class, 'index' ]);
 
 Route::post('/login', [AuthController::class, "login"]);
+

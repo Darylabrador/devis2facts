@@ -45,23 +45,26 @@
 							<v-icon class="ml-2 primary--text">mdi-eye</v-icon> Facturer
 						</v-btn>
 						<v-navigation-drawer
-							persistent
 							v-model="drawerRight"
 							app
-							permanent
+							persistent
 							hide-overlay
 							right
 						>
-							<v-list-item v-if="isFacture">
+							<v-list-item>
 								<v-list-item-content>
 									<v-list-item-title class="title mt-3 text-center"
 										>Liste des factures</v-list-item-title
 									>
-									<v-list-item v-for="(facture, key) in factures" :key="key">
-										{{ facture.product.name }}
-									</v-list-item>
 								</v-list-item-content>
 							</v-list-item>
+
+							<v-divider></v-divider>
+							<div  class="mt-7">
+								<v-list-item v-for="(facture, key) in getFactures" :key="key">
+									<v-btn depressed><v-icon>mdi-download</v-icon>	{{ facture.facture.filename }}</v-btn>
+								</v-list-item>
+							</div>
 						</v-navigation-drawer>
 					</div>
 				</v-col>

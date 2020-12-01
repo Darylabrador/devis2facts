@@ -1,13 +1,17 @@
 import apiDevis from '../service/ApiDevis.js';
 import Axios from "axios";
+import { apiService } from "../_services/apiService";
 import deleteDevis from '../components/modal/DeleteDevis'
+import { authenticationService } from '../_services/authentication.service.js';
+import addDevis from '../components/modal/AddDevis'
 
 export default {
     components: {
         deleteDevis,
+        addDevis,
     },
 
-    
+
     data() {
         return {
             info: [],
@@ -28,7 +32,7 @@ export default {
 
     methods: {
 
-        delDevis(e){
+        delDevis(e) {
             const refreshDeleteData = this.info.filter(element => element.id != e.id);
             this.info = refreshDeleteData;
         },
@@ -36,10 +40,10 @@ export default {
 
         getlistDevis: async function() {
             var res = await apiDevis.getAllDevis()
-            
+
             this.info = res.data.data
         },
-        
+
         format(filename) {
             var  data = filename.split('.')
             return data[0]
@@ -69,6 +73,11 @@ export default {
             }
         },
 
+        async generateEmail(id) {
+            const sendMail = await apiService.get(`/api/devis/sendemailpdf/${id}`);
+            console.log(sendMail)
+        },
+
         downloadPDF(responseData, fileData) {
             var a = document.createElement('a');
             var url = window.URL.createObjectURL(new Blob([responseData], { type: 'application/pdf' }));
@@ -90,5 +99,5 @@ export default {
             })
         }
     },
-    
+
 }
