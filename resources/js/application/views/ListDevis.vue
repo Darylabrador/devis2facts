@@ -6,9 +6,11 @@
 
     <v-card>
       <v-card-title>
-        <v-btn class="mr-4" @click="$router.push({ path: 'devis' })">
-          Ajouter un Devis +
-        </v-btn>
+
+
+        
+      <addDevis />
+
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
@@ -34,7 +36,7 @@
         <template v-slot:item.carbs="{ item }">
           <v-row class="d-flex flex-row-reverse">
 
-            <deleteDevis @delDevis="delDevis($event)" :filename=format(item.filename) :devis="item" />
+
 
             <v-btn icon>
               <v-icon>mdi-email</v-icon>

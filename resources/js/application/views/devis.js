@@ -106,10 +106,12 @@ export default {
             this.valuettc = this.ttc - this.ttc*value/100
             this.valuetht = this.tht- this.tht*value/100
 
+            if (this.remise <= 100 && this.remise >= 0) {
+                Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
+                    // console.log('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise)
+                 })
+            }
 
-            Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
-               // console.log('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise)
-            })
         },
 
         isFact() {

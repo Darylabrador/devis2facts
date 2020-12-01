@@ -4,16 +4,20 @@ export default {
 
     data() {
         return {
-            dialog: false,
-            notifications: false,
-            sound: true,
-            widgets: false,
+
+
+            drawer: null,
+        items: [
+          { title: 'Home', icon: 'mdi-view-dashboard' },
+          { title: 'About', icon: 'mdi-forum' },
+        ],
         }
     },
 
     methods: {
         addDevis() {
-            Axios.post('/api/devis/add', {name: this.name, email:this.email, id: this.id == '' ? '' : this.id}).then(data => {
+            Axios.post('/api/devis/add', {client_id: XXX, filename:XXX, remise: XXX, tva: XXX }).then(data => {
+            
             })
         },
     },
