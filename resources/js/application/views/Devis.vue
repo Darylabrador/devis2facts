@@ -4,8 +4,8 @@
 			<v-row justify="end">
 				<v-col md="4">
 					<v-card class="pa-5" outlined>
-						<div>Date de création : {{ creation }}</div>
-						<div>Date d'éxpiration : {{ expiration }}</div>
+						<div>Date de création : {{ this.devis.creation }}</div>
+						<div>Date d'éxpiration : {{ this.devis.expiration }}</div>
 					</v-card>
 				</v-col>
 				<v-col md="4"> </v-col>

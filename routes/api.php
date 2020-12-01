@@ -48,8 +48,9 @@ Route::get('devis/getAll', [DevisController::class, 'getAll']);
 Route::get('devis/lastIdDevis', [DevisController::class, 'lastIdDevis']);
 Route::post('devis/add', [DevisController::class, 'add']);
 Route::delete('devis/del/{id}', [DevisController::class, 'delete']);
-
+//--update
 Route::get('devis/up/remise/{id}/{r}', [DevisController::class, 'updateRemise']);
+Route::post('devis/update', [DevisController::class, 'update']);
 
 //Ligne devis
 Route::post('lignedevis/create', [LigneDevisController::class, 'create']);
