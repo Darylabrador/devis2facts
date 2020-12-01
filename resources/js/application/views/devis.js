@@ -5,13 +5,17 @@ import AddLigne from '../components/devis/AddLigne.vue'
 import Facturation from '../components/devis/lignedevis/Facturation.vue'
 import Check from '../components/devis/lignedevis/Check.vue'
 import { apiService } from '../_services/apiService'
+import { controllers } from "chart.js"
+import { mdiConsoleNetworkOutline } from "@mdi/js"
+import DeleteLigne from '../components/devis/lignedevis/DeleteLigne.vue'
 export default {
     components: {
         Tva,
         Autocomplete,
         AddLigne,
         Facturation,
-        Check
+        Check,
+        DeleteLigne
     },
 
 
@@ -50,9 +54,12 @@ export default {
             isFacture: false,
             verifCheck: false,
             valid: true,
-            getFactures: [],
+
 
             devis:[],
+            getFactures: [],
+            ligneFactures: [],
+            isDisable: true,
 
         }
     },
@@ -96,7 +103,6 @@ export default {
                 this.devis = data.data
 
             })
-
         },
 
 
@@ -118,8 +124,8 @@ export default {
 
         emis(value) {
 
-            this.valuettc = this.ttc - this.ttc*value/100
-            this.valuetht = this.tht- this.tht*value/100
+            this.valuettc = this.ttc - this.ttc * value / 100
+            this.valuetht = this.tht - this.tht * value / 100
 
             this.devis.tht = this.valuetht
             this.devis.ttc = this.valuettc
@@ -127,46 +133,57 @@ export default {
 
             if (this.remise <= 100 && this.remise >= 0) {
                 Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
-            })
-            console.log(this.devis)
+                })
 
-            console.log('id:'+this.devis.id+', client_id: '+this.devis.client.id+', tva:'+this.devis.tva+', tht:'+this.devis.tht+', ttc:'+this.devis.ttc+', montantTva:'+this.devis.montantTva+', remise:'+this.devis.remise+ ', is_accepted:'+this.devis.is_accepted+', date_expiration:'+this.devis.expiration)
-            Axios.post('/api/devis/update/', {id:this.devis.id, client_id: this.devis.client.id, tva:this.devis.tva, tht:this.devis.tht, ttc:this.devis.ttc, montantTva:this.devis.montantTva, remise:this.devis.remise, is_accepted:this.devis.is_accepted, date_expiration:this.devis.expiration} ).then(({ data }) => {
+                Axios.post('/api/devis/update/', {id:this.devis.id, client_id: this.devis.client.id, tva:this.devis.tva, tht:this.devis.tht, ttc:this.devis.ttc, montantTva:this.devis.montantTva, remise:this.devis.remise, is_accepted:this.devis.is_accepted, date_expiration:this.devis.expiration} ).then(({ data }) => {
 
-            })
-
-                
-
+                })
             }
 
         },
 
         isFact() {
-
-            console.log();
-
             // creation de la ligne de facture
-            if (this.factures.length != 0 && this.drawerRight) {
+            if (this.ligneFactures.length != 0 && !this.drawerRight) {
                 Axios.post('/api/facture/create', { lignes_devis: this.factures }).then(({ data }) => {
                     let facture = {}
                     facture = { facture: data.data };
-                    const index = this.lignes.indexOf(this.facture);
-                    this.lignes.splice(index, 1);
+
+                    this.ligneFactures.forEach(data => {
+                        this.lignes.splice(this.lignes.indexOf(data), 1)
+                    })
                     this.getFactures.push(facture);
+
                 })
             }
-
 
             this.checkbox = !this.checkbox;
             this.isFacture = !this.isFacture;
             this.verifCheck = true;
-            this.valid = !this.valid;
             this.drawerRight = !this.drawerRight;
+
+            if (this.drawerRight) {
+                this.isDisable = true;
+            }
 
         },
 
         createFacture(facture) {
-            this.factures.push(facture);
+            if (this.ligneFactures.length != null) {
+                if (facture.check == true) {
+                    this.isDisable = false;
+                    this.factures.push(facture.id);
+                    this.ligneFactures.push(facture.ligne);
+                }
+                else if (facture.check == false) {
+                    this.factures.splice(this.factures.indexOf(facture.id), 1);
+                    this.ligneFactures.splice(this.ligneFactures.indexOf(facture.ligne), 1);
+
+                }
+                if (this.ligneFactures.length == 0) {
+                    this.isDisable = true;
+                }
+            }
         },
 
         getFact() {
@@ -177,10 +194,9 @@ export default {
                     }
                 })
 
-
-
             })
-        }
+        },
+
 
     }
 }
