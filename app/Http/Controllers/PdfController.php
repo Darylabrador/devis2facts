@@ -79,7 +79,6 @@ class PdfController extends Controller
         $companyInfo    = MyCompany::where(['id' => 1])->first();
         $company        = new MyCompanyResource($companyInfo);
         $pdf = PDF::loadView('pdf.devis', compact("devisResource", "company"));
-
         return $pdf->stream();
     }
 
