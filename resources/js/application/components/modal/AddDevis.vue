@@ -29,11 +29,45 @@
               </v-col>
               <v-col cols="12" sm="6" md="4">
 
-                <v-text-field
-                  label="date expiration"
-                  required
-                  v-model="dateExp"
-                ></v-text-field>
+
+                <v-dialog
+        ref="dialog"
+        v-model="modal"
+        :return-value.sync="dateM"
+        persistent
+        width="290px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-text-field
+            v-model="dateM"
+            label="date expiration"
+            prepend-icon="mdi-calendar"
+            readonly
+            v-bind="attrs"
+            v-on="on"
+          ></v-text-field>
+        </template>
+        <v-date-picker
+          v-model="dateM"
+          scrollable
+        >
+          <v-spacer></v-spacer>
+          <v-btn
+            text
+            color="primary"
+            @click="modal = false"
+          >
+            Cancel
+          </v-btn>
+          <v-btn
+            text
+            color="primary"
+            @click="$refs.dialog.save(dateM)"
+          >
+            OK
+          </v-btn>
+        </v-date-picker>
+      </v-dialog>
               </v-col>
 
               <v-col cols="12" sm="6" md="4">
@@ -49,6 +83,9 @@
           <v-btn
             color="green"
             text
+
+            v-if="selectedClient"
+
             @click="
               addDevis();
               dialog = false;

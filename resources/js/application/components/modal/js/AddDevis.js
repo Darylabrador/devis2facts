@@ -12,25 +12,26 @@ export default {
             devisLastId:0,
             date: '',
             dialog: false,
+
+            dateM: '',
+            menu: false,
+            modal: false,
+            menu2: false,
         }
     },
     created() {
         this.getClients()
         this.initialize()
         this.getLastIdDevis()
-
     },
 
     methods: {
         addDevis() {
 
-            Axios.post('/api/devis/add', {client_id: this.selectedClient, filename: this.devisFilename, remise: 0, tva: this.tva, date_expiration: this.dateExp }).then(data => {
+            Axios.post('/api/devis/add', {client_id: this.selectedClient, filename: this.devisFilename, remise: 0, tva: this.tva, date_expiration: this.dateM }).then(data => {
                 this.$router.push('devis/'+data.data.data.id);
 
             })
-
-
-            //creation pdf ici avec l'id
 
             
         },
@@ -38,8 +39,7 @@ export default {
 
         initialize(){
             this.date = new Date()
-            this.dateExp= (this.date.getFullYear()+1) + '-' + this.date.getMonth() + '-' + this.date.getDay()
-            
+            this.dateM = (this.date.getFullYear()+1) + '-' + this.date.getMonth() + '-' + this.date.getDay()
         },
         getClients() {
             Axios.get('api/clients/getAll').then(({ data }) => {
