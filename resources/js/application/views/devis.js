@@ -111,8 +111,8 @@ export default {
             this.tht += ligne.price * ligne.quantity
             this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
 
-            this.valuetht = this.tht
-            this.valuettc = this.ttc
+            this.valuettc = this.ttc - this.ttc * this.devis.remise / 100
+            this.valuetht = this.tht - this.tht * this.devis.remise / 100
 
             this.devis.tht = this.valuetht
             this.devis.ttc = this.valuettc
@@ -128,7 +128,9 @@ export default {
 
             this.devis.tht = this.valuetht
             this.devis.ttc = this.valuettc
+
             this.devis.montantTva = this.devis.ttc - this.devis.tht
+            this.devis.remise = this.remise
 
             if (this.remise <= 100 && this.remise >= 0) {
                 Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
