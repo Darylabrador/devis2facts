@@ -28,7 +28,6 @@ class FacturationController extends Controller
  public function get($id)
  {
   $ligne = LigneDevis::withTrashed()->where('devis_id', $id)->with('factures')->get();
-
   return LigneDevisResource::collection($ligne);
  }
 
