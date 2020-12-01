@@ -25,6 +25,7 @@ export default {
             total: [],
             tva: '',
             prix: [],
+            isEditing:false,
             headers: [
                 {
                     text: 'Produit',
