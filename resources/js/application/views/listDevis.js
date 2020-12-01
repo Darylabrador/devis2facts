@@ -3,10 +3,12 @@ import Axios from "axios";
 import { apiService } from "../_services/apiService";
 import deleteDevis from '../components/modal/DeleteDevis'
 import { authenticationService } from '../_services/authentication.service.js';
+import addDevis from '../components/modal/AddDevis'
 
 export default {
     components: {
         deleteDevis,
+        addDevis,
     },
 
 

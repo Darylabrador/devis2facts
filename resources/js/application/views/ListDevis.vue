@@ -1,25 +1,25 @@
 <template>
   <div>
     <div class="text-center">
-      <h1 class="ma-7 py-0 px-2">Liste des Devis</h1>
+      <h1>Liste des Devis</h1>
     </div>
       <v-container>
-          <v-card>
-              <v-card-title>
+            <v-row class="mb-7">
                   <v-btn class="mr-4" @click="$router.push({ path: 'devis' })">
-                      Ajouter un Devis +
+                      + Ajouter un Devis
                   </v-btn>
+                  <v-spacer></v-spacer>
                   <v-text-field
                       v-model="search"
                       append-icon="mdi-magnify"
-                      label="Search"
+                      label="Rechercher"
                       single-line
                       hide-details
                       class="search-field"
                   >
                   </v-text-field>
-              </v-card-title>
-              <v-data-table :headers="headers" :items="info" :search="search">
+            </v-row>
+              <v-data-table :headers="headers" :items="info" :search="search" class="ma-5">
                   <template v-slot:item.is_accepted="{ item }">
                       <v-switch v-model="item.is_accepted"></v-switch>
                   </template>
@@ -49,11 +49,11 @@
                       </v-row>
                   </template>
               </v-data-table>
-          </v-card>
+
       </v-container>
+
 
   </div>
 </template>
 
 <script src="./listDevis.js" />
-
