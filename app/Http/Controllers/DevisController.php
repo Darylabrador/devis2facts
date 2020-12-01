@@ -23,8 +23,9 @@ class DevisController extends Controller
                 'client_id' => 'required',
                 'filename' => 'required|max:50',
                 'tva' => 'required',
-                'remise' => 'required'
-                //'isAccepted' => 'required' -> false
+                'remise' => 'required',
+                //'isAccepted' => 'required' // -> false
+                'date_expiration' =>'required',
             ],
             [
                 'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
@@ -34,10 +35,12 @@ class DevisController extends Controller
         $devis = new Devis();
 
         $devis->client_id = $validator['client_id'];
-        $devis->filename = $validator['email'];
+        $devis->filename = $validator['filename'];
         $devis->tva = $validator['tva'];
         $devis->remise = $validator['remise'];
-        $devis->isAccepted = false;
+        $devis->date_expiration = $validator['date_expiration'];
+        
+        $devis->is_accepted = 0;
 
         $devis->save();
 
@@ -51,6 +54,13 @@ class DevisController extends Controller
         $lignedevis = LigneDevis::where('devis_id', $id)->get();
         return LigneDevisResource::collection($lignedevis);
     }
+
+    public function lastIdDevis() {
+        $lastdevis = Devis::latest('id')->first();
+        return new DevisResource($lastdevis);
+    }
+
+
     public function findDevis($id) {
         $devis = Devis::find($id);
         return new DevisResource($devis);

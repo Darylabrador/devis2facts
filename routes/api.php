@@ -45,8 +45,10 @@ Route::get('devis/find/ligne/{id}', [DevisController::class, 'findLigne'])->wher
 Route::get('devis/find/{id}', [DevisController::class, 'findDevis'])->where('id', '[0-9]+');
 Route::get('devis/clients', [DevisController::class, 'autocomplete']);
 Route::get('devis/getAll', [DevisController::class, 'getAll']);
+Route::get('devis/lastIdDevis', [DevisController::class, 'lastIdDevis']);
 Route::post('devis/add', [DevisController::class, 'add']);
 Route::delete('devis/del/{id}', [DevisController::class, 'delete']);
+
 Route::get('devis/up/remise/{id}/{r}', [DevisController::class, 'updateRemise']);
 
 //Ligne devis
