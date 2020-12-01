@@ -22,6 +22,7 @@ class CreateLignedevisTable extends Migration
             $table->integer('quantity')->nullable();
             $table->float('price')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

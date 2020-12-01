@@ -35,7 +35,7 @@ export default {
 
 	methods: {
 		check() {
-      this.$emit('createFacture', this.ligne);
+      this.$emit('createFacture', this.ligne.id);
 			
 		},
 	},
