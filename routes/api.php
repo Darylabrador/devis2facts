@@ -60,7 +60,7 @@ Route::get('/facture/pdf/{id}', [PdfController::class, "generateInvoice"]);
 Route::get('/devis/pdf/name/{id}', [PdfController::class, "getFilenameDevis"]);
 Route::get('/facture/pdf/name/{id}', [PdfController::class, "getFilenameInvoice"]);
 Route::post('/facture/create', [FacturationController::class, "create"]);
-Route::get('/facture/get/{id}', [FacturationController::class, "get"])->where('id', '[0-9]+');
+Route::post('/facture/get/{id}', [FacturationController::class, "get"])->where('id', '[0-9]+');
 
 //mail with pdf
 //Route::get ('/devis/sendemailpdf/{devisId}', [PdfController::class, 'index' ]);

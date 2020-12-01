@@ -104,7 +104,7 @@
 														>
 															<v-btn depressed
 																><v-icon>mdi-download</v-icon>
-																{{ facture.facture.filename }}</v-btn
+																{{ facture.filename }}</v-btn
 															>
 														</v-list-item>
 													</div>
