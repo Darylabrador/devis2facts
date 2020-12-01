@@ -36,7 +36,7 @@ class PdfController extends Controller
 
         $data["email"] = $devisResource[0]->devis->clients->email;
         $data["title"] = "Votre de devis";
-        $data["auteur"] = "Envoyé par".Auth::user()->email;
+        $data["auteur"] = "Envoyé par ".Auth::user()->email;
 
         $pdf = PDF::loadView('pdf.devis', compact("devisResource", "company"));
 
