@@ -101,7 +101,6 @@ export default {
                 this.remise = data.data.remise
 
                 this.devis = data.data
-
             })
         },
 
@@ -136,7 +135,6 @@ export default {
                 })
 
                 Axios.post('/api/devis/update/', {id:this.devis.id, client_id: this.devis.client.id, tva:this.devis.tva, tht:this.devis.tht, ttc:this.devis.ttc, montantTva:this.devis.montantTva, remise:this.devis.remise, is_accepted:this.devis.is_accepted, date_expiration:this.devis.expiration} ).then(({ data }) => {
-
                 })
             }
 

@@ -62,11 +62,11 @@
 								<tbody>
 									<tr>
 										<td>Total hors taxe</td>
-										<td>{{ valuetht }}</td>
+										<td>{{ devis.tht }}</td>
 									</tr>
 									<tr>
 										<td>Total ttc en cours</td>
-										<td>{{ valuettc }}</td>
+										<td>{{ devis.ttc }}</td>
 									</tr>
 									<tr>
 										<td>Remise (en %)</td>
