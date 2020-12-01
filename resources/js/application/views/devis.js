@@ -118,9 +118,8 @@ export default {
         },
 
         isFact() {
-
             // creation de la ligne de facture
-            if (this.factures.length != 0 && !this.drawerRight) {
+            if (this.ligneFactures.length != 0 && !this.drawerRight) {
                 Axios.post('/api/facture/create', { lignes_devis: this.factures }).then(({ data }) => {
                     let facture = {}
                     facture = { facture: data.data };
@@ -129,14 +128,18 @@ export default {
                         this.lignes.splice(this.lignes.indexOf(data), 1)
                     })
                     this.getFactures.push(facture);
+
                 })
             }
-
 
             this.checkbox = !this.checkbox;
             this.isFacture = !this.isFacture;
             this.verifCheck = true;
             this.drawerRight = !this.drawerRight;
+
+            if (this.drawerRight) {
+                this.isDisable = true;
+            }
 
         },
 
@@ -148,10 +151,11 @@ export default {
                     this.ligneFactures.push(facture.ligne);
                 }
                 else if (facture.check == false) {
+                    this.factures.splice(this.factures.indexOf(facture.id), 1);
                     this.ligneFactures.splice(this.ligneFactures.indexOf(facture.ligne), 1);
 
                 }
-                if(this.ligneFactures.length == 0) {
+                if (this.ligneFactures.length == 0) {
                     this.isDisable = true;
                 }
             }
