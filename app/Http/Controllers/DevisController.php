@@ -35,11 +35,12 @@ class DevisController extends Controller
         $devis = new Devis();
 
         $devis->client_id = $validator['client_id'];
-        $devis->filename = $validator['email'];
+        $devis->filename = $validator['filename'];
         $devis->tva = $validator['tva'];
         $devis->remise = $validator['remise'];
-        $devis->remise = $validator['date_expiration'];
-        $devis->isAccepted = false;
+        $devis->date_expiration = $validator['date_expiration'];
+        
+        $devis->is_accepted = 0;
 
         $devis->save();
 
@@ -53,6 +54,13 @@ class DevisController extends Controller
         $lignedevis = LigneDevis::where('devis_id', $id)->get();
         return LigneDevisResource::collection($lignedevis);
     }
+
+    public function lastIdDevis() {
+        $lastdevis = Devis::latest('id')->first();
+        return new DevisResource($lastdevis);
+    }
+
+
     public function findDevis($id) {
         $devis = Devis::find($id);
         return new DevisResource($devis);

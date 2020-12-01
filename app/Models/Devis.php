@@ -10,7 +10,7 @@ class Devis extends Model
     use HasFactory;
     protected $table = 'devis';
     protected $fillable = ['client_id', 'filename', 'tva', 'is_accepted'];
-    public $timestamps = false;
+    //public $timestamps = false;
 
     public function clients()
     {
