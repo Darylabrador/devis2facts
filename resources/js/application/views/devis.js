@@ -188,9 +188,10 @@ export default {
 
         getFact() {
             Axios.get('/api/facture/get/' + this.$route.params.id).then(({ data }) => {
+                console.log(data.data);
                 data.data.forEach(_data => {
                     if (_data.facture != null) {
-                        this.getFactures.push(_data.facture);
+                        this.getFactures.push(_data);
                     }
 
                 })
