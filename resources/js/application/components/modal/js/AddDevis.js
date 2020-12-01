@@ -8,6 +8,7 @@ export default {
             clients:[],
             selectedClient:0,
             dateExp:'',
+            devisFilename:'',
             devisLastId:0,
             date: '',
             dialog: false,
@@ -16,23 +17,28 @@ export default {
     created() {
         this.getClients()
         this.initialize()
+        this.getLastIdDevis()
 
     },
 
     methods: {
         addDevis() {
 
-            //creation pdf et recuperation filename a mettre ici
+            Axios.post('/api/devis/add', {client_id: this.selectedClient, filename: this.devisFilename, remise: 0, tva: this.tva, date_expiration: this.dateExp }).then(data => {
+                this.$router.push('devis/'+data.data.data.id);
 
-            console.log('id:' + this.selectedClient + ' filename:' + this.date.getFullYear()+'-'+this.date.getMonth() + '-LastId remise:0 tva:'+this.tva+' date_expiration:'+this.dateExp);
-            // Axios.post('/api/devis/add', {client_id: clients[i].id, filename:XXX, remise: 0, tva: XXX }).then(data => {
-            
-            // })
+            })
+
+
             //creation pdf ici avec l'id
+
+            
         },
+
+
         initialize(){
             this.date = new Date()
-            this.dateExp=this.date.getFullYear()+1 + '-' + this.date.getMonth() + '-' + this.date.getDay()
+            this.dateExp= (this.date.getFullYear()+1) + '-' + this.date.getMonth() + '-' + this.date.getDay()
             
         },
         getClients() {
@@ -41,8 +47,18 @@ export default {
                 data.data.forEach(client => {
                     this.clients.push(client)
                 })
+
             })
         },
+        getLastIdDevis() {
+            Axios.get('api/devis/lastIdDevis').then(({ data }) => {
+                //this.devisLastId = data.data.id
+                this.devisFilename = 'DE-'+this.date.getFullYear()+'-'+this.date.getMonth() + '-' + (data.data.id+1)
+            })
+            
+        },
+
+
     },
 
 }

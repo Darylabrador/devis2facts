@@ -45,6 +45,9 @@ class DatabaseSeeder extends Seeder
                 'date_expiration' => "{$year}-{$month}-" . rand(10, 20),
                 'is_accepted' => true,
                 'created_at' => "{$year}-{$month}-" . rand(1, 10),
+                'tht' => 0,
+                'ttc' => 0,
+                'montantTva' => 0,
                 'remise' => rand(0, 40),
             ]);
         }

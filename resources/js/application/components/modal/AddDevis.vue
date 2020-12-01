@@ -68,5 +68,3 @@
 }
 </style>
 <script src="./js/AddDevis.js"></script>
-
-
