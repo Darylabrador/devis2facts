@@ -15,7 +15,7 @@
         <tbody>
           <tr class="text-center">
             <td>Nom du Produit</td>
-            <td>Prix par Default</td>
+            <td>Prix par Default (HT) </td>
             <td></td>
           </tr>
           <tr class="text-center" v-for="(product, key) in products" :key="key">

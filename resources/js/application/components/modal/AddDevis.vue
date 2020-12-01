@@ -13,8 +13,9 @@
           color="black"
           dark
           @click.stop="drawer = !drawer"
+          icon
         >
-          Ajouter un devis +
+         v-icon Ajouter un devis +
         </v-btn>
       </v-row>
     </v-container>
