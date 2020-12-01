@@ -1,15 +1,61 @@
 <template>
-	<v-container>
+	<v-container class="bg-light-grey">
 		<template>
-			<v-row justify="end">
-				<v-col md="4">
+			<v-row>
+				<v-col cols="4">
 					<v-card class="pa-5" outlined>
 						<div>Date de création : {{ creation }}</div>
-						<div>Date d'éxpiration : {{ expiration }}</div>
+						<div>Date d'expiration : {{ expiration }}</div>
 					</v-card>
 				</v-col>
-				<v-col md="4"> </v-col>
-				<v-col md="4">
+				<v-col cols="4"></v-col>
+				<v-col cols="4" class="text-right">
+					<v-btn v-if="!isDisable" :disabled="isDisable" @click="isFact()">
+						<v-icon class="ml-2 mr-3" color="#F90">mdi-eye-plus</v-icon> Ajout facture
+					</v-btn>
+					<v-btn
+						v-else
+						:disabled="!isDisable"
+						@click="drawerRight = !drawerRight"
+						depressed
+					>
+						<v-icon class="ml-2 primary--text">mdi-eye</v-icon>
+						voir facture
+					</v-btn>
+				</v-col>
+			</v-row>
+			<div>
+				<v-navigation-drawer
+					v-model="drawerRight"
+					app
+					persistent
+					hide-overlay
+					right
+				>
+					<v-list-item>
+						<v-list-item-content>
+							<v-list-item-title class="title mt-3 text-center">
+								Liste des factures
+							</v-list-item-title>
+						</v-list-item-content>
+					</v-list-item>
+
+					<v-divider></v-divider>
+
+					<div class="mt-7">
+						<v-list-item v-for="(facture, key) in getFactures" :key="key">
+							<v-btn depressed
+								><v-icon>mdi-download</v-icon>
+								{{ facture.facture.filename }}</v-btn
+							>
+						</v-list-item>
+					</div>
+				</v-navigation-drawer>
+			</div>
+
+			<v-row class="ma-2">
+				<v-col cols="7"></v-col>
+				<v-col cols="5">
 					<v-card class="pa-5 text-left" outlined>
 						<v-simple-table>
 							<template v-slot:default>
@@ -42,105 +88,57 @@
 					</v-card>
 				</v-col>
 			</v-row>
-			<v-row class="justify-center mt-10">
-				<v-data-table
-					:headers="headers"
-					:items="lignes"
-					:items-per-page="10"
-					hide-default-footer
-					class="elevation-1"
-				>
-					<template v-slot:header="{ props: { headers } }">
-						<thead>
-							<tr>
-								<th :colspan="headers.length">
-									<v-row>
-										<v-col md="3"><addLigne @addLigne="add($event)" /></v-col>
-										<v-col md="3">
-											<deleteLigne />
-										</v-col>
-										<v-col md="3">
-											<v-container>
-												<v-btn
-													v-if="!isDisable"
-													:disabled="isDisable"
-													@click="isFact()"
-													depressed
-												>
-													<v-icon class="ml-2 primary--text"
-														>mdi-eye-plus</v-icon
-													>
-													Facturer
-												</v-btn>
-												<v-btn
-													v-else
-													:disabled="!isDisable"
-													@click="drawerRight = !drawerRight"
-													depressed
-												>
-													<v-icon class="ml-2 primary--text">mdi-eye</v-icon>
-													Facturer
-												</v-btn>
-												<v-navigation-drawer
-													v-model="drawerRight"
-													app
-													persistent
-													hide-overlay
-													right
-												>
-													<v-list-item>
-														<v-list-item-content>
-															<v-list-item-title class="title mt-3 text-center"
-																>Liste des factures</v-list-item-title
-															>
-														</v-list-item-content>
-													</v-list-item>
-
-													<v-divider></v-divider>
-													<div class="mt-7">
-														<v-list-item
-															v-for="(facture, key) in getFactures"
-															:key="key"
-														>
-															<v-btn depressed
-																><v-icon>mdi-download</v-icon>
-																{{ facture.filename }}</v-btn
-															>
-														</v-list-item>
-													</div>
-												</v-navigation-drawer>
-											</v-container>
-										</v-col>
-										<v-col md="3">
-											<!-- <tva /> -->
-										</v-col>
-									</v-row>
-								</th>
-							</tr>
-						</thead>
-					</template>
-					<template v-slot:item.product="{ item }"> {{ item.name }}</template>
-					<template v-slot:item.quantity="{ item }">{{
-						item.quantity
-					}}</template>
-					<template v-slot:item.description="{ item }">{{
-						item.description
-					}}</template>
-					<template v-slot:item.price="{ item }">{{ item.price }}</template>
-					<template v-slot:item.total="{ item }"
-						>{{ item.quantity * item.price }}
-					</template>
-					<template v-slot:item.check="{ item }">
+			<v-row>
+				<v-col>
+					<v-data-table
+						:headers="headers"
+						:items="lignes"
+						:items-per-page="10"
+						hide-default-footer
+						class="elevation-1 pa-5"
+					>
+						<template v-slot:header="{ props: { headers } }">
+							<thead>
+								<tr>
+									<th :colspan="headers.length">
+										<v-row>
+											<v-col md="4"><addLigne @addLigne="add($event)" /></v-col>
+											<v-col md="4">
+												<!-- <autocomplete /> -->
+											</v-col>
+											<v-col md="4"><tva /></v-col>
+										</v-row>
+									</th>
+								</tr>
+							</thead>
+						</template>
+						<template v-slot:item.product="{ item }"> {{ item.name }}</template>
+						<template v-slot:item.quantity="{ item }"
+							>{{ item.quantity }}
+						</template>
+						<template v-slot:item.description="{ item }">{{
+							item.description
+						}}</template>
+						<template v-slot:item.price="{ item }">{{ item.price }}</template>
+						<template v-slot:item.total="{ item }">{{
+							item.quantity * item.price
+						}}</template>
+						<template v-slot:item.check="{ item }">
 						<check
 							@createFacture="createFacture($event)"
 							:verifCheck="verifCheck"
 							:ligne="item"
 						/>
-					</template>
-				</v-data-table>
+						</template>
+					</v-data-table>
+				</v-col>
 			</v-row>
 		</template>
 	</v-container>
 </template>
-
+<style>
+.bg-light-grey {
+	background-color: #9f9f9f !important;
+}
+</style>
 <script src='./devis.js' />

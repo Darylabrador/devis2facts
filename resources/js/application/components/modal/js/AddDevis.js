@@ -24,9 +24,7 @@ export default {
     methods: {
         addDevis() {
 
-            console.log('client_id:' + this.selectedClient + ' filename:' + this.devisFilename + ' remise:0 tva:'+this.tva+' date_expiration:'+this.dateExp);
             Axios.post('/api/devis/add', {client_id: this.selectedClient, filename: this.devisFilename, remise: 0, tva: this.tva, date_expiration: this.dateExp }).then(data => {
-                this.creationPDF()
                 this.$router.push('devis/'+data.data.data.id);
 
             })
@@ -36,13 +34,11 @@ export default {
 
             
         },
-        creationPDF(){
 
-        },
 
         initialize(){
             this.date = new Date()
-            this.dateExp=this.date.getFullYear()+1 + '-' + this.date.getMonth() + '-' + this.date.getDay()
+            this.dateExp= (this.date.getFullYear()+1) + '-' + this.date.getMonth() + '-' + this.date.getDay()
             
         },
         getClients() {
@@ -51,7 +47,7 @@ export default {
                 data.data.forEach(client => {
                     this.clients.push(client)
                 })
-                
+
             })
         },
         getLastIdDevis() {
