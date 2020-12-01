@@ -4,14 +4,14 @@ import Autocomplete from '../components/devis/Autocomplete.vue'
 import AddLigne from '../components/devis/AddLigne.vue'
 import Facturation from '../components/devis/lignedevis/Facturation.vue'
 import Check from '../components/devis/lignedevis/Check.vue'
-import {apiService} from '../_services/apiService'
+import { apiService } from '../_services/apiService'
 export default {
     components: {
         Tva,
         Autocomplete,
         AddLigne,
         Facturation,
-        Check
+        Check,
     },
 
 
@@ -21,7 +21,10 @@ export default {
             total: [],
             tva: '',
             prix: [],
-            headers: [
+            headers: [{
+                    text: '',
+                    value: 'button'
+                },
                 {
                     text: 'Produit',
                     align: 'start',
@@ -33,7 +36,6 @@ export default {
                 { text: 'Prix Unitaire HT', value: 'price' },
                 { text: 'Total', value: 'total' },
                 { text: '', value: 'check' },
-
             ],
             lignes: [],
             tht: 0,
@@ -62,20 +64,14 @@ export default {
     methods: {
         getLigne() {
             apiService.get('/api/devis/find/ligne/' + this.$route.params.id).then(({ data }) => {
-
                 data.data.forEach(ligne => {
                     this.lignes.push(ligne)
                     this.tht += ligne.price * ligne.quantity
                     this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
-
                 })
                 this.valuetht = this.tht
                 this.valuettc = this.ttc
-
             })
-
-
-
         },
 
         getDevis() {
@@ -83,9 +79,7 @@ export default {
                 this.creation = data.data.creation
                 this.expiration = data.data.expiration
                 this.remise = data.data.remise
-                
             })
-            
         },
 
 
@@ -103,13 +97,13 @@ export default {
 
         emis(value) {
 
-            this.valuettc = this.ttc - this.ttc*value/100
-            this.valuetht = this.tht- this.tht*value/100
+            this.valuettc = this.ttc - this.ttc * value / 100
+            this.valuetht = this.tht - this.tht * value / 100
 
             if (this.remise <= 100 && this.remise >= 0) {
-                Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
+                Axios.get('/api/devis/up/remise/' + this.$route.params.id + '/' + this.remise).then(({ data }) => {
                     // console.log('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise)
-                 })
+                })
             }
 
         },
