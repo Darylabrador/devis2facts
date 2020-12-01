@@ -87,7 +87,7 @@ class PdfController extends Controller
      * Generate invoice PDF
      */
     public function generateInvoice($id) {
-
+        // $lignes = LigneDevis::onlyTrashed();
     }
 
 
