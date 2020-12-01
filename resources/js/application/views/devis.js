@@ -7,13 +7,15 @@ import Check from '../components/devis/lignedevis/Check.vue'
 import { apiService } from '../_services/apiService'
 import { controllers } from "chart.js"
 import { mdiConsoleNetworkOutline } from "@mdi/js"
+import DeleteLigne from '../components/devis/lignedevis/DeleteLigne.vue'
 export default {
     components: {
         Tva,
         Autocomplete,
         AddLigne,
         Facturation,
-        Check
+        Check,
+        DeleteLigne
     },
 
 
