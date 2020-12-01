@@ -29,7 +29,6 @@ export default {
 
 	methods: {
 		check() {
-			// this.$emit('validCheck', {check: this.checkbox, ligne: this.ligne});
       this.$emit('createFacture', {check: this.checkbox, ligne: this.ligne, id: this.ligne.id});
 			
 		},

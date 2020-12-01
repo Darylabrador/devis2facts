@@ -41,7 +41,10 @@
 						</v-simple-table>
 					</v-card>
 					<div>
-						<v-btn :disabled='isDisable' @click="isFact()" depressed>
+						<v-btn v-if='!isDisable' :disabled='isDisable' @click="isFact()" depressed>
+							<v-icon class="ml-2 primary--text">mdi-eye-plus</v-icon> Facturer
+						</v-btn>
+							<v-btn v-else :disabled='!isDisable' @click="drawerRight = !drawerRight" depressed>
 							<v-icon class="ml-2 primary--text">mdi-eye</v-icon> Facturer
 						</v-btn>
 						<v-navigation-drawer
