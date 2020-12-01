@@ -1,5 +1,4 @@
 <template>
-  <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600">
       <template v-slot:activator="{ on, attrs }">
         <v-btn icon color="red" dark v-bind="attrs" v-on="on">
@@ -31,7 +30,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-row>
 </template>
 
 <script src="./js/DeleteProduct.js">
