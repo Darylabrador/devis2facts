@@ -12,8 +12,7 @@ export default {
                 { title: 'Accueil', path: '/' },
                 { title: 'Clients', path: '/clients' },
                 { title: 'Devis', path: '/listdevis' },
-                { title: 'Produits', path: '/produits' },
-                { title: 'Générer', path: '/generate' },
+                { title: 'Produits', path: '/produits' }
             ]
         }
     },
