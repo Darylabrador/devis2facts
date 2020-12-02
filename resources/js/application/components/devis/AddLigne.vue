@@ -1,10 +1,13 @@
 <template>
   <v-container>
-    <v-row justify="center">
-      <v-dialog v-model="dialog">
+    <v-row>
+      <v-dialog v-model="dialog"
+                max-width="600px">
         <template v-slot:activator="{ on, attrs }">
           <v-btn v-if="!isModified" icon class="success--text" v-bind="attrs" v-on="on"
-            ><v-icon>mdi-plus</v-icon>
+            >
+             Ajouter produit
+            <v-icon>mdi-plus</v-icon>
           </v-btn>
           <v-btn v-if="isModified" icon class="success--text" v-bind="attrs" v-on="on"
             ><v-icon>mdi-dots-horizontal</v-icon>

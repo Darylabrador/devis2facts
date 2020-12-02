@@ -1,4 +1,4 @@
-import apiProduct from '../../../service/ApiProduct'
+import Axios from 'axios'
 
 export default {
     props: {
@@ -18,18 +18,19 @@ export default {
         }
     },
     methods: {
-        deleteProduct: async function() {
-            // var data = {
-            //     id: this.product.id
-            // }
-
-            // var res = await apiProduct.deleteProduct(data)
-
-            // this.$emit('deleteProduct', this.index)
-
-             console.log("res")
-
-             this.dialog = false
+        deleteProduct: function() {
+            var data = {
+                id: this.product.id
+            }
+            Axios.post("/api/products/delete/", data)
+                .then(res => {
+                    console.log(res)
+                    this.$emit('deleteProduct', this.index)
+                    this.dialog = false
+                })
+                .catch(err => {
+                    console.error(err);
+                })
         }
     },
 }

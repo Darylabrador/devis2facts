@@ -2,7 +2,6 @@
 	<v-checkbox
 		class="mb-2"
 		v-model="checkbox"
-		:disabled="!valid"
 		@change="check()"
 	/>
 </template>
@@ -19,11 +18,6 @@ export default {
 				return Boolean;
 			},
 		},
-		valid: {
-			default: function () {
-				return Boolean;
-			},
-		},
 	},
 
 	data() {
@@ -35,7 +29,7 @@ export default {
 
 	methods: {
 		check() {
-      this.$emit('createFacture', this.ligne);
+      this.$emit('createFacture', {check: this.checkbox, ligne: this.ligne, id: this.ligne.id});
 			
 		},
 	},

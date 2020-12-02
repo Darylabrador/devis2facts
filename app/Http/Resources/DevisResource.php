@@ -24,7 +24,11 @@ class DevisResource extends JsonResource
             'creation'    => $this->created_at,
             'expiration'  => $this->date_expiration,
             'remise'  => $this->remise,
-            'is_accepted' => $this->is_accepted
+            'is_accepted' => $this->is_accepted,
+
+            'tht' => $this->tht,
+            'ttc' => $this->ttc,
+            'montantTva' => $this->montantTva,
         ];
     }
 }
