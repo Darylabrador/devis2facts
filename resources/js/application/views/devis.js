@@ -156,13 +156,14 @@ export default {
                 Axios.post('/api/facture/create', { lignes_devis: this.factures }).then(({ data }) => {
                     let facture = {}
                     facture = { facture: data.data };
-
+                    this.getFactures.push(facture);
                     this.ligneFactures.forEach(data => {
                         this.lignes.splice(this.lignes.indexOf(data), 1)
                     })
-                    this.getFactures.push(facture);
+                    
 
                 })
+
             }
 
             this.checkbox = !this.checkbox;
@@ -195,19 +196,21 @@ export default {
 
         getFact() {
             Axios.get('/api/facture/get/' + this.$route.params.id).then(({ data }) => {
-                console.log(data.data);
                 data.data.forEach(_data => {
                     if (_data.facture != null) {
                         this.getFactures.push(_data);
+                        
                     }
+                   
 
                 })
+                this.getFactures = _.uniqBy(this.getFactures, 'facture.id');
             })
         },
 
 
         generateInvoice(facture) {
-            console.log(facture)
+            // console.log(facture)
         }
     }
 }
