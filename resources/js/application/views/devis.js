@@ -97,7 +97,6 @@ export default {
                 this.creation = data.data.creation
                 this.expiration = data.data.expiration
                 this.remise = data.data.remise
-
                 this.devis = data.data
             })
         },
