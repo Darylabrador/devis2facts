@@ -41,7 +41,6 @@
             </v-list-item-content>
           </v-list-item>
 
-<<<<<<< HEAD
 													<v-divider></v-divider>
 													<div class="mt-7">
 														<v-list-item
@@ -88,20 +87,6 @@
 		</template>
 	</v-container>
 </template>
-=======
-          <v-divider></v-divider>
-
-          <div class="mt-7">
-            <v-list-item v-for="(facture, key) in getFactures" :key="key">
-              <v-btn depressed
-                ><v-icon>mdi-download</v-icon>
-                {{ facture.facture.filename }}</v-btn
-              >
-            </v-list-item>
-          </div>
-        </v-navigation-drawer>
-      </div>
->>>>>>> bbbd77dfd69f3d8d0fc2aaccd3b90e04348782f4
 
       <v-row class="ma-2">
         <v-col cols="7"></v-col>

@@ -39,16 +39,16 @@
      
         <table style="margin-left: 500px !important; margin-top: -100px !important;">
             <tr>
-                <td class="fontStyle fontBold"> Devis n°{{ $devisResource[0]->devis->id }} </td>
+                <td class="fontStyle fontBold"> Devis n°{{ $devisResource->devis->id }} </td>
             </tr>
             <tr>
                 <td class="fontStyle">Date creation : 
-                    {{  Carbon\Carbon::parse($devisResource[0]->devis->created_at)->format('d-m-Y') }}
+                    {{  Carbon\Carbon::parse($devisResource->devis->creation)->format('d-m-Y') }}
                 </td>
             </tr>
             <tr>
                 <td class="fontStyle">Date expiration : 
-                    {{  Carbon\Carbon::parse($devisResource[0]->devis->date_expiration)->format('d-m-Y') }}
+                    {{  Carbon\Carbon::parse($devisResource->devis->expiration)->format('d-m-Y') }}
                 </td>
             </tr>
         </table>
@@ -57,16 +57,16 @@
       <div style="margin-top: 30px; margin-left: 500px;">
         <table>
             <tr>
-                <td class="fontStyle fontBold"> {{ $devisResource[0]->devis->clients->name }} </td>
+                <td class="fontStyle fontBold"> {{ $devisResource->devis->clients->name }} </td>
             </tr>
             <tr>
-                <td class="fontStyle">{{ $devisResource[0]->devis->clients->clientAddress->address }}</td>
+                <td class="fontStyle">{{ $devisResource->devis->client->informations->address }}</td>
             </tr>
             <tr>
-                <td class="fontStyle">{{ $devisResource[0]->devis->clients->clientAddress->city }}, {{ $devisResource[0]->devis->clients->clientAddress->postcode }}</td>
+                <td class="fontStyle">{{ $devisResource->devis->client->informations->city }}, {{ $devisResource->devis->client->informations->postcode }}</td>
             </tr>
             <tr>
-                <td class="fontStyle">E-mail : {{ $devisResource[0]->devis->clients->email }}</td>
+                <td class="fontStyle">E-mail : {{ $devisResource->devis->client->email }}</td>
             </tr>            
         </table>
     </div>

@@ -211,7 +211,6 @@ export default {
             window.URL.revokeObjectURL(url);
         },
 
-<<<<<<< HEAD
         async generateFile(id) {
             try {
                 const facture = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
@@ -224,10 +223,8 @@ export default {
             }
         
         },
-=======
         generateInvoice(facture) {
             // console.log(facture)
         }
->>>>>>> bbbd77dfd69f3d8d0fc2aaccd3b90e04348782f4
     }
 }
