@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
     <style>
         .fontStyle{
             font-size: 13px;
@@ -12,6 +11,12 @@
 
         table {
             border-collapse: collapse;
+        }
+
+        .tableData {
+            table-layout:fixed;
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
         }
     </style>
 </head>
@@ -64,9 +69,8 @@
             </tr>
         </table>
     </div>
-   
 
-    <table style="margin-top: 45px !important; margin-left: 10px; width: 100%; padding: 0;" class="fontStyle">
+    <table style="margin-top: 45px !important; margin-left: 10px; width: 100%; padding: 0;" class="fontStyle tableData">
         <thead>
             <tr style="padding: 0;">
                 <th style="border: 1px solid black;"> Produit </th>
@@ -80,19 +84,23 @@
         <tr style="outline: 0;">
             <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->name }}</td> 
             <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->quantity }}</td> 
+            @if ($value->price == null)
+                <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->default_price }}</td> 
+            @else
+                <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->price }}</td> 
+            @endif
 
             @if ($value->price == null)
-            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->default_price }}</td> 
+                <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->default_price * $value->quantity }}</td> 
             @else
-            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->price }}</td> 
-            @endif
-            
-            @if ($value->price == null)
-            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->default_price * $value->quantity }}</td> 
-            @else
-            <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->price * $value->quantity  }}</td> 
+                <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->price * $value->quantity  }}</td> 
             @endif
         </tr>
+          @if($value->description != null)
+            <tr>
+                <td style="border: 1px solid black; padding: 5px;" colspan="4"> {{ $value->description }}</td> 
+            </tr>
+          @endif
         @endforeach
         </tbody>
     </table>
