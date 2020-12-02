@@ -16,7 +16,6 @@ export default {
         getDevis() {
             Axios.get("/api/devis/getAll").then(({data}) => {
                 this.devis = data.data
-                console.log(this.devis)
             })
         }
     }

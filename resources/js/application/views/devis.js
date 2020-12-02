@@ -4,10 +4,7 @@ import Autocomplete from '../components/devis/Autocomplete.vue'
 import AddLigne from '../components/devis/AddLigne.vue'
 import Check from '../components/devis/lignedevis/Check.vue'
 import { apiService } from '../_services/apiService'
-import { controllers } from "chart.js"
-import { mdiConsoleNetworkOutline } from "@mdi/js"
 import DeleteLigne from '../components/devis/lignedevis/DeleteLigne.vue'
-import Acompte from '../components/modal/Acompte.vue'
 export default {
     components: {
         Tva,
@@ -15,7 +12,6 @@ export default {
         AddLigne,
         Check,
         DeleteLigne,
-        Acompte
     },
 
 

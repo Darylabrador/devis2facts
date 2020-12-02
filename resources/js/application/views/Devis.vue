@@ -26,9 +26,6 @@
 						</v-btn>
 					</v-col>
 				</v-row>
-				<v-row>
-					<v-col justify="end"><acompte :devis="devis"/></v-col>
-				</v-row>
 			</v-row>
 			<div>
 				<v-navigation-drawer

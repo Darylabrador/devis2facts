@@ -24,6 +24,7 @@ class CreateDevisTable extends Migration
             $table->float('tht');
             $table->float('ttc');
             $table->float('montantTva');
+            $table->boolean('is_acompte');
 
             $table->timestamps();
         });

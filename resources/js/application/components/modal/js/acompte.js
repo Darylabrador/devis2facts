@@ -6,17 +6,27 @@ export default {
       }
     },
   },
+
   data() {
     return {
       sheet: false,
       pourcent: 0,
+      result: 0,
     }
+  },
+
+  created() {
+    this.init()
   },
 
   methods: {
     calcul() {
-      let result = (this.pourcent / 100 * this.devis.ttc).toFixed(2);
-      console.log(result);
+      this.result = (this.pourcent / 100 * this.devis.ttc).toFixed(2);
+    },
+
+    init() {
+      this.result = this.devis.ttc
+      console.log(this.result.ttc)
     }
   }
 }

@@ -28,6 +28,7 @@ class DevisResource extends JsonResource
             'tht'           => $this->tht,
             'ttc'           => $this->ttc,
             'montantTva'    => $this->montantTva,
+            'is_acompte'    => $this->is_acompte,
         ];
     }
 }

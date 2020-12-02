@@ -8,8 +8,8 @@
 		</template>
 		<v-sheet class="text-center px-10" height="200px">
 			<v-row class="d-flex" align="center">
-				<v-col cols="6"> Toute Taxe Comprise: {{ devis.ttc }} € </v-col>
-				<v-col cols="6"> Total Hors Taxe: {{ devis.tht }} € </v-col>
+				<v-col cols="6"> Montant facturé ttc: {{ result }} € </v-col>
+				<v-col cols="6"> Toute taxe comprise: {{ devis.ttc }} € </v-col>
 			</v-row>
 			<v-row align="center" justify="center">
 				<v-col cols="4">
@@ -18,11 +18,12 @@
 						placeholder="pourcentage total"
 						type="number"
 						min="0"
+						max="100"
 					>
 					</v-text-field>
 				</v-col>
 			</v-row>
-			<v-btn @click="calcul()">BOUTON</v-btn>
+			<v-btn depressed @click="calcul()">Calculer</v-btn>
 		</v-sheet>
 	</v-bottom-sheet>
 </template>
