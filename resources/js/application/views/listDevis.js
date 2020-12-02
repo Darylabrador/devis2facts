@@ -37,10 +37,8 @@ export default {
             this.info = refreshDeleteData;
         },
 
-
         getlistDevis: async function() {
             var res = await apiDevis.getAllDevis()
-
             this.info = res.data.data
         },
 
@@ -57,16 +55,6 @@ export default {
                     const responseData = devis.data;
                     const fileData = file.data.data;
                     this.downloadPDF(responseData, fileData);
-                } catch (error) {
-                    console.log(error)
-                }
-            } else {
-                try {
-                    const facture = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
-                    const fileInfo = await Axios.get(`/api/facture/pdf/name/${id}`);
-                    const responseDataFacture = facture.data;
-                    const fileDataInfo = fileInfo.data.data;
-                    this.downloadPDF(responseDataFacture, fileDataInfo);
                 } catch (error) {
                     console.log(error)
                 }
