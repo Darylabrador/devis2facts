@@ -26,7 +26,7 @@ export default {
 
     init() {
       this.result = this.devis.ttc
-      console.log(this.result.ttc)
+      console.log(this.result)
     }
   }
 }
