@@ -1,4 +1,3 @@
-import { defaults } from 'lodash'
 import apiProduct from '../../../service/ApiProduct'
 export default {
     props: {
@@ -38,8 +37,12 @@ export default {
             }
             if (!this.isModified) {
                 var res = await apiProduct.create(data)
-                this.name = ""
-                this.price = ""
+
+                this.drawerRight = !this.drawerRight
+                this.name = null
+                this.price = null
+                this.$refs.form.reset()
+
                 this.$emit('addProduct', res.data.product)
             } else {
                 var res = await apiProduct.updateProduct(data)

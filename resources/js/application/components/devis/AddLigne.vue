@@ -4,15 +4,25 @@
       <v-dialog v-model="dialog"
                 max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn class="success--text" v-bind="attrs" v-on="on">
-              Ajouter produit
-              <v-icon>mdi-plus</v-icon>
+          <v-btn v-if="!isModified" icon class="success--text" v-bind="attrs" v-on="on"
+            >
+             Ajouter produit
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+          <v-btn v-if="isModified" icon class="success--text" v-bind="attrs" v-on="on"
+            ><v-icon>mdi-dots-horizontal</v-icon>
           </v-btn>
         </template>
         <v-card>
           <v-form v-model="valid">
             <v-container>
               <v-row>
+                <v-col md="10">
+                  <addProduct v-if="!isModified"
+                    @addProduct="add($event)"
+                    :product="{ id: null, name: null, default_price: null }"
+                  />
+                </v-col>
                 <v-col md="4">
                   <v-select
                     v-model="selectProduct"
@@ -26,15 +36,6 @@
                     required
                     return-object
                   ></v-select>
-                </v-col>
-
-                <v-col md="4">
-                  <v-text-field
-                    v-model="description"
-                    :rules="descriptionRules"
-                    label="Description"
-                    required
-                  ></v-text-field>
                 </v-col>
                 <v-col md="4">
                   <v-text-field
@@ -52,6 +53,15 @@
                     label="Prix"
                     required
                   ></v-text-field>
+                </v-col>
+
+                <v-col md="12">
+                  <v-textarea
+                    v-model="description"
+                    :rules="descriptionRules"
+                    label="Description"
+                    required
+                  ></v-textarea>
                 </v-col>
               </v-row>
               <v-row justify="end">
