@@ -25,6 +25,7 @@ export default {
             total: [],
             tva: '',
             prix: [],
+            isEditing:false,
             headers: [
                 {
                     text: 'Produit',
@@ -101,7 +102,6 @@ export default {
                 this.remise = data.data.remise
 
                 this.devis = data.data
-
             })
         },
 
@@ -112,8 +112,8 @@ export default {
             this.tht += ligne.price * ligne.quantity
             this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
 
-            this.valuetht = this.tht
-            this.valuettc = this.ttc
+            this.valuettc = this.ttc - this.ttc * this.devis.remise / 100
+            this.valuetht = this.tht - this.tht * this.devis.remise / 100
 
             this.devis.tht = this.valuetht
             this.devis.ttc = this.valuettc
@@ -129,14 +129,15 @@ export default {
 
             this.devis.tht = this.valuetht
             this.devis.ttc = this.valuettc
+
             this.devis.montantTva = this.devis.ttc - this.devis.tht
+            this.devis.remise = this.remise
 
             if (this.remise <= 100 && this.remise >= 0) {
                 Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
                 })
 
                 Axios.post('/api/devis/update/', {id:this.devis.id, client_id: this.devis.client.id, tva:this.devis.tva, tht:this.devis.tht, ttc:this.devis.ttc, montantTva:this.devis.montantTva, remise:this.devis.remise, is_accepted:this.devis.is_accepted, date_expiration:this.devis.expiration} ).then(({ data }) => {
-
                 })
             }
 
@@ -148,13 +149,14 @@ export default {
                 Axios.post('/api/facture/create', { lignes_devis: this.factures }).then(({ data }) => {
                     let facture = {}
                     facture = { facture: data.data };
-
+                    this.getFactures.push(facture);
                     this.ligneFactures.forEach(data => {
                         this.lignes.splice(this.lignes.indexOf(data), 1)
                     })
-                    this.getFactures.push(facture);
+                    
 
                 })
+
             }
 
             this.checkbox = !this.checkbox;
@@ -191,9 +193,12 @@ export default {
                 data.data.forEach(_data => {
                     if (_data.facture != null) {
                         this.getFactures.push(_data);
+                        
                     }
-                })
+                   
 
+                })
+                this.getFactures = _.uniqBy(this.getFactures, 'facture.id');
             })
         },
 
@@ -206,6 +211,7 @@ export default {
             window.URL.revokeObjectURL(url);
         },
 
+<<<<<<< HEAD
         async generateFile(id) {
             try {
                 const facture = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
@@ -218,5 +224,10 @@ export default {
             }
         
         },
+=======
+        generateInvoice(facture) {
+            // console.log(facture)
+        }
+>>>>>>> bbbd77dfd69f3d8d0fc2aaccd3b90e04348782f4
     }
 }

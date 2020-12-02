@@ -25,7 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 
 });
-Route::middleware('auth:api')->get ('/devis/sendemailpdf/{devisId}', [PdfController::class, 'index' ]);
+Route::middleware('auth:api')->get('/devis/sendemailpdf/{devisId}', [PdfController::class, 'index' ]);
 // Route for dashboard informations
 Route::get("/stats", [FacturationController::class, 'index']);
 
@@ -48,9 +48,10 @@ Route::get('devis/getAll', [DevisController::class, 'getAll']);
 Route::get('devis/lastIdDevis', [DevisController::class, 'lastIdDevis']);
 Route::post('devis/add', [DevisController::class, 'add']);
 Route::delete('devis/del/{id}', [DevisController::class, 'delete']);
-//--update
+
 Route::get('devis/up/remise/{id}/{r}', [DevisController::class, 'updateRemise']);
 Route::post('devis/update', [DevisController::class, 'update']);
+
 
 //Ligne devis
 Route::post('lignedevis/create', [LigneDevisController::class, 'create']);

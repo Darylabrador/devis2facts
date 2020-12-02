@@ -45,7 +45,7 @@ class DevisController extends Controller
         
         $devis->is_accepted = 0;
 
-        //$devis->save();
+        $devis->save();
 
         return new DevisResource($devis);
 
