@@ -1,7 +1,7 @@
 import { authenticationService } from "../_services/authentication.service";
 
 export default {
-    
+
     data() {
         return {
             user: {
@@ -25,7 +25,7 @@ export default {
             return this.$router.push('/');
         }
 
-        this.returnUrl = this.$route.query.returnUrl || "/users";
+        this.returnUrl = this.$route.query.returnUrl || "/clients";
     },
     methods: {
         connection() {
