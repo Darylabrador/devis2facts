@@ -14,9 +14,9 @@ class AddDetailledInfoColumnsInFacturationsTable extends Migration
     public function up()
     {
         Schema::table('facturations', function (Blueprint $table) {
-            $table->float('montantTva')->default(0);
-            $table->float('ttc')->default(0);
-            $table->float('tht')->default(0);
+            $table->float('montantTva')->nullable();
+            $table->float('ttc')->nullable();
+            $table->float('tht')->nullable();
         });
     }
 

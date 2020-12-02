@@ -15,9 +15,12 @@ class FacturationResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'is_paid' => $this->is_paid,
-            'filename' => $this->filename,
+            'id'         => $this->id,
+            'is_paid'    => $this->is_paid,
+            'filename'   => $this->filename,
+            'montantTva' => $this->montantTva,
+            'tht'        => $this->tht,
+            'ttc'        => $this->ttc,
         ];
     }
 }

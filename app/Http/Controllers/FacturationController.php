@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\FacturationResource;
 use App\Http\Resources\LigneDevisResource;
+use App\Models\Devis;
 use App\Models\Facturation;
 use App\Models\LigneDevis;
 use Illuminate\Http\Request;
@@ -71,10 +72,6 @@ class FacturationController extends Controller
 
     $factId = $facturation->id;
 
-    $info = Facturation::where('facturation_id', $factId)->get();
-    return $info;
-   
-
   foreach ($validator["lignes_devis"] as $_ligne) {
     $ligneDevis = LigneDevis::find($_ligne);
     $ligneDevis->facturation_id = $factId;
@@ -82,7 +79,25 @@ class FacturationController extends Controller
     $delete = LigneDevis::destroy($_ligne) ? "ok" : "nok";
   }
 
-  return new FacturationResource($facturation);
+    $infoLigneDevis  = LigneDevis::onlyTrashed()->where('facturation_id', $factId)->get();
+    $infoDevis       = Devis::where('id', $infoLigneDevis[0]->devis_id)->first();
+    $tva             = $infoDevis->tva;
+    $ttc            = 0;
+    $tht            = 0;
+
+    foreach($infoLigneDevis as $ligne) {
+      $tht += ($ligne->price * $ligne->quantity);
+      $ttc += ($ligne->price + $ligne->price * $tva / 100) *  $ligne->quantity;
+    }
+
+    $montantTva      = $ttc - $tht;
+    $facturationData = Facturation::where('id', $factId)->first();
+    $facturationData->tht        = $tht;
+    $facturationData->ttc        = $ttc;
+    $facturationData->montantTva = $montantTva;
+    $facturationData->save();
+
+  return new FacturationResource($facturationData);
  }
 
  /**
