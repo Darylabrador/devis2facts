@@ -6,7 +6,7 @@ import Devis from './views/Devis.vue';
 import listDevis from './views/ListDevis.vue';
 import Products from './views/Product.vue';
 import Login from './login/Login.vue';
-
+import Acompte from './views/Acompte.vue';
 // route temporaire pour la génération du pdf
 import GeneratePdf from './views/GeneratePDF.vue';
 import { Role } from './_helpers/role';
@@ -31,6 +31,12 @@ const router = new VueRouter({
             path: '/devis/:id',
             name: 'devis',
             component: Devis,
+            meta: { authorize: [Role.Admin] }
+        },
+        {
+            path: '/devis/acompte/:id',
+            name: 'acompte',
+            component: Acompte,
             meta: { authorize: [Role.Admin] }
         },
         {

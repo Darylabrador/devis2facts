@@ -2,20 +2,16 @@ import Axios from "axios"
 import Tva from '../components/devis/Tva.vue'
 import Autocomplete from '../components/devis/Autocomplete.vue'
 import AddLigne from '../components/devis/AddLigne.vue'
-import Facturation from '../components/devis/lignedevis/Facturation.vue'
 import Check from '../components/devis/lignedevis/Check.vue'
 import { apiService } from '../_services/apiService'
-import { controllers } from "chart.js"
-import { mdiConsoleNetworkOutline } from "@mdi/js"
 import DeleteLigne from '../components/devis/lignedevis/DeleteLigne.vue'
 export default {
     components: {
         Tva,
         Autocomplete,
         AddLigne,
-        Facturation,
         Check,
-        DeleteLigne
+        DeleteLigne,
     },
 
 
@@ -77,6 +73,7 @@ export default {
         getLigne() {
             apiService.get('/api/devis/find/ligne/' + this.$route.params.id).then(({ data }) => {
                 data.data.forEach(ligne => {
+
                     this.lignes.push(ligne)
                     this.tht += ligne.price * ligne.quantity
                     this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
@@ -172,6 +169,9 @@ export default {
                 this.isDisable = true;
             }
 
+
+
+
         },
 
         createFacture(facture) {
@@ -180,9 +180,28 @@ export default {
                     this.isDisable = false;
                     this.factures.push(facture.id);
                     this.ligneFactures.push(facture.ligne);
-                } else if (facture.check == false) {
+                    this.tht -= facture.ligne.price * facture.ligne.quantity
+                    this.ttc -= (facture.ligne.price + facture.ligne.price * facture.ligne.devis.tva / 100) * facture.ligne.quantity
+
+                    this.valuettc = this.ttc - this.ttc * this.devis.remise / 100
+                    this.valuetht = this.tht - this.tht * this.devis.remise / 100
+
+                    this.devis.tht = this.valuetht
+                    this.devis.ttc = this.valuettc
+                    this.devis.montantTva = this.devis.ttc - this.devis.tht
+                }
+                else if (facture.check == false) {
                     this.factures.splice(this.factures.indexOf(facture.id), 1);
                     this.ligneFactures.splice(this.ligneFactures.indexOf(facture.ligne), 1);
+                    this.tht += facture.ligne.price * facture.ligne.quantity
+                    this.ttc += (facture.ligne.price + facture.ligne.price * facture.ligne.devis.tva / 100) * facture.ligne.quantity
+
+                    this.valuettc = this.ttc - this.ttc * this.devis.remise / 100
+                    this.valuetht = this.tht - this.tht * this.devis.remise / 100
+
+                    this.devis.tht = this.valuetht
+                    this.devis.ttc = this.valuettc
+                    this.devis.montantTva = this.devis.ttc - this.devis.tht
 
                 }
                 if (this.ligneFactures.length == 0) {

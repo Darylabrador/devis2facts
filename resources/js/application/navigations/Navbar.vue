@@ -57,6 +57,7 @@
 							color="dark"
 							class="nav-item nav-link"
 							text
+								v-if="isChecked"
 							v-bind="attrs"
 							v-on="on"
 						>
@@ -65,7 +66,6 @@
 					</template>
 					<v-sheet class="text-center" height="200px">
 						<v-btn
-							v-if="isChecked"
 							@click="logout"
 							class="mt-6"
 							text

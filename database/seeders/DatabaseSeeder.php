@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
                 'tht' => 0,
                 'ttc' => 0,
                 'montantTva' => 0,
+                'is_acompte' => false,
                 'remise' => rand(0, 40),
             ]);
         }

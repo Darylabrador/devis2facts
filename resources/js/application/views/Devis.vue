@@ -9,21 +9,23 @@
 					</v-card>
 				</v-col>
 				<v-col cols="4"></v-col>
-				<v-col cols="4" class="text-right">
-					<v-btn v-if="!isDisable" :disabled="isDisable" @click="isFact()">
-						<v-icon class="ml-2 mr-3" color="#F90">mdi-eye-plus</v-icon> Ajout
-						facture
-					</v-btn>
-					<v-btn
-						v-else
-						:disabled="!isDisable"
-						@click="drawerRight = !drawerRight"
-						depressed
-					>
-						<v-icon class="ml-2 primary--text">mdi-eye</v-icon>
-						voir facture
-					</v-btn>
-				</v-col>
+				<v-row>
+					<v-col cols="4" class="text-right">
+						<v-btn v-if="!isDisable" :disabled="isDisable" @click="isFact()">
+							<v-icon class="ml-2 mr-3" color="#F90">mdi-eye-plus</v-icon> Ajout
+							facture
+						</v-btn>
+						<v-btn
+							v-else
+							:disabled="!isDisable"
+							@click="drawerRight = !drawerRight"
+							depressed
+						>
+							<v-icon class="mr-2  primary--text">mdi-eye</v-icon>
+							voir facture
+						</v-btn>
+					</v-col>
+				</v-row>
 			</v-row>
 			<div>
 				<v-navigation-drawer
