@@ -86,8 +86,13 @@ class PdfController extends Controller
     /**
      * Generate invoice PDF
      */
-    public function generateInvoice($id) {
-        // $lignes = LigneDevis::onlyTrashed();
+    public function generateInvoice($id) {                   
+        $facturation          = LigneDevis::onlyTrashed()->where('facturation_id', $id)->get();
+        $facturationResource  = LigneDevisResource::collection($facturation);
+        $companyInfo          = MyCompany::where(['id' => 1])->first();
+        $company              = new MyCompanyResource($companyInfo);
+        $pdf = PDF::loadView('pdf.facture', compact("facturationResource", "company"));
+        return $pdf->stream();
     }
 
 
