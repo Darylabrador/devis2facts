@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-btn @click.stop="drawerRight = !drawerRight" text v-if="!isModified" class="btn-grey mb-5">
-            <v-icon class="mr-2 ">mdi-tag-plus-outline</v-icon>
+            <v-icon class="mr-2">mdi-tag-plus-outline</v-icon>
             Ajouter produit
         </v-btn>
         <v-btn @click.stop="drawerRight = !drawerRight" text v-if="isModified">

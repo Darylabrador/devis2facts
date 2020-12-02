@@ -48,33 +48,38 @@ class FacturationController extends Controller
    ]
   )->validate();
 
-  $lastFacturation = Facturation::all()->last();
-  $lastFilename = $lastFacturation->filename;
+    $lastFacturation = Facturation::all()->last();
+    $lastFilename = $lastFacturation->filename;
 
-  $expl = explode("-", $lastFilename);
-  $explId = explode(".", $expl[3])[0];
-  $explYear = (int) $expl[1];
+    $expl = explode("-", $lastFilename);
+    $explId = explode(".", $expl[3])[0];
+    $explYear = (int) $expl[1];
 
-  $date = now();
-  $currentYear = $date->year;
-  $currentMonth = $date->month;
+    $date = now();
+    $currentYear = $date->year;
+    $currentMonth = $date->month;
 
-  $facturation = new Facturation;
-  $facturation->is_paid = 0;
-  if ($explYear == $currentYear) {
-   $facturation->filename = "FA-" . $currentYear . "-" . $currentMonth . "-" . ($explId + 1) . ".pdf";
-  } else {
-   $facturation->filename = "FA-" . $currentYear . "-" . $currentMonth . "-" . 1 . ".pdf";
-  }
-  $facturation->save();
+    $facturation = new Facturation;
+    $facturation->is_paid = 0;
+    if ($explYear == $currentYear) {
+    $facturation->filename = "FA-" . $currentYear . "-" . $currentMonth . "-" . ($explId + 1) . ".pdf";
+    } else {
+    $facturation->filename = "FA-" . $currentYear . "-" . $currentMonth . "-" . 1 . ".pdf";
+    }
+    
+    $facturation->save();
 
-  $factId = $facturation->id;
+    $factId = $facturation->id;
+
+    $info = Facturation::where('facturation_id', $factId)->get();
+    return $info;
+   
 
   foreach ($validator["lignes_devis"] as $_ligne) {
-   $ligneDevis = LigneDevis::find($_ligne);
-   $ligneDevis->facturation_id = $factId;
-   $ligneDevis->save();
-   $delete = LigneDevis::destroy($_ligne) ? "ok" : "nok";
+    $ligneDevis = LigneDevis::find($_ligne);
+    $ligneDevis->facturation_id = $factId;
+    $ligneDevis->save();
+    $delete = LigneDevis::destroy($_ligne) ? "ok" : "nok";
   }
 
   return new FacturationResource($facturation);

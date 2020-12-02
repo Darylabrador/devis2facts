@@ -17,18 +17,17 @@ class DevisResource extends JsonResource
         $client = new ClientResource($this->clients);
 
         return [
-            'id'          => $this->id,
-            'client'      => $client,
-            'filename'    => $this->filename,
-            'tva'         => $this->tva,
-            'creation'    => $this->created_at,
-            'expiration'  => $this->date_expiration,
-            'remise'  => $this->remise,
-            'is_accepted' => $this->is_accepted,
-
-            'tht' => $this->tht,
-            'ttc' => $this->ttc,
-            'montantTva' => $this->montantTva,
+            'id'            => $this->id,
+            'client'        => $client,
+            'filename'      => $this->filename,
+            'tva'           => $this->tva,
+            'creation'      => $this->created_at,
+            'expiration'    => $this->date_expiration,
+            'remise'        => $this->remise,
+            'is_accepted'   => $this->is_accepted,
+            'tht'           => $this->tht,
+            'ttc'           => $this->ttc,
+            'montantTva'    => $this->montantTva,
         ];
     }
 }

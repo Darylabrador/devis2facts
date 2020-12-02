@@ -21,8 +21,7 @@ export default {
     methods: {
         delClient() {
             Axios.delete('/api/clients/del/' + this.client.id).then(data => {
-                this.$emit('delClient', data.data)
-
+                this.$emit('delClient', data.data)  
             })
         }
     }

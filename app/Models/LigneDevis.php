@@ -12,15 +12,19 @@ class LigneDevis extends Model
     protected $table = 'lignedevis';
     protected $fillable = ['devis_id', 'product_id', 'facturation_id', 'description', 'quantity', 'price'];
     public $timestamps = false;
+
     use SoftDeletes;
+
     public function devis()
     {
         return $this->belongsTo(Devis::class, 'devis_id');
     }
+
     public function products()
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+    
     public function factures()
     {
         return $this->belongsTo(Facturation::class, 'facturation_id');

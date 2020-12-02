@@ -26,7 +26,10 @@ export default {
             tva: '',
             prix: [],
             isEditing: false,
-            headers: [
+            headers: [{
+                    text: '',
+                    value: 'button'
+                },
                 {
                     text: 'Produit',
                     align: 'start',
@@ -38,7 +41,6 @@ export default {
                 { text: 'Prix Unitaire HT', value: 'price' },
                 { text: 'Total', value: 'total' },
                 { text: '', value: 'check' },
-
             ],
             lignes: [],
             tht: 0,
@@ -74,13 +76,11 @@ export default {
     methods: {
         getLigne() {
             apiService.get('/api/devis/find/ligne/' + this.$route.params.id).then(({ data }) => {
-
                 data.data.forEach(ligne => {
 
                     this.lignes.push(ligne)
                     this.tht += ligne.price * ligne.quantity
                     this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
-
                 })
 
                 this.valuetht = this.tht
@@ -91,9 +91,6 @@ export default {
                 this.devis.montantTva = this.devis.ttc - this.devis.tht
 
             })
-
-
-
         },
 
         getDevis() {
@@ -101,7 +98,6 @@ export default {
                 this.creation = data.data.creation
                 this.expiration = data.data.expiration
                 this.remise = data.data.remise
-
                 this.devis = data.data
             })
         },
@@ -128,6 +124,8 @@ export default {
             this.valuettc = this.ttc - this.ttc * value / 100
             this.valuetht = this.tht - this.tht * value / 100
 
+            // console.log('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise)
+
             this.devis.tht = this.valuetht
             this.devis.ttc = this.valuettc
 
@@ -135,11 +133,17 @@ export default {
             this.devis.remise = this.remise
 
             if (this.remise <= 100 && this.remise >= 0) {
-                Axios.get('/api/devis/up/remise/' + this.$route.params.id + '/' + this.remise).then(({ data }) => {
-                })
-
-                Axios.post('/api/devis/update/', { id: this.devis.id, client_id: this.devis.client.id, tva: this.devis.tva, tht: this.devis.tht, ttc: this.devis.ttc, montantTva: this.devis.montantTva, remise: this.devis.remise, is_accepted: this.devis.is_accepted, date_expiration: this.devis.expiration }).then(({ data }) => {
-                })
+                Axios.post('/api/devis/update/', {
+                    id: this.devis.id,
+                    client_id: this.devis.client.id,
+                    tva: this.devis.tva,
+                    tht: this.devis.tht,
+                    ttc: this.devis.ttc,
+                    montantTva: this.devis.montantTva,
+                    remise: this.devis.remise,
+                    is_accepted: this.devis.is_accepted,
+                    date_expiration: this.devis.expiration
+                }).then(({ data }) => {})
             }
 
         },
@@ -224,9 +228,25 @@ export default {
             })
         },
 
+        downloadPDF(responseData, fileData) {
+            var a = document.createElement('a');
+            var url = window.URL.createObjectURL(new Blob([responseData], { type: 'application/pdf' }));
+            a.href = url;
+            a.download = fileData.filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        },
 
-        generateInvoice(facture) {
-            // console.log(facture)
+        async generateInvoice(factureId, devisId) {
+            try {
+                const facture = await Axios.get(`/api/facture/pdf/${factureId}/devis/${devisId}`, { responseType: 'arraybuffer' });
+                const file = await Axios.get(`/api/facture/pdf/name/${factureId}`);
+                const responseData = facture.data;
+                const fileData = file.data.data;
+                this.downloadPDF(responseData, fileData);
+            } catch (error) {
+                console.log(error)
+            }
         }
     }
 }

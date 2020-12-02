@@ -32,23 +32,17 @@
                 <td class="fontStyle">Siret : {{ $company->siret }}</td>
             </tr>            
             <tr>
-                <td class="fontStyle">TVA : {{ $devisResource[0]->devis->tva }}</td>
+                <td class="fontStyle">TVA : {{ $facturationResource[0]->devis->tva }}</td>
             </tr>
         </table>
 
-     
         <table style="margin-left: 500px !important; margin-top: -100px !important;">
             <tr>
-                <td class="fontStyle fontBold"> Devis n°{{ $devisResource[0]->devis->id }} </td>
+                <td class="fontStyle fontBold"> Facture n°{{ $facturation->id }} </td>
             </tr>
             <tr>
                 <td class="fontStyle">Date creation : 
-                    {{  Carbon\Carbon::parse($devisResource[0]->devis->created_at)->format('d-m-Y') }}
-                </td>
-            </tr>
-            <tr>
-                <td class="fontStyle">Date expiration : 
-                    {{  Carbon\Carbon::parse($devisResource[0]->devis->date_expiration)->format('d-m-Y') }}
+                    {{  Carbon\Carbon::parse($facturation->created_at)->format('d-m-Y') }}
                 </td>
             </tr>
         </table>
@@ -57,17 +51,17 @@
       <div style="margin-top: 30px; margin-left: 500px;">
         <table>
             <tr>
-                <td class="fontStyle fontBold"> {{ $devisResource[0]->devis->clients->name }} </td>
+                <td class="fontStyle fontBold"> {{ $infoClient->name }} </td>
             </tr>
             <tr>
-                <td class="fontStyle">{{ $devisResource[0]->devis->clients->clientAddress->address }}</td>
+                <td class="fontStyle">{{ $clientAdresse->address }}</td>
             </tr>
             <tr>
-                <td class="fontStyle">{{ $devisResource[0]->devis->clients->clientAddress->city }}, {{ $devisResource[0]->devis->clients->clientAddress->postcode }}</td>
+                <td class="fontStyle">{{ $clientAdresse->city }}, {{ $clientAdresse->postcode }}</td>
             </tr>
             <tr>
-                <td class="fontStyle">E-mail : {{ $devisResource[0]->devis->clients->email }}</td>
-            </tr>            
+                <td class="fontStyle">E-mail : {{ $infoClient->email }}</td>
+            </tr>
         </table>
     </div>
    
@@ -82,7 +76,7 @@
             </tr>
         </thead>
         <tbody>
-        @foreach ($devisResource as $value)
+        @foreach ($facturationResource as $value)
         <tr style="outline: 0;">
             <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->name }}</td> 
             <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->quantity }}</td> 
@@ -107,22 +101,21 @@
         <table class="fontStyle" style="width: 218px;">
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">Remise</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturationResource[0]->remise }}</td>
             </tr>
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">Montant TVA</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturationResource[0]->montantTva }} </td>
             </tr>
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">THT</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturationResource[0]->tht }} </td>
             </tr>
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">TTC</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturationResource[0]->ttc }} </td>
             </tr>
         </table>
     </div>
-
 </body>
 </html>

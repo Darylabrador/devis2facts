@@ -9,7 +9,7 @@ class Devis extends Model
 {
     use HasFactory;
     protected $table = 'devis';
-    protected $fillable = ['client_id', 'filename', 'tva', 'is_accepted'];
+    protected $fillable = ['client_id', 'filename', 'tva', 'is_accepted', 'remise', 'tht', 'ttc', 'montantTva'];
     //public $timestamps = false;
 
     public function clients()

@@ -13,6 +13,7 @@ class LigneDevisController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
+                'id' => '',
                 'devis_id' => 'required|numeric',
                 'product_id' => 'required|numeric',
                 'quantity' => 'required|numeric',
@@ -24,13 +25,19 @@ class LigneDevisController extends Controller
             ]
         )->validate();
 
-        $ligneDevis = new LigneDevis();
+        $ligneDevis = LigneDevis::find($validator['id']);
+
+        if (!$ligneDevis) {
+            $ligneDevis = new LigneDevis();
+        }
+
         $ligneDevis->devis_id = $validator['devis_id'];
         $ligneDevis->product_id = $validator['product_id'];
         $ligneDevis->quantity = $validator['quantity'];
         $ligneDevis->price = $validator['price'];
         $ligneDevis->description = $validator['description'];
         $ligneDevis->save();
+
         return new LigneDevisResource($ligneDevis);
     }
 }

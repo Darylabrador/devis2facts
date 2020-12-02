@@ -50,7 +50,7 @@
 
 					<div class="mt-7">
 						<v-list-item v-for="(facture, key) in getFactures" :key="key">
-							<v-btn depressed
+							<v-btn depressed @click="generateInvoice(facture.facture.id, facture.devis.id)"
 								><v-icon>mdi-download</v-icon>
 								{{ facture.facture.filename }}</v-btn
 							>

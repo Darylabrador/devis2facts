@@ -36,7 +36,6 @@
             </tr>
         </table>
 
-     
         <table style="margin-left: 500px !important; margin-top: -100px !important;">
             <tr>
                 <td class="fontStyle fontBold"> Devis n°{{ $devisResource[0]->devis->id }} </td>
@@ -57,17 +56,17 @@
       <div style="margin-top: 30px; margin-left: 500px;">
         <table>
             <tr>
-                <td class="fontStyle fontBold"> {{ $devisResource[0]->devis->clients->name }} </td>
+                <td class="fontStyle fontBold"> {{ $infoClient->name }} </td>
             </tr>
             <tr>
-                <td class="fontStyle">{{ $devisResource[0]->devis->clients->clientAddress->address }}</td>
+                <td class="fontStyle">{{ $clientAdresse->address }}</td>
             </tr>
             <tr>
-                <td class="fontStyle">{{ $devisResource[0]->devis->clients->clientAddress->city }}, {{ $devisResource[0]->devis->clients->clientAddress->postcode }}</td>
+                <td class="fontStyle">{{ $clientAdresse->city }}, {{ $clientAdresse->postcode }}</td>
             </tr>
             <tr>
-                <td class="fontStyle">E-mail : {{ $devisResource[0]->devis->clients->email }}</td>
-            </tr>            
+                <td class="fontStyle">E-mail : {{ $infoClient->email }}</td>
+            </tr>
         </table>
     </div>
    
@@ -107,19 +106,19 @@
         <table class="fontStyle" style="width: 218px;">
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">Remise</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $devisResource[0]->devis->remise }}</td>
             </tr>
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">Montant TVA</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $devisResource[0]->devis->montantTva }} </td>
             </tr>
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">THT</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $devisResource[0]->devis->tht }} </td>
             </tr>
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">TTC</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> 21,000 </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $devisResource[0]->devis->ttc }} </td>
             </tr>
         </table>
     </div>
