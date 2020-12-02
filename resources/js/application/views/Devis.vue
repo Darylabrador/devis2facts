@@ -125,7 +125,7 @@
                       <v-col md="4">
                         <!-- <autocomplete /> -->
                       </v-col>
-                      <v-col md="4"><tva /></v-col>
+                      <v-col md="4"><tva :devis="devis"/></v-col>
                     </v-row>
                   </th>
                 </tr>
