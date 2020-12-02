@@ -10,7 +10,7 @@ class Facturation extends Model
     use HasFactory;
     protected $table = 'facturations';
     protected $fillable = ['is_paid', 'filename'];
-    public $timestamps = false;
+    public $timestamps = true;
     public function ligneDevis()
     {
         return $this->hasMany(LigneDevis::class, 'product_id');

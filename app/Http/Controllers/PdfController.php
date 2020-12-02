@@ -78,7 +78,11 @@ class PdfController extends Controller
         $devisResource  = LigneDevisResource::collection($devis);
         $companyInfo    = MyCompany::where(['id' => 1])->first();
         $company        = new MyCompanyResource($companyInfo);
-        $pdf = PDF::loadView('pdf.devis', compact("devisResource", "company"));
+        $devisInfo      = Devis::whereId($id)->first();
+        $infoClient     = $devisInfo->clients()->first();
+        $clientAdresse  = ClientAddresses::where('client_id', $infoClient->id)->first();
+
+        $pdf = PDF::loadView('pdf.devis', compact("devisResource", "company", "infoClient", "clientAdresse"));
         return $pdf->stream();
     }
 
@@ -86,12 +90,16 @@ class PdfController extends Controller
     /**
      * Generate invoice PDF
      */
-    public function generateInvoice($id) {                   
+    public function generateInvoice($id, $devisId) {                   
         $facturation          = LigneDevis::onlyTrashed()->where('facturation_id', $id)->get();
         $facturationResource  = LigneDevisResource::collection($facturation);
         $companyInfo          = MyCompany::where(['id' => 1])->first();
         $company              = new MyCompanyResource($companyInfo);
-        $pdf = PDF::loadView('pdf.facture', compact("facturationResource", "company"));
+        $devisInfo            = Devis::whereId($devisId)->first();
+        $infoClient           = $devisInfo->clients()->first();
+        $clientAdresse        = ClientAddresses::where('client_id', $infoClient->id)->first();
+        $facturation          = Facturation::whereId($id)->first();
+        $pdf = PDF::loadView('pdf.facture', compact("facturationResource", "company","infoClient", "clientAdresse", "facturation"));
         return $pdf->stream();
     }
 

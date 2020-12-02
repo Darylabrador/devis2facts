@@ -66,6 +66,7 @@ class FacturationController extends Controller
   } else {
    $facturation->filename = "FA-" . $currentYear . "-" . $currentMonth . "-" . 1 . ".pdf";
   }
+  
   $facturation->save();
 
   $factId = $facturation->id;

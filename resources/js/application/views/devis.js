@@ -25,7 +25,7 @@ export default {
             total: [],
             tva: '',
             prix: [],
-            isEditing:false,
+            isEditing: false,
             headers: [
                 {
                     text: 'Produit',
@@ -57,7 +57,7 @@ export default {
             valid: true,
 
 
-            devis:[],
+            devis: [],
             getFactures: [],
             ligneFactures: [],
             isDisable: true,
@@ -134,10 +134,10 @@ export default {
             this.devis.remise = this.remise
 
             if (this.remise <= 100 && this.remise >= 0) {
-                Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
+                Axios.get('/api/devis/up/remise/' + this.$route.params.id + '/' + this.remise).then(({ data }) => {
                 })
 
-                Axios.post('/api/devis/update/', {id:this.devis.id, client_id: this.devis.client.id, tva:this.devis.tva, tht:this.devis.tht, ttc:this.devis.ttc, montantTva:this.devis.montantTva, remise:this.devis.remise, is_accepted:this.devis.is_accepted, date_expiration:this.devis.expiration} ).then(({ data }) => {
+                Axios.post('/api/devis/update/', { id: this.devis.id, client_id: this.devis.client.id, tva: this.devis.tva, tht: this.devis.tht, ttc: this.devis.ttc, montantTva: this.devis.montantTva, remise: this.devis.remise, is_accepted: this.devis.is_accepted, date_expiration: this.devis.expiration }).then(({ data }) => {
                 })
             }
 
@@ -153,7 +153,7 @@ export default {
                     this.ligneFactures.forEach(data => {
                         this.lignes.splice(this.lignes.indexOf(data), 1)
                     })
-                    
+
 
                 })
 
@@ -193,9 +193,9 @@ export default {
                 data.data.forEach(_data => {
                     if (_data.facture != null) {
                         this.getFactures.push(_data);
-                        
+
                     }
-                   
+
 
                 })
                 this.getFactures = _.uniqBy(this.getFactures, 'facture.id');
@@ -211,20 +211,16 @@ export default {
             window.URL.revokeObjectURL(url);
         },
 
-        async generateFile(id) {
+        async generateInvoice(factureId, devisId) {
             try {
-                const facture = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
-                const file = await Axios.get(`/api/facture/pdf/name/${id}`);
+                const facture = await Axios.get(`/api/facture/pdf/${factureId}/devis/${devisId}`, { responseType: 'arraybuffer' });
+                const file = await Axios.get(`/api/facture/pdf/name/${factureId}`);
                 const responseData = facture.data;
                 const fileData = file.data.data;
                 this.downloadPDF(responseData, fileData);
             } catch (error) {
                 console.log(error)
             }
-        
-        },
-        generateInvoice(facture) {
-            // console.log(facture)
         }
     }
 }

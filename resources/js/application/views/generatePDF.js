@@ -17,9 +17,9 @@ export default {
                 }
             } else {
                 try {
-                    const devis = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
+                    const facture = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
                     const file  = await Axios.get(`/api/facture/pdf/name/${id}`);
-                    const responseData = devis.data;
+                    const responseData = facture.data;
                     const fileData = file.data.data;
                     this.downloadPDF(responseData, fileData);
                 } catch (error) {

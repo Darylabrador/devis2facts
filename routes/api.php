@@ -58,7 +58,7 @@ Route::post('lignedevis/create', [LigneDevisController::class, 'create']);
 
 // PDF
 Route::get('/devis/pdf/{id}', [PdfController::class, "generateDevis"]);
-Route::get('/facture/pdf/{id}', [PdfController::class, "generateInvoice"]);
+Route::get('/facture/pdf/{id}/devis/{devisId}', [PdfController::class, "generateInvoice"]);
 
 Route::get('/devis/pdf/name/{id}', [PdfController::class, "getFilenameDevis"]);
 Route::get('/facture/pdf/name/{id}', [PdfController::class, "getFilenameInvoice"]);
