@@ -100,20 +100,16 @@
     <div style="margin-left: 485px; margin-top: 10px;">
         <table class="fontStyle" style="width: 218px;">
             <tr style="border: 1px solid black; padding-left: 5px;">
-                <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">Remise</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturationResource[0]->remise }}</td>
-            </tr>
-            <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">Montant TVA</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturationResource[0]->montantTva }} </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturation->montantTva }} </td>
             </tr>
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">THT</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturationResource[0]->tht }} </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturation->tht }} </td>
             </tr>
             <tr style="border: 1px solid black; padding-left: 5px;">
                 <th style="text-align: left; border: 1px solid black; padding-left: 5px; width: 40%; font-size: 11px;">TTC</th>
-                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturationResource[0]->ttc }} </td>
+                <td style="border: 1px solid black; padding-left: 5px;font-size: 11px;"> {{ $facturation->ttc }} </td>
             </tr>
         </table>
     </div>
