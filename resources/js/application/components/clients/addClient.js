@@ -6,7 +6,7 @@ export default {
             default: false
         },
         client: {
-            default: function() {
+            default: function () {
                 return {}
             }
         }
@@ -24,6 +24,18 @@ export default {
             nameRules: [
                 v => !!v || "Le nom est requis",
             ],
+            address: '',
+            addressRules: [
+                v => !!v || "L'addresse est requis",
+            ],
+            city: '',
+            cityRules: [
+                v => !!v || "La ville est requis",
+            ],
+            postcode: 0,
+            postRules: [
+                v => !!v || "Le code postal est requis",
+            ],
             id: '',
             valid: true,
             lazy: false,
@@ -32,13 +44,21 @@ export default {
 
     methods: {
         addClient() {
-            Axios.post('/api/clients/add', {name: this.name, email:this.email, id: this.id == '' ? '' : this.id}).then(data => {
-                
+            let data = { 
+                name: this.name, 
+                email: this.email, 
+                city: this.city,
+                postcode: this.postcode,
+                address: this.address,
+                id: this.id == '' ? '' : this.id 
+            }
+            Axios.post('/api/clients/add', data).then(data => {
+
                 if (this.isModifier) {
                     this.$emit('updateClient', data.data)
-               
-                } else if(!this.isModifier) {
-                   this.$emit('addClient', data.data);  
+
+                } else if (!this.isModifier) {
+                    this.$emit('addClient', data.data);
                 }
             })
         },

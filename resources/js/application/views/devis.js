@@ -2,20 +2,20 @@ import Axios from "axios"
 import Tva from '../components/devis/Tva.vue'
 import Autocomplete from '../components/devis/Autocomplete.vue'
 import AddLigne from '../components/devis/AddLigne.vue'
-import Facturation from '../components/devis/lignedevis/Facturation.vue'
 import Check from '../components/devis/lignedevis/Check.vue'
 import { apiService } from '../_services/apiService'
 import { controllers } from "chart.js"
 import { mdiConsoleNetworkOutline } from "@mdi/js"
 import DeleteLigne from '../components/devis/lignedevis/DeleteLigne.vue'
+import Acompte from '../components/modal/Acompte.vue'
 export default {
     components: {
         Tva,
         Autocomplete,
         AddLigne,
-        Facturation,
         Check,
-        DeleteLigne
+        DeleteLigne,
+        Acompte
     },
 
 
@@ -25,7 +25,7 @@ export default {
             total: [],
             tva: '',
             prix: [],
-            isEditing:false,
+            isEditing: false,
             headers: [
                 {
                     text: 'Produit',
@@ -57,7 +57,7 @@ export default {
             valid: true,
 
 
-            devis:[],
+            devis: [],
             getFactures: [],
             ligneFactures: [],
             isDisable: true,
@@ -76,6 +76,7 @@ export default {
             apiService.get('/api/devis/find/ligne/' + this.$route.params.id).then(({ data }) => {
 
                 data.data.forEach(ligne => {
+
                     this.lignes.push(ligne)
                     this.tht += ligne.price * ligne.quantity
                     this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
@@ -134,10 +135,10 @@ export default {
             this.devis.remise = this.remise
 
             if (this.remise <= 100 && this.remise >= 0) {
-                Axios.get('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise).then(({ data }) => {
+                Axios.get('/api/devis/up/remise/' + this.$route.params.id + '/' + this.remise).then(({ data }) => {
                 })
 
-                Axios.post('/api/devis/update/', {id:this.devis.id, client_id: this.devis.client.id, tva:this.devis.tva, tht:this.devis.tht, ttc:this.devis.ttc, montantTva:this.devis.montantTva, remise:this.devis.remise, is_accepted:this.devis.is_accepted, date_expiration:this.devis.expiration} ).then(({ data }) => {
+                Axios.post('/api/devis/update/', { id: this.devis.id, client_id: this.devis.client.id, tva: this.devis.tva, tht: this.devis.tht, ttc: this.devis.ttc, montantTva: this.devis.montantTva, remise: this.devis.remise, is_accepted: this.devis.is_accepted, date_expiration: this.devis.expiration }).then(({ data }) => {
                 })
             }
 
@@ -153,7 +154,7 @@ export default {
                     this.ligneFactures.forEach(data => {
                         this.lignes.splice(this.lignes.indexOf(data), 1)
                     })
-                    
+
 
                 })
 
@@ -168,6 +169,9 @@ export default {
                 this.isDisable = true;
             }
 
+
+
+
         },
 
         createFacture(facture) {
@@ -176,10 +180,28 @@ export default {
                     this.isDisable = false;
                     this.factures.push(facture.id);
                     this.ligneFactures.push(facture.ligne);
+                    this.tht -= facture.ligne.price * facture.ligne.quantity
+                    this.ttc -= (facture.ligne.price + facture.ligne.price * facture.ligne.devis.tva / 100) * facture.ligne.quantity
+
+                    this.valuettc = this.ttc - this.ttc * this.devis.remise / 100
+                    this.valuetht = this.tht - this.tht * this.devis.remise / 100
+
+                    this.devis.tht = this.valuetht
+                    this.devis.ttc = this.valuettc
+                    this.devis.montantTva = this.devis.ttc - this.devis.tht
                 }
                 else if (facture.check == false) {
                     this.factures.splice(this.factures.indexOf(facture.id), 1);
                     this.ligneFactures.splice(this.ligneFactures.indexOf(facture.ligne), 1);
+                    this.tht += facture.ligne.price * facture.ligne.quantity
+                    this.ttc += (facture.ligne.price + facture.ligne.price * facture.ligne.devis.tva / 100) * facture.ligne.quantity
+
+                    this.valuettc = this.ttc - this.ttc * this.devis.remise / 100
+                    this.valuetht = this.tht - this.tht * this.devis.remise / 100
+
+                    this.devis.tht = this.valuetht
+                    this.devis.ttc = this.valuettc
+                    this.devis.montantTva = this.devis.ttc - this.devis.tht
 
                 }
                 if (this.ligneFactures.length == 0) {
@@ -193,9 +215,9 @@ export default {
                 data.data.forEach(_data => {
                     if (_data.facture != null) {
                         this.getFactures.push(_data);
-                        
+
                     }
-                   
+
 
                 })
                 this.getFactures = _.uniqBy(this.getFactures, 'facture.id');

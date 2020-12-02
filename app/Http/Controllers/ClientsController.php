@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
+use App\Models\ClientAddresses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,6 +18,9 @@ class ClientsController extends Controller
             [
                 'name' => 'required|max:100',
                 'email' => 'required|email',
+                'address' => 'required',
+                'postcode' => 'required|numeric',
+                'city' => 'required',
                 'id' => '',
             ],
             [
@@ -34,6 +38,13 @@ class ClientsController extends Controller
         $client->email = $validator['email'];
         $client->save();
 
+        $address = new ClientAddresses;
+        $address->address = $validator['address'];
+        $address->postcode = $validator['postcode'];
+        $address->city = $validator['city'];
+        $address->client_id = $client->id;
+        $address->save();
+        
         return new ClientResource($client);
 
     }
