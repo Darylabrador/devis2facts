@@ -197,9 +197,26 @@ export default {
             })
         },
 
+        downloadPDF(responseData, fileData) {
+            var a = document.createElement('a');
+            var url = window.URL.createObjectURL(new Blob([responseData], { type: 'application/pdf' }));
+            a.href = url;
+            a.download = fileData.filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        },
 
-        generateInvoice(facture) {
-            console.log(facture)
-        }
+        async generateFile(id) {
+            try {
+                const facture = await Axios.get(`/api/facture/pdf/${id}`, { responseType: 'arraybuffer' });
+                const file = await Axios.get(`/api/facture/pdf/name/${id}`);
+                const responseData = facture.data;
+                const fileData = file.data.data;
+                this.downloadPDF(responseData, fileData);
+            } catch (error) {
+                console.log(error)
+            }
+        
+        },
     }
 }
