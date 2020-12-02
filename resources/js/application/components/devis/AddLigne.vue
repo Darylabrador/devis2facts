@@ -4,9 +4,9 @@
       <v-dialog v-model="dialog"
                 max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-          <v-btn v-if="!isModified" icon class="success--text" v-bind="attrs" v-on="on"
-            >
-             Ajouter produit
+          <v-btn v-if="!isModified" icon class="success--text ml-5" v-bind="attrs" v-on="on">
+             <span  class="ml-5"> Produit </span>
+             
             <v-icon>mdi-plus</v-icon>
           </v-btn>
           <v-btn v-if="isModified" icon class="success--text" v-bind="attrs" v-on="on"
