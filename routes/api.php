@@ -51,7 +51,7 @@ Route::delete('devis/del/{id}', [DevisController::class, 'delete']);
 
 Route::get('devis/up/remise/{id}/{r}', [DevisController::class, 'updateRemise']);
 Route::post('devis/update', [DevisController::class, 'update']);
-
+Route::post('devis/acompte/create', [FacturationController::class, 'createAcompte']);
 
 //Ligne devis
 Route::post('lignedevis/create', [LigneDevisController::class, 'create']);

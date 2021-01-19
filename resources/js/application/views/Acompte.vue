@@ -27,7 +27,7 @@
 					</v-col>
 				</v-row>
 				<v-row>
-					<v-col justify="end"><acompte :devis="devis" /></v-col>
+					<v-col justify="end"><acompte @ligneAcompte="isFact($event)"/></v-col>
 				</v-row>
 			</v-row>
 			<div>

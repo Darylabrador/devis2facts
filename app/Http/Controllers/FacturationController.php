@@ -100,6 +100,20 @@ class FacturationController extends Controller
   return new FacturationResource($facturationData);
  }
 
+ public function createAcompte(Request $request) {
+  $validator = Validator::make(
+    $request->all(),
+    [
+     'lignes_devis' => 'required',
+    ],
+    [
+     'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
+    ]
+   )->validate();
+
+   return $validator;
+ }
+
  /**
   * Store a newly created resource in storage.
   *

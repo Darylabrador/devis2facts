@@ -23,7 +23,16 @@
 					</v-text-field>
 				</v-col>
 			</v-row>
-			<v-btn depressed @click="calcul()">Calculer</v-btn>
+			<v-row>
+				<v-col cols="6">
+					<v-btn depressed @click="calcul()">Calculer</v-btn>
+				</v-col>
+				<v-col
+					><v-btn cols="6" depressed @click="facturer()"
+						><v-icon>mdi-eye-plus</v-icon></v-btn
+					></v-col
+				>
+			</v-row>
 		</v-sheet>
 	</v-bottom-sheet>
 </template>

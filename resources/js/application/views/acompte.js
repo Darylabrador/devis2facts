@@ -145,21 +145,20 @@ export default {
 
         },
 
-        isFact() {
+        isFact(ligne_devis) {
+            console.log(ligne_devis);
             // creation de la ligne de facture
-            if (this.ligneFactures.length != 0 && !this.drawerRight) {
-                Axios.post('/api/facture/create', { lignes_devis: this.factures }).then(({ data }) => {
-                    let facture = {}
-                    facture = { facture: data.data };
-                    this.getFactures.push(facture);
-                    this.ligneFactures.forEach(data => {
-                        this.lignes.splice(this.lignes.indexOf(data), 1)
-                    })
+                Axios.post('/api/devis/acompte/create', { lignes_devis: ligne_devis }).then(({ data }) => {
+                    // let facture = {}
+                    // facture = { facture: data.data };
+                    // this.getFactures.push(facture);
+                    // this.ligneFactures.forEach(data => {
+                    //     this.lignes.splice(this.lignes.indexOf(data), 1)
+                    // })
+                    console.log(data);
 
 
                 })
-
-            }
 
             this.checkbox = !this.checkbox;
             this.isFacture = !this.isFacture;
@@ -169,10 +168,6 @@ export default {
             if (this.drawerRight) {
                 this.isDisable = true;
             }
-
-
-
-
         },
 
         createFacture(facture) {
