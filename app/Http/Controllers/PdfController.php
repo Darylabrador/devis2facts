@@ -22,7 +22,7 @@ use App\Http\Resources\FacturationResource;
 
 class PdfController extends Controller
 {
-        /**
+    /**
      * Write code on Method
      *
      * @return response()
