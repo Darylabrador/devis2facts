@@ -43,7 +43,7 @@
 							<v-btn icon @click="generateEmail(item.id)">
 								<v-icon>mdi-email</v-icon>
 							</v-btn>
-							<v-btn icon @click="generateFile(item.id, true)">
+							<v-btn icon v-if="item.ttc != 0" @click="generateFile(item.id, true)">
 								<v-icon>mdi-file-download</v-icon>
 							</v-btn>
 							<v-btn v-if="!item.is_acompte" icon :to="'/devis/' + item.id">

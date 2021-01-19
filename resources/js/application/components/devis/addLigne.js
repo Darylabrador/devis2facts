@@ -66,7 +66,7 @@ export default {
 
             Axios.post('/api/lignedevis/create', data).then(({ data }) => {
                 if (this.isModified) {
-                    console.log(data.data.product)
+                    // console.log(data.data.product)
                     this.dialog = false
                     this.ligne.product = data.data.product
                     this.ligne.quantity = data.data.quantity
@@ -81,7 +81,7 @@ export default {
         },
         add(produit) {
             //this.products = produit
-            console.log(produit)
+            // console.log(produit)
             this.products.push(produit)
             this.selectProduct = produit
             this.quantity = 1

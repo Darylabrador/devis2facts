@@ -54,7 +54,6 @@ export default {
             verifCheck: false,
             valid: true,
 
-
             devis: [],
             getFactures: [],
             ligneFactures: [],
@@ -66,9 +65,8 @@ export default {
         this.getLigne()
         this.getDevis()
         this.getFact()
-
-
     },
+
     methods: {
         getLigne() {
             apiService.get('/api/devis/find/ligne/' + this.$route.params.id).then(({ data }) => {
@@ -99,32 +97,22 @@ export default {
         },
 
 
-
         add(ligne) {
             this.lignes.push(ligne)
             this.tht += ligne.price * ligne.quantity
             this.ttc += (ligne.price + ligne.price * ligne.devis.tva / 100) * ligne.quantity
-
             this.valuettc = this.ttc - this.ttc * this.devis.remise / 100
             this.valuetht = this.tht - this.tht * this.devis.remise / 100
-
             this.devis.tht = this.valuetht
             this.devis.ttc = this.valuettc
             this.devis.montantTva = this.devis.ttc - this.devis.tht
         },
 
-
-
         emis(value) {
-
             this.valuettc = this.ttc - this.ttc * value / 100
             this.valuetht = this.tht - this.tht * value / 100
-
-            // console.log('/api/devis/up/remise/' + this.$route.params.id +'/' + this.remise)
-
             this.devis.tht = this.valuetht
             this.devis.ttc = this.valuettc
-
             this.devis.montantTva = this.devis.ttc - this.devis.tht
             this.devis.remise = this.remise
 
@@ -154,10 +142,7 @@ export default {
                     this.ligneFactures.forEach(data => {
                         this.lignes.splice(this.lignes.indexOf(data), 1)
                     })
-
-
                 })
-
             }
 
             this.checkbox = !this.checkbox;
@@ -168,10 +153,6 @@ export default {
             if (this.drawerRight) {
                 this.isDisable = true;
             }
-
-
-
-
         },
 
         createFacture(facture) {
@@ -215,10 +196,7 @@ export default {
                 data.data.forEach(_data => {
                     if (_data.facture != null) {
                         this.getFactures.push(_data);
-
                     }
-
-
                 })
                 this.getFactures = _.uniqBy(this.getFactures, 'facture.id');
             })

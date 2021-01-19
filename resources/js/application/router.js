@@ -7,8 +7,7 @@ import listDevis from './views/ListDevis.vue';
 import Products from './views/Product.vue';
 import Login from './login/Login.vue';
 import Acompte from './views/Acompte.vue';
-// route temporaire pour la génération du pdf
-import GeneratePdf from './views/GeneratePDF.vue';
+
 import { Role } from './_helpers/role';
 import { authenticationService } from './_services/authentication.service';
 
@@ -49,12 +48,6 @@ const router = new VueRouter({
             path: '/produits',
             name: 'product',
             component: Products,
-            meta: { authorize: [Role.Admin] }
-        },
-        {
-            path: '/generate',
-            name: 'pdf',
-            component: GeneratePdf,
             meta: { authorize: [Role.Admin] }
         },
         {

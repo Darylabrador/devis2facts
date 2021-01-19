@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        for ($i = 1; $i < 20; $i++) {
+        for ($i = 1; $i < 5; $i++) {
             $year = date('Y');
             $month = $faker->month;
             DB::table('devis')->insert([
@@ -45,38 +45,55 @@ class DatabaseSeeder extends Seeder
                 'date_expiration' => "{$year}-{$month}-" . rand(10, 20),
                 'is_accepted' => true,
                 'created_at' => "{$year}-{$month}-" . rand(1, 10),
-                'tht' => 0,
-                'ttc' => 0,
-                'montantTva' => 0,
+                'tht' => rand(20, 200),
+                'ttc' => rand(20, 500),
+                'montantTva' => rand(80, 150),
                 'is_acompte' => false,
                 'remise' => rand(0, 40),
             ]);
         }
 
-        for ($i = 1; $i < 10; $i++) {
+        for ($i = 1; $i < 5; $i++) {
             $year = date('Y');
             $month = $faker->month;
             DB::table('facturations')->insert([
                 'is_paid' => true,
                 'filename' => "FA-{$year}-{$month}-{$i}.pdf",
+                'tht' => rand(20, 200),
+                'ttc' => rand(20, 500),
+                'montantTva' => rand(80, 150),
             ]);
         }
 
-        for ($i = 1; $i < 15; $i++) {
+        for ($i = 1; $i < 5; $i++) {
             $year = date('Y');
             $month = $faker->month;
             DB::table('facturations')->insert([
                 'is_paid' => false,
                 'filename' => "FA-{$year}-{$month}-{$i}.pdf",
+                'tht' => rand(20, 200),
+                'ttc' => rand(20, 500),
+                'montantTva' => rand(80, 150),
             ]);
         }
 
-        for ($i = 1; $i < 20; $i++) {
+        for ($i = 1; $i < 5; $i++) {
             DB::table('lignedevis')->insert([
-                'devis_id' => $faker->numberBetween(1, 19),
+                'devis_id' => $i,
                 'product_id' => $faker->numberBetween(1, 5),
                 'facturation_id' => $i,
                 'description' => "",
+                'quantity' => $i,
+                'price' => $faker->numberBetween(1, 10),
+            ]);
+        }
+
+        for ($i = 1; $i < 5; $i++) {
+            DB::table('lignedevis')->insert([
+                'devis_id' => $i,
+                'product_id' => $faker->numberBetween(1, 5),
+                'facturation_id' => $i,
+                'description' => "Description de test",
                 'quantity' => $i,
                 'price' => $faker->numberBetween(1, 10),
             ]);

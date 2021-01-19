@@ -85,7 +85,7 @@
             </tr>
         </thead>
         <tbody>
-        @foreach ($facturationResource as $value)
+        @foreach ($devisResource as $value)
         <tr style="outline: 0;">
             <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->products->name }}</td> 
             <td style="border: 1px solid black; padding-left: 5px;"> {{ $value->quantity }}</td> 
