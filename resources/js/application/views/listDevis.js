@@ -38,7 +38,7 @@ export default {
         },
 
         getlistDevis: async function() {
-            var res = await apiDevis.getAllDevis()
+            var res = await apiService.get(`api/devis/getAll`);
             this.info = res.data.data
         },
 
