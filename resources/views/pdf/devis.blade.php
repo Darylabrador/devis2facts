@@ -61,16 +61,16 @@
       <div style="margin-top: 30px; margin-left: 500px;">
         <table>
             <tr>
-                <td class="fontStyle fontBold"> {{ $infoClient->name }} </td>
+                <td class="fontStyle fontBold"> {{ $infoClient->name ?? "" }} </td>
             </tr>
             <tr>
-                <td class="fontStyle">{{ $clientAdresse->address }}</td>
+                <td class="fontStyle">{{ $clientAdresse->address ?? "" }}</td>
             </tr>
             <tr>
-                <td class="fontStyle">{{ $clientAdresse->city }}, {{ $clientAdresse->postcode }}</td>
+                <td class="fontStyle">{{ $clientAdresse->city ?? "" }}, {{ $clientAdresse->postcode ?? "" }}</td>
             </tr>
             <tr>
-                <td class="fontStyle">E-mail : {{ $infoClient->email }}</td>
+                <td class="fontStyle">E-mail : {{ $infoClient->email ?? "" }}</td>
             </tr>
         </table>
     </div>

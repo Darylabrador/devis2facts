@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use PDF;
 use App\Models\Devis;
-use App\Models\Client;
-use App\Models\Product;
 use App\Models\MyCompany;
 use App\Models\LigneDevis;
 use App\Models\Facturation;
-use Illuminate\Http\Request;
-use App\Mail\NotificationDevis;
 use App\Models\ClientAddresses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -19,6 +15,7 @@ use App\Http\Resources\DevisResource;
 use App\Http\Resources\MyCompanyResource;
 use App\Http\Resources\LigneDevisResource;
 use App\Http\Resources\FacturationResource;
+
 
 class PdfController extends Controller
 {
@@ -35,10 +32,11 @@ class PdfController extends Controller
         $company        = new MyCompanyResource($companyInfo);
 
         $data["email"] = $devisResource[0]->devis->clients->email;
+        $infoClient = $devisResource[0]->devis->clients;
         $data["title"] = "Votre de devis";
-        $data["auteur"] = "Envoyé par ".Auth::user()->email;
-
-        $pdf = PDF::loadView('pdf.devis', compact("devisResource", "company"));
+        $data["auteur"] = "Envoyé depuis devis2facts";
+        
+        $pdf = PDF::loadView('pdf.devis', compact("devisResource", "company", "infoClient"));
 
         Mail::send('emails.myTestMail', $data, function($message)use($data, $pdf) {
             $message->to($data["email"], $data["email"])

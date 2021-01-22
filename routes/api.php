@@ -25,7 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 
 });
-Route::middleware('auth:api')->get('/devis/sendemailpdf/{devisId}', [PdfController::class, 'index', 'middleware' => 'WriteToDatabaseMiddleware', 'throttle:500,1' ]);
+Route::middleware('auth:api')->get('/devis/sendemailpdf/{devisId}', [PdfController::class, 'index' ]);
 // Route for dashboard informations
 Route::get("/stats", [FacturationController::class, 'index']);
 
