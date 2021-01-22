@@ -21,6 +21,7 @@ class FacturationResource extends JsonResource
             'montantTva' => $this->montantTva,
             'tht'        => $this->tht,
             'ttc'        => $this->ttc,
+            // 'devis'      => ''
         ];
     }
 }

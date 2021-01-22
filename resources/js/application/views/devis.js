@@ -14,7 +14,6 @@ export default {
         DeleteLigne,
     },
 
-
     data() {
         return {
             pourcentRule: [v => (!isNaN(parseFloat(v)) && v >= 0 && v <= 100) || 'Le nombre doit être compris entre 0 et 100'],
@@ -136,12 +135,7 @@ export default {
             // creation de la ligne de facture
             if (this.ligneFactures.length != 0 && !this.drawerRight) {
                 Axios.post('/api/facture/create', { lignes_devis: this.factures }).then(({ data }) => {
-                    let facture = {}
-                    facture = { facture: data.data };
-                    this.getFactures.push(facture);
-                    this.ligneFactures.forEach(data => {
-                        this.lignes.splice(this.lignes.indexOf(data), 1)
-                    })
+                    this.getFact();
                 })
             }
 

@@ -97,7 +97,16 @@ class FacturationController extends Controller
     $facturationData->montantTva = $montantTva;
     $facturationData->save();
 
-  return new FacturationResource($facturationData);
+    $data = [
+      'facture' => new FacturationResource($facturationData),
+      'devis' => ['id' => $infoLigneDevis[0]->devis_id]
+    ];
+
+    return response([
+      'facture' => $data
+    ]);
+    
+    // return new FacturationResource($facturationData);
  }
 
  public function createAcompte(Request $request) {
